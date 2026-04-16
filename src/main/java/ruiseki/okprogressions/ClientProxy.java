@@ -1,4 +1,4 @@
-package ruiseki.okprogresstion;
+package ruiseki.okprogressions;
 
 import ruiseki.okcore.client.key.IKeyRegistry;
 import ruiseki.okcore.init.ModBase;
@@ -12,7 +12,7 @@ public class ClientProxy extends ClientProxyComponent {
 
     @Override
     public ModBase getMod() {
-        return OKProgression.instance;
+        return OKProgressions.instance;
     }
 
     @Override

@@ -1,0 +1,8 @@
+{
+  "parent": "okprogressions:block/cobblegen",
+  "textures": {
+    "particle": "okprogressions:block/diamond_cobblegen_generic",
+    "t1": "okprogressions:block/diamond_cobblegen_generic",
+    "t2": "okprogressions:block/diamond_cobblegen_glass"
+  }
+}

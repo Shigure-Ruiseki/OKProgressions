@@ -1,0 +1,18 @@
+creativetab.okprogressions=OK Progressions
+
+
+#Tooltip
+
+tooltip.cobblegen_1=Only Holds %d Blocks!
+tooltip.cobblegen_2=Makes 1 Cobblestone Block every %d Ticks!
+tooltip.cobblegen_3=Can output to a Inventory Above!
+tooltip.cobblegen_4=Can output to Hopper Below!
+
+#Item
+
+#Block
+tile.cobblegen.name=Cobblestone Generator
+tile.iron_cobblegen.name=Cobblestone Generator Tier 2
+tile.diamond_cobblegen.name=Cobblestone Generator Tier 3
+tile.blaze_cobblegen.name=Cobblestone Generator Tier 4
+tile.emerald_cobblegen.name=Cobblestone Generator Tier 5
