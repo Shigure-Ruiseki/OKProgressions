@@ -1,4 +1,4 @@
-package ruiseki.okprogresstion;
+package ruiseki.okprogressions;
 
 import java.util.Map;
 
@@ -24,7 +24,9 @@ import ruiseki.okcore.command.CommandMod;
 import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.proxy.ICommonProxy;
-import ruiseki.okprogresstion.config.ModConfig;
+import ruiseki.okprogressions.common.init.ModBlocks;
+import ruiseki.okprogressions.common.init.ModRecipes;
+import ruiseki.okprogressions.config.ModConfig;
 
 @Mod(
     modid = Reference.MOD_ID,
@@ -32,7 +34,7 @@ import ruiseki.okprogresstion.config.ModConfig;
     version = Reference.VERSION,
     dependencies = Reference.DEPENDENCIES,
     guiFactory = Reference.GUI_FACTORY)
-public class OKProgression extends ModBase {
+public class OKProgressions extends ModBase {
 
     static {
         try {
@@ -46,17 +48,19 @@ public class OKProgression extends ModBase {
     public static ICommonProxy proxy;
 
     @Mod.Instance(Reference.MOD_ID)
-    public static OKProgression instance;
+    public static OKProgressions instance;
 
-    public OKProgression() {
+    public OKProgressions() {
         super(Reference.MOD_ID, Reference.MOD_NAME);
         putGenericReference(REFKEY_MOD_VERSION, Reference.VERSION);
+        addInitListeners(new ModRecipes());
     }
 
     @Override
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
+        ModBlocks.preInit();
         if (MinecraftHelpers.isClientSide()) {
             ModelRegistry.registerModid(Reference.MOD_ID);
         }
@@ -108,7 +112,7 @@ public class OKProgression extends ModBase {
 
     @Override
     public CreativeTabs constructDefaultCreativeTab() {
-        return OKBCreativeTab.INSTANCE;
+        return OKPCreativeTab.INSTANCE;
     }
 
     @Override
@@ -122,7 +126,7 @@ public class OKProgression extends ModBase {
      * @param message The message to show.
      */
     public static void okLog(String message) {
-        OKProgression.instance.log(Level.INFO, message);
+        OKProgressions.instance.log(Level.INFO, message);
     }
 
     /**
@@ -132,6 +136,6 @@ public class OKProgression extends ModBase {
      * @param message The message to show.
      */
     public static void okLog(Level level, String message) {
-        OKProgression.instance.log(level, message);
+        OKProgressions.instance.log(level, message);
     }
 }

@@ -1,4 +1,4 @@
-package ruiseki.okprogresstion;
+package ruiseki.okprogressions;
 
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.network.PacketHandler;
@@ -8,7 +8,7 @@ public class CommonProxy extends CommonProxyComponent {
 
     @Override
     public ModBase getMod() {
-        return OKProgression.instance;
+        return OKProgressions.instance;
     }
 
     @Override

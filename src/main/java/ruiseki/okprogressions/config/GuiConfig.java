@@ -1,10 +1,11 @@
-package ruiseki.okprogresstion.config;
+package ruiseki.okprogressions.config;
 
 import net.minecraft.client.gui.GuiScreen;
 
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizon.gtnhlib.config.SimpleGuiConfig;
-import ruiseki.okprogresstion.Reference;
+
+import ruiseki.okprogressions.Reference;
 
 public class GuiConfig extends SimpleGuiConfig {
 

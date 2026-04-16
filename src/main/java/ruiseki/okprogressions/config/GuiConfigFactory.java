@@ -1,4 +1,4 @@
-package ruiseki.okprogresstion.config;
+package ruiseki.okprogressions.config;
 
 import net.minecraft.client.gui.GuiScreen;
 
