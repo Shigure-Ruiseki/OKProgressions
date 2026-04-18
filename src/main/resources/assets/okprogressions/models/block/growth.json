@@ -3,7 +3,7 @@
   "textures": {
     "particle": "okprogressions:block/growth",
     "t1": "okprogressions:block/dirty_glass",
-    "t2": "okprogressions:block/bone"
+    "t2": "okprogressions:block/bone_block"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

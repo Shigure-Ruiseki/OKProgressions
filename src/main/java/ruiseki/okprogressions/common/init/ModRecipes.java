@@ -1,10 +1,12 @@
 package ruiseki.okprogressions.common.init;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import ruiseki.okcore.helper.PotionHelpers;
 import ruiseki.okcore.init.IInitListener;
 
 public class ModRecipes implements IInitListener {
@@ -90,6 +92,60 @@ public class ModRecipes implements IInitListener {
                 "gemEmerald",
                 'b',
                 ModBlocks.BLAZE_COBBLE_GEN.newItemStack()));
+
+        // Growth Block
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.GROWTH.newItemStack(),
+                "ibi",
+                "ded",
+                "ibi",
+                'i',
+                new ItemStack(Items.iron_ingot),
+                'b',
+                ModBlocks.BONE_BLOCK.newItemStack(),
+                'd',
+                PotionHelpers.createPotion(8194),
+                'e',
+                new ItemStack(Blocks.waterlily)));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.GROWTH_UPGRADE.newItemStack(),
+                "cnc",
+                "wew",
+                "cnc",
+                'e',
+                new ItemStack(Blocks.glass),
+                'w',
+                PotionHelpers.createPotion(8194),
+                'c',
+                ModBlocks.GROWTH.newItemStack(),
+                'n',
+                new ItemStack(Items.nether_star)));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.GROWTH_UPGRADE_TWO.newItemStack(),
+                "cgc",
+                "scs",
+                "cgc",
+                's',
+                PotionHelpers.createPotion(8226),
+                'g',
+                ModBlocks.GROWTH_UPGRADE.newItemStack(),
+                'c',
+                new ItemStack(Items.ender_eye)));
+
+        // Bone Block
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.BONE_BLOCK.newItemStack(),
+                "bbb",
+                "bbb",
+                "bbb",
+                'b',
+                new ItemStack(Items.bone)));
 
     }
 }
