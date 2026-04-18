@@ -1,7 +1,5 @@
 package ruiseki.okprogressions;
 
-import com.myname.mymodid.Tags;
-
 public class Reference {
 
     public static final String MOD_ID = Tags.MOD_ID;
