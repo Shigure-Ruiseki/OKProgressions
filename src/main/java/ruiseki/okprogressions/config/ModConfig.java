@@ -53,4 +53,23 @@ public class ModConfig {
     @Config.DefaultInt(64)
     @Config.RangeInt(min = 1)
     public static int emeraldCobbleGenStackSize;
+
+    @Config.DefaultInt(30)
+    @Config.RangeInt(min = 1)
+    public static int growthTicks;
+
+    @Config.DefaultInt(40)
+    @Config.RangeInt(min = 1)
+    public static int upgradeGrowthTicks;
+
+    @Config.DefaultInt(30)
+    @Config.RangeInt(min = 1)
+    public static int upgradeTwoGrowthTicks;
+
+    @Config.DefaultBoolean(true)
+    public static boolean partical;
+
+    @Config.DefaultInt(750)
+    @Config.RangeInt(min = 1)
+    public static int particalTicks;
 }

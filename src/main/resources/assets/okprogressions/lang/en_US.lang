@@ -16,3 +16,9 @@ tile.iron_cobblegen.name=Cobblestone Generator Tier 2
 tile.diamond_cobblegen.name=Cobblestone Generator Tier 3
 tile.blaze_cobblegen.name=Cobblestone Generator Tier 4
 tile.emerald_cobblegen.name=Cobblestone Generator Tier 5
+
+tile.growth.name=Growth Crystal
+tile.growth_upgrade.name=Growth Crystal Tier 2
+tile.growth_upgrade_two.name=Growth Crystal Tier 3
+
+tile.bone_block.name=Bone Block
