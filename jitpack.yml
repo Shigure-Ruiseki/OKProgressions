@@ -1,4 +1,2 @@
 before_install:
   - ./gradlew setupCIWorkspace
-jdk:
-  - openjdk17
