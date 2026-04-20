@@ -24,7 +24,7 @@ public class ItemMyceliumSeeds extends ItemOK {
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
         float hitX, float hitY, float hitZ) {
-        Block block = world.getBlock(x,y,z);
+        Block block = world.getBlock(x, y, z);
         if (block == Blocks.dirt || block == Blocks.grass) {
             world.setBlock(x, y, z, Blocks.mycelium);
             world.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "step.grass", 1.0F, 1.0F);
