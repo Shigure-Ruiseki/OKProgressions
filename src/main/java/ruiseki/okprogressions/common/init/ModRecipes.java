@@ -15,6 +15,7 @@ public class ModRecipes implements IInitListener {
     public void onInit(Step step) {
         if (step == Step.POSTINIT) {
             blockRecipes();
+            itemRecipes();
         }
     }
 
@@ -147,5 +148,95 @@ public class ModRecipes implements IInitListener {
                 'b',
                 new ItemStack(Items.bone)));
 
+    }
+
+    public static void itemRecipes() {
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                new ItemStack(Items.golden_apple),
+                "ggg",
+                "gag",
+                "ggg",
+                'g',
+                "nuggetGold",
+                'a',
+                Items.apple));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.GOLDEN_APPLE.newItemStack(),
+                "ggg",
+                "gag",
+                "ggg",
+                'g',
+                "ingotGold",
+                'a',
+                Items.golden_apple));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                new ItemStack(Items.golden_apple, 1, 1),
+                "ggg",
+                "gag",
+                "ggg",
+                'g',
+                "blockGold",
+                'a',
+                ModItems.GOLDEN_APPLE.newItemStack()));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.DIAMOND_APPLE.newItemStack(),
+                "ddd",
+                "dad",
+                "ddd",
+                'd',
+                "gemDiamond",
+                'a',
+                Items.apple));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.EMERALD_APPLE.newItemStack(),
+                "eee",
+                "eae",
+                "eee",
+                'e',
+                "gemEmerald",
+                'a',
+                Items.apple));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.IRON_APPLE.newItemStack(),
+                "iii",
+                "iai",
+                "iii",
+                'i',
+                "ingotIron",
+                'a',
+                Items.apple));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.REDSTONE_APPLE.newItemStack(),
+                "rrr",
+                "rar",
+                "rrr",
+                'r',
+                "dustRedstone",
+                'a',
+                Items.apple));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.MYCELIUM_SEEDS.newItemStack(),
+                "sss",
+                "ses",
+                "sss",
+                's',
+                new ItemStack(Items.wheat_seeds),
+                'e',
+                new ItemStack(Items.spider_eye)));
     }
 }

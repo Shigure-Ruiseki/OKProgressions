@@ -8,7 +8,48 @@ tooltip.cobblegen_2=Makes 1 Cobblestone Block every %d Ticks!
 tooltip.cobblegen_3=Can output to a Inventory Above!
 tooltip.cobblegen_4=Can output to Hopper Below!
 
+tooltip.seeds=Right Click on Dirt!
+
+tooltip.apple_1=Fire Resistance
+tooltip.apple_2=Regeneration
+tooltip.apple_3=Resistance
+tooltip.apple_4=Speed
+
+tooltip.emerald_apple_1=Absorption
+tooltip.emerald_apple_2=Speed
+tooltip.emerald_apple_3=Saturation
+
+tooltip.iron_apple_1=Saturation
+tooltip.iron_apple_2=Resistance
+
+tooltip.redstone_apple_1=Haste
+tooltip.redstone_apple_2=Saturation
+
+tooltip.growth_1=Slow Growth!
+tooltip.growth_2=Works in a 9x9 farm!
+tooltip.growth_3=Checks up to 2 blocks up or down!
+
+tooltip.growthupgrade_1=Fast Growth!
+tooltip.growthupgrade_2=Works in a 9x9 farm!
+tooltip.growthupgrade_3=Checks up to 5 blocks up or down!
+tooltip.growthupgrade_4=Can be used as a Water Source!
+tooltip.growthupgrade_5=Sponges can not be placed around!
+
+tooltip.growthupgrade2_1=Fastest Growth!
+tooltip.growthupgrade2_2=Works in a 9x9 farm!
+tooltip.growthupgrade2_3=Checks up to 10 blocks up or down!
+tooltip.growthupgrade2_4=Can be used as a Water Source!
+tooltip.growthupgrade2_5=Sponges can not be placed around! 
+
 #Item
+
+item.mycelium_seeds.name=Mycelium Seed
+
+item.diamond_apple.name=Diamond Apple
+item.emerald_apple.name=Emerald Apple
+item.iron_apple.name=Iron Apple
+item.redstone_apple.name=Redstone Apple
+item.golden_apple.name=Gold Apple
 
 #Block
 tile.cobblegen.name=Cobblestone Generator

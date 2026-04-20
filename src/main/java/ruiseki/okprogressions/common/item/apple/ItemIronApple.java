@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ruiseki.okcore.item.ItemFoodOK;
 import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okprogressions.Reference;
 
 public class ItemIronApple extends ItemFoodOK {
 
@@ -25,8 +26,9 @@ public class ItemIronApple extends ItemFoodOK {
         this.setAlwaysEdible();
     }
 
-    public ItemIronApple(int amount, float saturation, boolean isWolfFood) {
-        this("iron_apple", amount, saturation, isWolfFood);
+    public ItemIronApple() {
+        this("iron_apple", 4, 1.0F, false);
+        this.setTextureName(Reference.PREFIX_MOD + "iron_apple");
     }
 
     @Override
@@ -42,7 +44,7 @@ public class ItemIronApple extends ItemFoodOK {
     @Override
     protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
         if (!world.isRemote) {
-            player.addPotionEffect(new PotionEffect(Potion.resistance.id, 300, 2));
+            player.addPotionEffect(new PotionEffect(Potion.resistance.id, 300, 0));
         }
     }
 
