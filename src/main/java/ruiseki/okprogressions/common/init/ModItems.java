@@ -7,6 +7,11 @@ import org.apache.logging.log4j.Level;
 
 import ruiseki.okcore.item.IItem;
 import ruiseki.okprogressions.OKProgressions;
+import ruiseki.okprogressions.common.item.apple.ItemDiamondApple;
+import ruiseki.okprogressions.common.item.apple.ItemEmeraldApple;
+import ruiseki.okprogressions.common.item.apple.ItemGoldenApple;
+import ruiseki.okprogressions.common.item.apple.ItemIronApple;
+import ruiseki.okprogressions.common.item.apple.ItemRedstoneApple;
 import ruiseki.okprogressions.common.item.misc.ItemMyceliumSeeds;
 
 public enum ModItems {
@@ -14,6 +19,11 @@ public enum ModItems {
     // spotless: off
 
     MYCELIUM_SEEDS(new ItemMyceliumSeeds()),
+    IRON_APPLE(new ItemIronApple()),
+    GOLDEN_APPLE(new ItemGoldenApple()),
+    DIAMOND_APPLE(new ItemDiamondApple()),
+    EMERALD_APPLE(new ItemEmeraldApple()),
+    REDSTONE_APPLE(new ItemRedstoneApple()),
 
     ;
 
