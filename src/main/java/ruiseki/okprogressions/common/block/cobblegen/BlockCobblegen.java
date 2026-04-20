@@ -1,4 +1,4 @@
-package ruiseki.okprogressions.common.block;
+package ruiseki.okprogressions.common.block.cobblegen;
 
 import java.util.List;
 

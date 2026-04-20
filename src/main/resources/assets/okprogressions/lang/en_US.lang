@@ -41,6 +41,7 @@ tooltip.growthupgrade2_3=Checks up to 10 blocks up or down!
 tooltip.growthupgrade2_4=Can be used as a Water Source!
 tooltip.growthupgrade2_5=Sponges can not be placed around! 
 
+tooltip.netherstar_1=Can be used as a Base block for Beacons.
 #Item
 
 item.mycelium_seeds.name=Mycelium Seed
@@ -62,4 +63,28 @@ tile.growth.name=Growth Crystal
 tile.growth_upgrade.name=Growth Crystal Tier 2
 tile.growth_upgrade_two.name=Growth Crystal Tier 3
 
-tile.bone_block.name=Bone Block
+tile.flesh_block.name=Compressed Flesh Block
+tile.bone_block.name=Compressed Bone Block
+tile.netherstar_block.name=Compressed Nether Star Block
+tile.flint_block.name=Compressed Flint Block
+
+tile.compressed_sugar_cane.name=Compressed Sugar Cane
+tile.double_compressed_sugar_cane.name=Double Compressed Sugar Cane
+tile.triple_compressed_sugar_cane.name=Triple Compressed Sugar Cane
+tile.quadruple_compressed_sugar_cane.name=Quadruple Compressed Sugar Cane
+tile.quintuple_compressed_sugar_cane.name=Quintuple Compressed Sugar Cane
+tile.sextuple_compressed_sugar_cane.name=Sextuple Compressed Sugar Cane
+tile.septuple_compressed_sugar_cane.name=Septuple Compressed Sugar Cane
+tile.octuple_compressed_sugar_cane.name=Octuple Compressed Sugar Cane
+
+tile.compressed_sugar.name=Compressed Sugar
+tile.double_compressed_sugar.name=Double Compressed Sugar
+
+tile.compressed_nether_block.name=Compressed Netherrack
+tile.double_compressed_nether_block.name=Double Compressed Netherrack
+tile.triple_compressed_nether_block.name=Triple Compressed Netherrack
+tile.quadruple_compressed_nether_block.name=Quadruple Compressed Netherrack
+tile.quintuple_compressed_nether_block.name=Quintuple Compressed Netherrack
+tile.sextuple_compressed_nether_block.name=Sextuple Compressed Netherrack
+tile.septuple_compressed_nether_block.name=Septuple Compressed Netherrack
+tile.octuple_compressed_nether_block.name=Octuple Compressed Netherrack
