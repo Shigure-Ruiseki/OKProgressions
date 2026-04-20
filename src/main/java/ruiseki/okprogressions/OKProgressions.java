@@ -25,6 +25,7 @@ import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.proxy.ICommonProxy;
 import ruiseki.okprogressions.common.init.ModBlocks;
+import ruiseki.okprogressions.common.init.ModItems;
 import ruiseki.okprogressions.common.init.ModRecipes;
 import ruiseki.okprogressions.config.ModConfig;
 
@@ -61,6 +62,7 @@ public class OKProgressions extends ModBase {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         ModBlocks.preInit();
+        ModItems.preInit();
         if (MinecraftHelpers.isClientSide()) {
             ModelRegistry.registerModid(Reference.MOD_ID);
         }
