@@ -30,7 +30,7 @@ public enum ModBlocks {
     GROWTH(new BlockGrowth("growth", 1, 4, 2)),
     GROWTH_UPGRADE(new BlockGrowth("growth_upgrade", 2, 6, 5)),
     GROWTH_UPGRADE_TWO(new BlockGrowth("growth_upgrade_two", 3, 8, 10)),
-    BONE_BLOCK(new BlockOK("bone_block", Material.rock).setTextureName("bone_block")),
+    BONE_BLOCK(new BlockOK("bone_block", Material.rock)),
 
     ;
 

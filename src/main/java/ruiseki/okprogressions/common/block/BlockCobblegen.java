@@ -7,7 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
@@ -19,7 +18,6 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 import ruiseki.okcore.block.BlockOK;
 import ruiseki.okcore.helper.TileHelpers;
-import ruiseki.okcore.item.ItemBlockOK;
 import ruiseki.okprogressions.OKPCreativeTab;
 
 public class BlockCobblegen extends BlockOK {
@@ -42,8 +40,19 @@ public class BlockCobblegen extends BlockOK {
     }
 
     @Override
-    protected Class<? extends ItemBlock> getItemBlockClass() {
-        return ItemCobblegen.class;
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        Block blockRaw = Block.getBlockFromItem(stack.getItem());
+        if (blockRaw instanceof BlockCobblegen block) {
+            list.add(
+                ChatFormatting.YELLOW
+                    + new ChatComponentTranslation("tooltip.cobblegen_1", block.maxStackSize).getFormattedText());
+
+            list.add(
+                ChatFormatting.YELLOW
+                    + new ChatComponentTranslation("tooltip.cobblegen_2", block.cycleUpdate).getFormattedText());
+        }
+        list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.cobblegen_3").getFormattedText());
+        list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.cobblegen_4").getFormattedText());
     }
 
     @Override
@@ -82,28 +91,4 @@ public class BlockCobblegen extends BlockOK {
 
         return true;
     }
-
-    public static class ItemCobblegen extends ItemBlockOK {
-
-        public ItemCobblegen(Block block) {
-            super(block);
-        }
-
-        @Override
-        public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-            Block blockRaw = Block.getBlockFromItem(stack.getItem());
-            if (blockRaw instanceof BlockCobblegen block) {
-                list.add(
-                    ChatFormatting.YELLOW
-                        + new ChatComponentTranslation("tooltip.cobblegen_1", block.maxStackSize).getFormattedText());
-
-                list.add(
-                    ChatFormatting.YELLOW
-                        + new ChatComponentTranslation("tooltip.cobblegen_2", block.cycleUpdate).getFormattedText());
-            }
-            list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.cobblegen_3").getFormattedText());
-            list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.cobblegen_4").getFormattedText());
-        }
-    }
-
 }
