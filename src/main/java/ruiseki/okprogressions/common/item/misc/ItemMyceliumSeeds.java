@@ -13,12 +13,14 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 import ruiseki.okcore.item.ItemOK;
 import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okprogressions.Reference;
 
 public class ItemMyceliumSeeds extends ItemOK {
 
     public ItemMyceliumSeeds() {
         super("mycelium_seeds");
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
+        this.setTextureName(Reference.PREFIX_MOD + "mycelium_seeds");
     }
 
     @Override

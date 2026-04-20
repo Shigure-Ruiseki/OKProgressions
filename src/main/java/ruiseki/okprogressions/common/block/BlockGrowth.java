@@ -7,10 +7,15 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+
+import com.mojang.realmsclient.gui.ChatFormatting;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,7 +29,7 @@ public class BlockGrowth extends BlockOK {
     private final int rangeY;
     private final int growthLvl;
 
-    public BlockGrowth(String name, int range, int rangeY, int growthLvl) {
+    public BlockGrowth(String name, int growthLvl, int range, int rangeY) {
         super(name, TEGrowth.class, Material.iron);
         this.setTickRandomly(true);
         this.setHardness(8.0F);
@@ -35,9 +40,44 @@ public class BlockGrowth extends BlockOK {
         this.setStepSound(Block.soundTypeMetal);
         this.isOpaque = false;
 
+        this.growthLvl = growthLvl;
         this.range = range;
         this.rangeY = rangeY;
-        this.growthLvl = growthLvl;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        if (this.growthLvl == 1) {
+            list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growth_1").getFormattedText());
+            list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growth_2").getFormattedText());
+            list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growth_3").getFormattedText());
+        }
+
+        if (this.growthLvl == 2) {
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade_1").getFormattedText());
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade_2").getFormattedText());
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade_3").getFormattedText());
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade_4").getFormattedText());
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade_5").getFormattedText());
+        }
+
+        if (this.growthLvl == 3) {
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade2_1").getFormattedText());
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade2_2").getFormattedText());
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade2_3").getFormattedText());
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade2_4").getFormattedText());
+            list.add(
+                ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growthupgrade2_5").getFormattedText());
+        }
     }
 
     @Override
