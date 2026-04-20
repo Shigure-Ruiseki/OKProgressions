@@ -11,4 +11,6 @@ jobs:
   release-tags:
     uses: GTNewHorizons/GTNH-Actions-Workflows/.github/workflows/release-tags.yml@master
     secrets:
+      MAVEN_USER: ${{ github.actor }}
+      MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
       CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
