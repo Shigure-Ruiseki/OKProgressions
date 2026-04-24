@@ -1,6 +1,8 @@
 package ruiseki.okprogressions.common.block.reinforced;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.MapColor;
@@ -13,13 +15,14 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import com.mojang.realmsclient.gui.ChatFormatting;
+
 import ruiseki.okcore.block.IBlockTooltipProvider;
 import ruiseki.okprogressions.OKPCreativeTab;
 
-import java.util.List;
-import java.util.Random;
-
 public class BLockReinforcedGlass extends BlockGlass implements IBlockTooltipProvider {
+
     public BLockReinforcedGlass() {
         super(Material.glass, false);
         this.setHardness(20.0F);
