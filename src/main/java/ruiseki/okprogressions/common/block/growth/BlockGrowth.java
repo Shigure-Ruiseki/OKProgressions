@@ -1,4 +1,4 @@
-package ruiseki.okprogressions.common.block;
+package ruiseki.okprogressions.common.block.growth;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,17 +1,20 @@
 package ruiseki.okprogressions.common.init;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import org.apache.logging.log4j.Level;
 
-import ruiseki.okcore.block.BlockOK;
 import ruiseki.okcore.block.IBlock;
 import ruiseki.okprogressions.OKProgressions;
-import ruiseki.okprogressions.common.block.BlockCobblegen;
-import ruiseki.okprogressions.common.block.BlockGrowth;
+import ruiseki.okprogressions.common.block.cobblegen.BlockCobblegen;
+import ruiseki.okprogressions.common.block.compressed.BlockBone;
+import ruiseki.okprogressions.common.block.compressed.BlockCharcoal;
+import ruiseki.okprogressions.common.block.compressed.BlockFlesh;
+import ruiseki.okprogressions.common.block.compressed.BlockFlint;
+import ruiseki.okprogressions.common.block.compressed.BlockNetherStar;
+import ruiseki.okprogressions.common.block.growth.BlockGrowth;
 import ruiseki.okprogressions.config.ModConfig;
 
 public enum ModBlocks {
@@ -27,10 +30,16 @@ public enum ModBlocks {
         new BlockCobblegen("blaze_cobblegen", ModConfig.blazeCobbleGenCycle, ModConfig.blazeCobbleGenStackSize)),
     EMERALD_COBBLE_GEN(
         new BlockCobblegen("emerald_cobblegen", ModConfig.emeraldCobbleGenCycle, ModConfig.emeraldCobbleGenStackSize)),
+
     GROWTH(new BlockGrowth("growth", 1, 4, 2)),
     GROWTH_UPGRADE(new BlockGrowth("growth_upgrade", 2, 6, 5)),
     GROWTH_UPGRADE_TWO(new BlockGrowth("growth_upgrade_two", 3, 8, 10)),
-    BONE_BLOCK(new BlockOK("bone_block", Material.rock)),
+
+    BONE_BLOCK(new BlockBone()),
+    CHARCOAL_BLOCK(new BlockCharcoal()),
+    FLESH_BLOCK(new BlockFlesh()),
+    NETHER_STAR_BLOCK(new BlockNetherStar()),
+    FLINT_BLOCK(new BlockFlint())
 
     ;
 

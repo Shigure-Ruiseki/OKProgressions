@@ -1,4 +1,4 @@
-package ruiseki.okprogressions.common.block;
+package ruiseki.okprogressions.common.block.growth;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
