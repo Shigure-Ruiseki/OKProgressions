@@ -1,6 +1,6 @@
 {
   "parent": "okprogressions:block/generator",
   "textures": {
-    "material": "minecraft:block/log_oak"
+    "material": "minecraft:block/cobblestone"
   }
 }

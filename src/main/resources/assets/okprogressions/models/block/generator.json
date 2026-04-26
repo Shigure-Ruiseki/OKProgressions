@@ -1,8 +1,7 @@
 {
   "parent": "block/block",
   "textures": {
-    "particle": "block/cobblestone",
-    "material": "block/cobblestone",
+    "particle": "#material",
     "glass": "block/glass",
     "water": "block/water_still",
     "lava": "block/lava_still"
