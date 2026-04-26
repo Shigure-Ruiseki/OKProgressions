@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "okprogressions:block/charcoal_block"}
+        "": {"model": "okprogressions:block/charcoal_block"}
     }
 }

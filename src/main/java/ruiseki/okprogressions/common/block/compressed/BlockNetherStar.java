@@ -20,7 +20,7 @@ import ruiseki.okprogressions.OKPCreativeTab;
 public class BlockNetherStar extends BlockOK implements IBlockTooltipProvider {
 
     public BlockNetherStar() {
-        super("netherstar_block", Material.iron);
+        super("nether_star_block", Material.iron);
         this.setHardness(3.0F);
         this.setHarvestLevel("pickaxe", 1);
         this.setResistance(2000.0F);

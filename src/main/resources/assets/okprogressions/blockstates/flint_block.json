@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": {"model": "okprogressions:block/flint_block"}
+        "": {"model": "okprogressions:block/flint_block"}
     }
 }

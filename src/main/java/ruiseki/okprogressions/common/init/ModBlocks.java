@@ -11,10 +11,11 @@ import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.common.block.cobblegen.BlockCobblegen;
 import ruiseki.okprogressions.common.block.compressed.BlockBone;
 import ruiseki.okprogressions.common.block.compressed.BlockCharcoal;
-import ruiseki.okprogressions.common.block.compressed.BlockFlesh;
 import ruiseki.okprogressions.common.block.compressed.BlockFlint;
 import ruiseki.okprogressions.common.block.compressed.BlockNetherStar;
 import ruiseki.okprogressions.common.block.growth.BlockGrowth;
+import ruiseki.okprogressions.common.block.reinforced.BLockReinforcedGlass;
+import ruiseki.okprogressions.common.block.reinforced.BlockReinforcedObsidian;
 import ruiseki.okprogressions.config.ModConfig;
 
 public enum ModBlocks {
@@ -24,10 +25,10 @@ public enum ModBlocks {
     COBBLE_GEN(new BlockCobblegen("cobblegen", ModConfig.cobbleGenCycle, ModConfig.cobbleGenStackSize)),
     IRON_COBBLE_GEN(
         new BlockCobblegen("iron_cobblegen", ModConfig.ironCobbleGenCycle, ModConfig.ironCobbleGenStackSize)),
+    GOLD_COBBLE_GEN(
+        new BlockCobblegen("gold_cobblegen", ModConfig.goldCobbleGenCycle, ModConfig.goldCobbleGenStackSize)),
     DIAMOND_COBBLE_GEN(
         new BlockCobblegen("diamond_cobblegen", ModConfig.diamondCobbleGenCycle, ModConfig.diamondCobbleGenStackSize)),
-    BLAZE_COBBLE_GEN(
-        new BlockCobblegen("blaze_cobblegen", ModConfig.blazeCobbleGenCycle, ModConfig.blazeCobbleGenStackSize)),
     EMERALD_COBBLE_GEN(
         new BlockCobblegen("emerald_cobblegen", ModConfig.emeraldCobbleGenCycle, ModConfig.emeraldCobbleGenStackSize)),
 
@@ -37,9 +38,11 @@ public enum ModBlocks {
 
     BONE_BLOCK(new BlockBone()),
     CHARCOAL_BLOCK(new BlockCharcoal()),
-    FLESH_BLOCK(new BlockFlesh()),
     NETHER_STAR_BLOCK(new BlockNetherStar()),
-    FLINT_BLOCK(new BlockFlint())
+    FLINT_BLOCK(new BlockFlint()),
+
+    REINFORCED_OBSIDIAN(new BlockReinforcedObsidian()),
+    REINFORCED_GLASS(new BLockReinforcedGlass())
 
     ;
 
