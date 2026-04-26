@@ -13,7 +13,6 @@ import com.google.common.collect.Sets;
 
 import ruiseki.okcore.item.IItem;
 import ruiseki.okprogressions.OKPCreativeTab;
-import ruiseki.okprogressions.Reference;
 
 public class ItemPaxel extends ItemPickaxe implements IItem {
 
