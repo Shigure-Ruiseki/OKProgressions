@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Level;
 
 import ruiseki.okcore.block.IBlock;
 import ruiseki.okprogressions.OKProgressions;
+import ruiseki.okprogressions.common.block.BlockStoneTorch;
 import ruiseki.okprogressions.common.block.cobblegen.BlockCobblegen;
 import ruiseki.okprogressions.common.block.compressed.BlockBone;
 import ruiseki.okprogressions.common.block.compressed.BlockCharcoal;
@@ -40,6 +41,8 @@ public enum ModBlocks {
     CHARCOAL_BLOCK(new BlockCharcoal()),
     NETHER_STAR_BLOCK(new BlockNetherStar()),
     FLINT_BLOCK(new BlockFlint()),
+
+    STONE_TORCH(new BlockStoneTorch()),
 
     REINFORCED_OBSIDIAN(new BlockReinforcedObsidian()),
     REINFORCED_GLASS(new BLockReinforcedGlass())

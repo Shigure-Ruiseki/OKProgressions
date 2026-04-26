@@ -2,9 +2,11 @@ package ruiseki.okprogressions.common.init;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ruiseki.okcore.helper.PotionHelpers;
 import ruiseki.okcore.init.IInitListener;
@@ -16,6 +18,7 @@ public class ModRecipes implements IInitListener {
         if (step == Step.POSTINIT) {
             blockRecipes();
             itemRecipes();
+            fuelRecipes();
         }
     }
 
@@ -148,6 +151,74 @@ public class ModRecipes implements IInitListener {
                 'b',
                 new ItemStack(Items.bone)));
 
+        // Flint Block
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.FLINT_BLOCK.newItemStack(),
+                "bbb",
+                "bbb",
+                "bbb",
+                'b',
+                new ItemStack(Items.flint)));
+
+        // Charcoal Block
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.CHARCOAL_BLOCK.newItemStack(),
+                "bbb",
+                "bbb",
+                "bbb",
+                'b',
+                new ItemStack(Items.coal, 1, 1)));
+
+        // Nether Star Block
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.NETHER_STAR_BLOCK.newItemStack(),
+                "bbb",
+                "bbb",
+                "bbb",
+                'b',
+                new ItemStack(Items.nether_star)));
+
+        // Reinforced Obsidian
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.REINFORCED_OBSIDIAN.newItemStack(),
+                "obo",
+                "bob",
+                "obo",
+                'o',
+                new ItemStack(Blocks.obsidian),
+                'b',
+                new ItemStack(Blocks.iron_bars)));
+
+        // Reinforced Glass
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.REINFORCED_GLASS.newItemStack(),
+                "obo",
+                "bob",
+                "obo",
+                'o',
+                new ItemStack(Blocks.obsidian),
+                'b',
+                new ItemStack(Blocks.glass)));
+
+        // Stone Torch
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(ModBlocks.STONE_TORCH.newItemStack(), "c", "s", 'c', new ItemStack(Items.coal, 1, 0)));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.STONE_TORCH.newItemStack(),
+                "c",
+                "s",
+                's',
+                ModItems.STONE_STICK.getItem(),
+                'c',
+                new ItemStack(Items.coal, 1, 1)));
+
     }
 
     public static void itemRecipes() {
@@ -206,5 +277,22 @@ public class ModRecipes implements IInitListener {
                 new ItemStack(Items.wheat_seeds),
                 'e',
                 new ItemStack(Items.spider_eye)));
+
+        // Stone Stick
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.STONE_STICK.newItemStack(4), "c", "c", 'c', "cobblestone"));
+    }
+
+    private void fuelRecipes() {
+        GameRegistry.registerFuelHandler(new IFuelHandler() {
+
+            @Override
+            public int getBurnTime(ItemStack fuel) {
+                Item item = fuel.getItem();
+
+                if (item == ModBlocks.CHARCOAL_BLOCK.getItem()) return 16000;
+
+                return 0;
+            }
+        });
     }
 }

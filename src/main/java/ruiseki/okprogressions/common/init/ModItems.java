@@ -6,7 +6,10 @@ import net.minecraft.item.ItemStack;
 import org.apache.logging.log4j.Level;
 
 import ruiseki.okcore.item.IItem;
+import ruiseki.okcore.item.ItemOK;
+import ruiseki.okprogressions.OKPCreativeTab;
 import ruiseki.okprogressions.OKProgressions;
+import ruiseki.okprogressions.Reference;
 import ruiseki.okprogressions.common.item.apple.ItemDiamondApple;
 import ruiseki.okprogressions.common.item.apple.ItemEmeraldApple;
 import ruiseki.okprogressions.common.item.apple.ItemIronApple;
@@ -22,6 +25,8 @@ public enum ModItems {
     DIAMOND_APPLE(new ItemDiamondApple()),
     EMERALD_APPLE(new ItemEmeraldApple()),
     REDSTONE_APPLE(new ItemRedstoneApple()),
+    STONE_STICK((IItem) new ItemOK("stone_stick").setTextureName(Reference.PREFIX_MOD + "stone_stick")
+        .setCreativeTab(OKPCreativeTab.INSTANCE)),
 
     ;
 
@@ -49,7 +54,7 @@ public enum ModItems {
         this.item = block;
     }
 
-    public Item getBlock() {
+    public Item getItem() {
         return item.getItem();
     }
 
@@ -62,6 +67,6 @@ public enum ModItems {
     }
 
     public ItemStack newItemStack(int count, int meta) {
-        return item != null ? new ItemStack(this.getBlock(), count, meta) : null;
+        return item != null ? new ItemStack(this.getItem(), count, meta) : null;
     }
 }
