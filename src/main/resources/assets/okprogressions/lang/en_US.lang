@@ -57,6 +57,8 @@ item.golden_apple.name=Gold Apple
 
 item.stone_stick.name=Stone Stick
 
+item.ender_dust.name=Ender Dust
+
 #Block
 tile.cobblegen.name=Cobblestone Generator
 tile.iron_cobblegen.name=Cobblestone Generator Tier 2
@@ -75,6 +77,8 @@ tile.nether_star_block.name=Nether Star Block
 tile.flint_block.name=Flint Block
 
 tile.stone_torch.name=Stone Torch
+
+tile.ore_ender.name=Ender Ore
 
 tile.reinforced_obsidian.name=Reinforced Obsidian
 tile.reinforced_glass.name=Reinforced Glass

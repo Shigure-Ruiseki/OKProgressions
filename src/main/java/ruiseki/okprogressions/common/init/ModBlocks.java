@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Level;
 
 import ruiseki.okcore.block.IBlock;
 import ruiseki.okprogressions.OKProgressions;
+import ruiseki.okprogressions.common.block.BlockOreEnder;
 import ruiseki.okprogressions.common.block.BlockStoneTorch;
 import ruiseki.okprogressions.common.block.cobblegen.BlockCobblegen;
 import ruiseki.okprogressions.common.block.compressed.BlockBone;
@@ -45,7 +46,9 @@ public enum ModBlocks {
     STONE_TORCH(new BlockStoneTorch()),
 
     REINFORCED_OBSIDIAN(new BlockReinforcedObsidian()),
-    REINFORCED_GLASS(new BLockReinforcedGlass())
+    REINFORCED_GLASS(new BLockReinforcedGlass()),
+
+    ORE_ENDER(new BlockOreEnder()),
 
     ;
 
