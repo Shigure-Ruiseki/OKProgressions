@@ -1,0 +1,84 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "#material",
+    "glass": "block/glass",
+    "water": "block/water_still",
+    "lava": "block/lava_still"
+  },
+  "elements": [
+    {
+      "name": "Base",
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 4, 16 ],
+      "faces": {
+        "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#material", "cullface": "down" },
+        "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#material" },
+        "north": { "uv": [ 0, 12, 16, 16 ], "texture": "#material", "cullface": "north" },
+        "south": { "uv": [ 0, 12, 16, 16 ], "texture": "#material", "cullface": "south" },
+        "west":  { "uv": [ 0, 12, 16, 16 ], "texture": "#material", "cullface": "west" },
+        "east":  { "uv": [ 0, 12, 16, 16 ], "texture": "#material", "cullface": "east" }
+      }
+    },
+    {
+      "name": "Top",
+      "from": [ 0, 12, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#material" },
+        "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#material", "cullface": "up" },
+        "north": { "uv": [ 0, 0, 16, 4 ], "texture": "#material", "cullface": "north" },
+        "south": { "uv": [ 0, 0, 16, 4 ], "texture": "#material", "cullface": "south" },
+        "west":  { "uv": [ 0, 0, 16, 4 ], "texture": "#material", "cullface": "west" },
+        "east":  { "uv": [ 0, 0, 16, 4 ], "texture": "#material", "cullface": "east" }
+      }
+    },
+    {
+      "name": "Glass_Frame",
+      "from": [ 0.01, 4, 0.01 ],
+      "to": [ 15.99, 12, 15.99 ],
+      "faces": {
+        "north": { "uv": [ 0, 4, 16, 12 ], "texture": "#glass", "cullface": "north" },
+        "south": { "uv": [ 0, 4, 16, 12 ], "texture": "#glass", "cullface": "south" },
+        "west":  { "uv": [ 0, 4, 16, 12 ], "texture": "#glass", "cullface": "west" },
+        "east":  { "uv": [ 0, 4, 16, 12 ], "texture": "#glass", "cullface": "east" }
+      }
+    },
+    {
+      "name": "Water_Liquid",
+      "from": [ 1, 4, 1 ],
+      "to": [ 15, 8.5, 5 ],
+      "faces": {
+        "up":    { "uv": [ 1, 1, 15, 5 ], "texture": "#water", "tintindex": 1 },
+        "north": { "uv": [ 1, 7.5, 15, 12 ], "texture": "#water", "tintindex": 1 },
+        "west":  { "uv": [ 1, 7.5, 5, 12 ], "texture": "#water", "tintindex": 1 },
+        "east":  { "uv": [ 11, 7.5, 15, 12 ], "texture": "#water", "tintindex": 1 },
+        "down":  { "uv": [ 1, 1, 15, 5 ], "texture": "#water", "tintindex": 1 }
+      }
+    },
+    {
+      "name": "Lava_Liquid",
+      "from": [ 1, 4, 11 ],
+      "to": [ 15, 8.5, 15 ],
+      "faces": {
+        "up":    { "uv": [ 1, 11, 15, 15 ], "texture": "#lava" },
+        "south": { "uv": [ 1, 7.5, 15, 12 ], "texture": "#lava" },
+        "west":  { "uv": [ 11, 7.5, 15, 12 ], "texture": "#lava" },
+        "east":  { "uv": [ 1, 7.5, 5, 12 ], "texture": "#lava" },
+        "down":  { "uv": [ 1, 11, 15, 15 ], "texture": "#lava" }
+      }
+    },
+    {
+      "name": "Result_Cobble",
+      "from": [ 1, 4, 5 ],
+      "to": [ 15, 9, 11 ],
+      "faces": {
+        "up":    { "uv": [ 1, 5, 15, 11 ], "texture": "#particle" },
+        "north": { "uv": [ 1, 7, 15, 12 ], "texture": "#particle" },
+        "south": { "uv": [ 1, 7, 15, 12 ], "texture": "#particle" },
+        "west":  { "uv": [ 5, 7, 11, 12 ], "texture": "#particle" },
+        "east":  { "uv": [ 5, 7, 11, 12 ], "texture": "#particle" }
+      }
+    }
+  ]
+}

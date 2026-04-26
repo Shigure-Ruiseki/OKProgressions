@@ -1,8 +1,6 @@
 {
-  "parent": "okprogressions:block/cobblegen",
+  "parent": "okprogressions:block/generator",
   "textures": {
-    "particle": "okprogressions:block/emerald_cobblegen_generic",
-    "t1": "okprogressions:block/emerald_cobblegen_generic",
-    "t2": "okprogressions:block/emerald_cobblegen_glass"
+    "material": "minecraft:block/emerald_block"
   }
 }

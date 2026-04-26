@@ -1,4 +1,4 @@
-package ruiseki.okprogressions.common.block;
+package ruiseki.okprogressions.common.block.growth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +20,11 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ruiseki.okcore.block.BlockOK;
+import ruiseki.okcore.block.IBlockTooltipProvider;
 import ruiseki.okprogressions.OKPCreativeTab;
 import ruiseki.okprogressions.config.ModConfig;
 
-public class BlockGrowth extends BlockOK {
+public class BlockGrowth extends BlockOK implements IBlockTooltipProvider {
 
     private final int range;
     private final int rangeY;

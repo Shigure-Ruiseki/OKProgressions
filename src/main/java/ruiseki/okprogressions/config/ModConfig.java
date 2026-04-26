@@ -32,19 +32,19 @@ public class ModConfig {
 
     @Config.DefaultInt(10)
     @Config.RangeInt(min = 1)
+    public static int goldCobbleGenCycle;
+
+    @Config.DefaultInt(64)
+    @Config.RangeInt(min = 1)
+    public static int goldCobbleGenStackSize;
+
+    @Config.DefaultInt(5)
+    @Config.RangeInt(min = 1)
     public static int diamondCobbleGenCycle;
 
     @Config.DefaultInt(64)
     @Config.RangeInt(min = 1)
     public static int diamondCobbleGenStackSize;
-
-    @Config.DefaultInt(5)
-    @Config.RangeInt(min = 1)
-    public static int blazeCobbleGenCycle;
-
-    @Config.DefaultInt(64)
-    @Config.RangeInt(min = 1)
-    public static int blazeCobbleGenStackSize;
 
     @Config.DefaultInt(1)
     @Config.RangeInt(min = 1)

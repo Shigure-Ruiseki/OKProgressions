@@ -1,4 +1,4 @@
-package ruiseki.okprogressions.common.block;
+package ruiseki.okprogressions.common.block.cobblegen;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
