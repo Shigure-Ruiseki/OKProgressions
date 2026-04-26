@@ -41,6 +41,10 @@ tooltip.growthupgrade2_3=Checks up to 10 blocks up or down!
 tooltip.growthupgrade2_4=Can be used as a Water Source!
 tooltip.growthupgrade2_5=Sponges can not be placed around! 
 
+tooltip.netherstar_1=Can be used as a Base block for Beacons.
+
+tooltip.glass_1=Wither Proof!
+tooltip.obsidian_1=Wither Proof!
 #Item
 
 item.mycelium_seeds.name=Mycelium Seed
@@ -55,11 +59,19 @@ item.golden_apple.name=Gold Apple
 tile.cobblegen.name=Cobblestone Generator
 tile.iron_cobblegen.name=Cobblestone Generator Tier 2
 tile.diamond_cobblegen.name=Cobblestone Generator Tier 3
-tile.blaze_cobblegen.name=Cobblestone Generator Tier 4
+tile.gold_cobblegen.name=Cobblestone Generator Tier 4
 tile.emerald_cobblegen.name=Cobblestone Generator Tier 5
 
 tile.growth.name=Growth Crystal
 tile.growth_upgrade.name=Growth Crystal Tier 2
 tile.growth_upgrade_two.name=Growth Crystal Tier 3
 
+tile.flesh_block.name=Flesh Block
 tile.bone_block.name=Bone Block
+tile.charcoal_block.name=Charcoal Block
+tile.nether_star_block.name=Nether Star Block
+tile.flint_block.name=Flint Block
+
+tile.reinforced_obsidian.name=Reinforced Obsidian
+tile.reinforced_glass.name=Reinforced Glass
+

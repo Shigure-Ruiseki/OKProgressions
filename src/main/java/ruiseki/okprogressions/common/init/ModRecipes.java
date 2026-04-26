@@ -74,7 +74,7 @@ public class ModRecipes implements IInitListener {
 
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
-                ModBlocks.BLAZE_COBBLE_GEN.newItemStack(),
+                ModBlocks.GOLD_COBBLE_GEN.newItemStack(),
                 "bbb",
                 "bdb",
                 "bbb",
@@ -92,7 +92,7 @@ public class ModRecipes implements IInitListener {
                 'e',
                 "gemEmerald",
                 'b',
-                ModBlocks.BLAZE_COBBLE_GEN.newItemStack()));
+                ModBlocks.GOLD_COBBLE_GEN.newItemStack()));
 
         // Growth Block
         GameRegistry.addRecipe(
@@ -151,38 +151,6 @@ public class ModRecipes implements IInitListener {
     }
 
     public static void itemRecipes() {
-        GameRegistry.addRecipe(
-            new ShapedOreRecipe(
-                new ItemStack(Items.golden_apple),
-                "ggg",
-                "gag",
-                "ggg",
-                'g',
-                "nuggetGold",
-                'a',
-                Items.apple));
-
-        GameRegistry.addRecipe(
-            new ShapedOreRecipe(
-                ModItems.GOLDEN_APPLE.newItemStack(),
-                "ggg",
-                "gag",
-                "ggg",
-                'g',
-                "ingotGold",
-                'a',
-                Items.golden_apple));
-
-        GameRegistry.addRecipe(
-            new ShapedOreRecipe(
-                new ItemStack(Items.golden_apple, 1, 1),
-                "ggg",
-                "gag",
-                "ggg",
-                'g',
-                "blockGold",
-                'a',
-                ModItems.GOLDEN_APPLE.newItemStack()));
 
         GameRegistry.addRecipe(
             new ShapedOreRecipe(
