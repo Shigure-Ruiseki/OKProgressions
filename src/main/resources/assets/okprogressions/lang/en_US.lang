@@ -64,6 +64,12 @@ item.ender_dust.name=Ender Dust
 
 item.birthday_pickaxe.name=Party Pickaxe
 
+item.wooden_paxel.name=Wooden Paxel
+item.stone_paxel.name=Stone Paxel
+item.golden_paxel.name=Golden Paxel
+item.iron_paxel.name=Iron Paxel
+item.diamond_paxel.name=Diamond Paxel
+
 #Block
 tile.cobblegen.name=Cobblestone Generator
 tile.iron_cobblegen.name=Cobblestone Generator Tier 2

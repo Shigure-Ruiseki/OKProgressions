@@ -16,6 +16,7 @@ import ruiseki.okprogressions.common.item.apple.ItemIronApple;
 import ruiseki.okprogressions.common.item.apple.ItemRedstoneApple;
 import ruiseki.okprogressions.common.item.misc.ItemMyceliumSeeds;
 import ruiseki.okprogressions.common.item.tool.ItemBirthdayPickaxe;
+import ruiseki.okprogressions.common.item.tool.ItemPaxel;
 
 public enum ModItems {
 
@@ -28,6 +29,12 @@ public enum ModItems {
     REDSTONE_APPLE(new ItemRedstoneApple()),
 
     BIRTHDAY_PICKAXE(new ItemBirthdayPickaxe()),
+
+    WOODEN_PAXEL((IItem) new ItemPaxel("wooden_paxel", ModMaterial.PWOOD).setTextureName(Reference.PREFIX_MOD + "wooden_paxel")),
+    STONE_PAXEL((IItem) new ItemPaxel("stone_paxel", ModMaterial.PSTONE).setTextureName(Reference.PREFIX_MOD + "stone_paxel")),
+    IRON_PAXEL((IItem) new ItemPaxel("iron_paxel", ModMaterial.PIRON).setTextureName(Reference.PREFIX_MOD + "iron_paxel")),
+    GOLDEN_PAXEL((IItem) new ItemPaxel("golden_paxel", ModMaterial.PGOLD).setTextureName(Reference.PREFIX_MOD + "golden_paxel")),
+    DIAMOND_PAXEL((IItem) new ItemPaxel("diamond_paxel", ModMaterial.PDIAMOND).setTextureName(Reference.PREFIX_MOD + "diamond_paxel")),
 
     STONE_STICK((IItem) new ItemOK("stone_stick").setTextureName(Reference.PREFIX_MOD + "stone_stick")
         .setCreativeTab(OKPCreativeTab.INSTANCE)),
