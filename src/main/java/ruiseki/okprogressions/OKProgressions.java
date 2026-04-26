@@ -24,9 +24,12 @@ import ruiseki.okcore.command.CommandMod;
 import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.proxy.ICommonProxy;
+import ruiseki.okcore.world.gen.IRetroGenRegistry;
+import ruiseki.okcore.world.gen.RetroGenRegistry;
 import ruiseki.okprogressions.common.init.ModBlocks;
 import ruiseki.okprogressions.common.init.ModItems;
 import ruiseki.okprogressions.common.init.ModRecipes;
+import ruiseki.okprogressions.common.world.WorldGen;
 import ruiseki.okprogressions.config.ModConfig;
 
 @Mod(
@@ -54,7 +57,12 @@ public class OKProgressions extends ModBase {
     public OKProgressions() {
         super(Reference.MOD_ID, Reference.MOD_NAME);
         putGenericReference(REFKEY_MOD_VERSION, Reference.VERSION);
+
+        getRegistryManager().addRegistry(IRetroGenRegistry.class, new RetroGenRegistry(this));
+        putGenericReference(REFKEY_RETROGEN, true);
+
         addInitListeners(new ModRecipes());
+        addInitListeners(new WorldGen());
     }
 
     @Override

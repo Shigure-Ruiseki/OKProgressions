@@ -28,7 +28,8 @@ public enum ModItems {
     STONE_STICK((IItem) new ItemOK("stone_stick").setTextureName(Reference.PREFIX_MOD + "stone_stick")
         .setCreativeTab(OKPCreativeTab.INSTANCE)),
 
-    ;
+    ENDER_DUST((IItem) new ItemOK("ender_dust").setTextureName(Reference.PREFIX_MOD + "ender_dust")
+        .setCreativeTab(OKPCreativeTab.INSTANCE)),;
 
     // spotless: on
 

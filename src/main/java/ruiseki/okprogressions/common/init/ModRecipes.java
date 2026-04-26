@@ -280,6 +280,10 @@ public class ModRecipes implements IInitListener {
 
         // Stone Stick
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.STONE_STICK.newItemStack(4), "c", "c", 'c', "cobblestone"));
+
+        // EnderPear
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(new ItemStack(Items.ender_pearl), "dd", "dd", 'd', ModItems.ENDER_DUST.newItemStack()));
     }
 
     private void fuelRecipes() {
