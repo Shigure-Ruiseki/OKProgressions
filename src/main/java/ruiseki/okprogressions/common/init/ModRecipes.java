@@ -284,6 +284,20 @@ public class ModRecipes implements IInitListener {
         // EnderPear
         GameRegistry.addRecipe(
             new ShapedOreRecipe(new ItemStack(Items.ender_pearl), "dd", "dd", 'd', ModItems.ENDER_DUST.newItemStack()));
+
+        // Birthday Pickaxe
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.BIRTHDAY_PICKAXE.newItemStack(1),
+                "rdr",
+                " s ",
+                " s ",
+                'r',
+                new ItemStack(Blocks.obsidian),
+                'd',
+                "gemDiamond",
+                's',
+                "stickWood"));
     }
 
     private void fuelRecipes() {
