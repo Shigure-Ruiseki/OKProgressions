@@ -14,9 +14,10 @@ import net.minecraft.world.World;
 import com.mojang.realmsclient.gui.ChatFormatting;
 
 import ruiseki.okcore.block.BlockOK;
+import ruiseki.okcore.block.IBlockTooltipProvider;
 import ruiseki.okprogressions.OKPCreativeTab;
 
-public class BlockNetherStar extends BlockOK {
+public class BlockNetherStar extends BlockOK implements IBlockTooltipProvider {
 
     public BlockNetherStar() {
         super("netherstar_block", Material.iron);

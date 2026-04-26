@@ -1,13 +1,16 @@
 package ruiseki.okprogressions.common.block.compressed;
 
+import java.util.Map;
+
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.Explosion;
-import net.minecraftforge.oredict.OreDictionary;
 
 import ruiseki.okcore.block.BlockOK;
+import ruiseki.okcore.recipe.IOreDictEntry;
 import ruiseki.okprogressions.OKPCreativeTab;
 
-public class BlockCharcoal extends BlockOK {
+public class BlockCharcoal extends BlockOK implements IOreDictEntry {
 
     public BlockCharcoal() {
         super("charcoal_block", Material.rock);
@@ -19,12 +22,12 @@ public class BlockCharcoal extends BlockOK {
     }
 
     @Override
-    protected void registerComponent() {
-        OreDictionary.registerOre("blockCharcoal", this);
+    public boolean canDropFromExplosion(Explosion explosionIn) {
+        return false;
     }
 
     @Override
-    public boolean canDropFromExplosion(Explosion explosionIn) {
-        return false;
+    public Map<String, ItemStack> getOreMappings() {
+        return Map.of("blockCharcoal", new ItemStack(this));
     }
 }

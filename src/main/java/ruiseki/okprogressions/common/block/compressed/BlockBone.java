@@ -1,15 +1,18 @@
 package ruiseki.okprogressions.common.block.compressed;
 
+import java.util.Map;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
 
 import ruiseki.okcore.block.BlockOK;
+import ruiseki.okcore.recipe.IOreDictEntry;
 import ruiseki.okprogressions.OKPCreativeTab;
 
-public class BlockBone extends BlockOK {
+public class BlockBone extends BlockOK implements IOreDictEntry {
 
     public BlockBone() {
         super("bone_block", Material.ground);
@@ -20,11 +23,6 @@ public class BlockBone extends BlockOK {
     }
 
     @Override
-    protected void registerComponent() {
-        OreDictionary.registerOre("blockBone", this);
-    }
-
-    @Override
     public boolean canDropFromExplosion(Explosion explosionIn) {
         return false;
     }
@@ -32,5 +30,10 @@ public class BlockBone extends BlockOK {
     @Override
     public void onFallenUpon(World worldIn, int x, int y, int z, Entity entity, float fallDistance) {
         entity.fallDistance = fallDistance * 3.0F;
+    }
+
+    @Override
+    public Map<String, ItemStack> getOreMappings() {
+        return Map.of("blockBone", new ItemStack(this));
     }
 }

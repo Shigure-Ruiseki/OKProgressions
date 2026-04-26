@@ -17,10 +17,11 @@ import net.minecraftforge.common.ForgeHooks;
 import com.mojang.realmsclient.gui.ChatFormatting;
 
 import ruiseki.okcore.block.BlockOK;
+import ruiseki.okcore.block.IBlockTooltipProvider;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okprogressions.OKPCreativeTab;
 
-public class BlockCobblegen extends BlockOK {
+public class BlockCobblegen extends BlockOK implements IBlockTooltipProvider {
 
     private final int cycleUpdate;
     private final int maxStackSize;
