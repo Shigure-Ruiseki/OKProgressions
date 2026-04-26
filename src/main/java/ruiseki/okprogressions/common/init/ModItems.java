@@ -15,6 +15,7 @@ import ruiseki.okprogressions.common.item.apple.ItemEmeraldApple;
 import ruiseki.okprogressions.common.item.apple.ItemIronApple;
 import ruiseki.okprogressions.common.item.apple.ItemRedstoneApple;
 import ruiseki.okprogressions.common.item.misc.ItemMyceliumSeeds;
+import ruiseki.okprogressions.common.item.tool.ItemBirthdayPickaxe;
 
 public enum ModItems {
 
@@ -25,6 +26,9 @@ public enum ModItems {
     DIAMOND_APPLE(new ItemDiamondApple()),
     EMERALD_APPLE(new ItemEmeraldApple()),
     REDSTONE_APPLE(new ItemRedstoneApple()),
+
+    BIRTHDAY_PICKAXE(new ItemBirthdayPickaxe()),
+
     STONE_STICK((IItem) new ItemOK("stone_stick").setTextureName(Reference.PREFIX_MOD + "stone_stick")
         .setCreativeTab(OKPCreativeTab.INSTANCE)),
 
