@@ -55,6 +55,8 @@ item.iron_apple.name=Iron Apple
 item.redstone_apple.name=Redstone Apple
 item.golden_apple.name=Gold Apple
 
+item.stone_stick.name=Stone Stick
+
 #Block
 tile.cobblegen.name=Cobblestone Generator
 tile.iron_cobblegen.name=Cobblestone Generator Tier 2
@@ -71,6 +73,8 @@ tile.bone_block.name=Bone Block
 tile.charcoal_block.name=Charcoal Block
 tile.nether_star_block.name=Nether Star Block
 tile.flint_block.name=Flint Block
+
+tile.stone_torch.name=Stone Torch
 
 tile.reinforced_obsidian.name=Reinforced Obsidian
 tile.reinforced_glass.name=Reinforced Glass
