@@ -284,6 +284,96 @@ public class ModRecipes implements IInitListener {
         // EnderPear
         GameRegistry.addRecipe(
             new ShapedOreRecipe(new ItemStack(Items.ender_pearl), "dd", "dd", 'd', ModItems.ENDER_DUST.newItemStack()));
+
+        // Birthday Pickaxe
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.BIRTHDAY_PICKAXE.newItemStack(),
+                "rdr",
+                " s ",
+                " s ",
+                'r',
+                new ItemStack(Blocks.obsidian),
+                'd',
+                "gemDiamond",
+                's',
+                "stickWood"));
+
+        // Paxel
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.WOODEN_PAXEL.newItemStack(),
+                "ASP",
+                " s ",
+                " s ",
+                'A',
+                new ItemStack(Items.wooden_axe),
+                'S',
+                new ItemStack(Items.wooden_shovel),
+                'P',
+                new ItemStack(Items.wooden_pickaxe),
+                's',
+                "stickWood"));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.STONE_PAXEL.newItemStack(),
+                "ASP",
+                " s ",
+                " s ",
+                'A',
+                new ItemStack(Items.stone_axe),
+                'S',
+                new ItemStack(Items.stone_shovel),
+                'P',
+                new ItemStack(Items.stone_pickaxe),
+                's',
+                "stickWood"));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.IRON_PAXEL.newItemStack(),
+                "ASP",
+                " s ",
+                " s ",
+                'A',
+                new ItemStack(Items.iron_axe),
+                'S',
+                new ItemStack(Items.iron_shovel),
+                'P',
+                new ItemStack(Items.iron_pickaxe),
+                's',
+                "stickWood"));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.GOLDEN_PAXEL.newItemStack(),
+                "ASP",
+                " s ",
+                " s ",
+                'A',
+                new ItemStack(Items.golden_axe),
+                'S',
+                new ItemStack(Items.golden_shovel),
+                'P',
+                new ItemStack(Items.golden_pickaxe),
+                's',
+                "stickWood"));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.DIAMOND_PAXEL.newItemStack(),
+                "ASP",
+                " s ",
+                " s ",
+                'A',
+                new ItemStack(Items.diamond_axe),
+                'S',
+                new ItemStack(Items.diamond_shovel),
+                'P',
+                new ItemStack(Items.diamond_pickaxe),
+                's',
+                "stickWood"));
     }
 
     private void fuelRecipes() {

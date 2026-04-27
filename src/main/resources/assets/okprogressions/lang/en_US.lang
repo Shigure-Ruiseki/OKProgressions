@@ -45,6 +45,9 @@ tooltip.netherstar_1=Can be used as a Base block for Beacons.
 
 tooltip.glass_1=Wither Proof!
 tooltip.obsidian_1=Wither Proof!
+
+tooltip.birthday_1=Super Fast Pickaxe!
+tooltip.birthday_2=Right-click for a Surprise!
 #Item
 
 item.mycelium_seeds.name=Mycelium Seed
@@ -58,6 +61,14 @@ item.golden_apple.name=Gold Apple
 item.stone_stick.name=Stone Stick
 
 item.ender_dust.name=Ender Dust
+
+item.birthday_pickaxe.name=Party Pickaxe
+
+item.wooden_paxel.name=Wooden Paxel
+item.stone_paxel.name=Stone Paxel
+item.golden_paxel.name=Golden Paxel
+item.iron_paxel.name=Iron Paxel
+item.diamond_paxel.name=Diamond Paxel
 
 #Block
 tile.cobblegen.name=Cobblestone Generator
