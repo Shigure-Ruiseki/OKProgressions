@@ -6,4 +6,17 @@
 - [OKCore](https://github.com/Shigure-Ruiseki/OKCore)
 
 ## Features:
--CoblleGen
+- [x] Cobblestone Generators.
+- [x] Growth Crystals.
+- [x] Mycelium Seeds.
+- [x] Emerald Apple.
+- [x] Diamond Apple.
+- [x] Charcoal Block.
+- [x] Bone Block.
+- [x] Flint Block.
+- [x] Reinforced Obsidian.
+- [x] Reinforced Glass.
+- [x] Stone Stick And Torch.
+- [x] Ender Ore And Dust.
+- [x] Party Pickaxe.
+- [x] Vanilla style Paxel.
