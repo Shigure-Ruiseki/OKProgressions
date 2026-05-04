@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 public class SoilInfo {
+
     public ItemStack inputItem;
     public Block renderBlock;
     public int renderMeta;

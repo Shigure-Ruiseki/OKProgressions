@@ -3,7 +3,6 @@ package ruiseki.okprogressions.common.block.botanypot;
 import java.util.List;
 import java.util.Random;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +33,9 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
 
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean b) {
-        list.add(this.isHopper() ? new ChatComponentTranslation("tooltip.pot.normal").getFormattedText() : new ChatComponentTranslation("tooltip.pot.hopper").getFormattedText());
+        list.add(
+            this.isHopper() ? new ChatComponentTranslation("tooltip.pot.normal").getFormattedText()
+                : new ChatComponentTranslation("tooltip.pot.hopper").getFormattedText());
     }
 
     // canGrow

@@ -1,15 +1,17 @@
 package ruiseki.okprogressions.common.soil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+
 import ruiseki.okcore.json.AbstractJsonMaterial;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class SoilMaterial extends AbstractJsonMaterial {
+
     public String inputItem;
     public String displayBlock;
     public int displayMeta;
@@ -24,7 +26,8 @@ public class SoilMaterial extends AbstractJsonMaterial {
         this.growthModifier = getFloat(json, "growthModifier", 1.0f);
 
         this.categories.clear();
-        if (json.has("categories") && json.get("categories").isJsonArray()) {
+        if (json.has("categories") && json.get("categories")
+            .isJsonArray()) {
             JsonArray array = json.getAsJsonArray("categories");
             for (JsonElement element : array) {
                 this.categories.add(element.getAsString());
