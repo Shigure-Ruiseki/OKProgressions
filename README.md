@@ -1,4 +1,5 @@
-
+[![](https://cf.way2muchnoise.eu/full_1527501_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/okprogressions)
+[![](https://cf.way2muchnoise.eu/versions/For%20MC_1527501_all.svg)](https://www.curseforge.com/minecraft/mc-mods/okprogressions)
 ## Required Dependencies:
 
 - [ModularUI2 (>= 2.3.56)](https://github.com/GTNewHorizons/ModularUI2)
