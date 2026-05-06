@@ -1,21 +1,26 @@
 package ruiseki.okprogressions.common.soil;
 
-import net.minecraft.block.Block;
+import java.util.Arrays;
+
 import net.minecraft.item.ItemStack;
 
+import lombok.Getter;
+
+@Getter
 public class SoilInfo {
 
-    public ItemStack inputItem;
-    public Block renderBlock;
-    public int renderMeta;
-    public float growthModifier;
-    public String[] categories;
+    public final ItemStack stack;
+    public final float growthModifier;
+    public final String[] categories;
 
-    public SoilInfo(ItemStack item, Block block, int meta, float modifier, String[] cats) {
-        this.inputItem = item;
-        this.renderBlock = block;
-        this.renderMeta = meta;
+    public SoilInfo(ItemStack stack, float modifier, String[] cats) {
+        this.stack = stack;
         this.growthModifier = modifier;
         this.categories = cats;
+    }
+
+    public boolean hasCategory(String category) {
+        return Arrays.asList(categories)
+            .contains(category);
     }
 }

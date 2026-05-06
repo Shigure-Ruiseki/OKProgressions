@@ -1,7 +1,7 @@
 package ruiseki.okprogressions.common.soil;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -13,16 +13,12 @@ import ruiseki.okcore.json.AbstractJsonMaterial;
 public class SoilMaterial extends AbstractJsonMaterial {
 
     public String inputItem;
-    public String displayBlock;
-    public int displayMeta;
     public float growthModifier;
-    public Set<String> categories = new HashSet<>();
+    public List<String> categories = new ArrayList<>();
 
     @Override
     public void read(JsonObject json) {
         this.inputItem = getString(json, "input", "minecraft:dirt");
-        this.displayBlock = getString(json, "display", "minecraft:dirt");
-        this.displayMeta = getInt(json, "meta", 0);
         this.growthModifier = getFloat(json, "growthModifier", 1.0f);
 
         this.categories.clear();
@@ -34,14 +30,12 @@ public class SoilMaterial extends AbstractJsonMaterial {
             }
         }
 
-        captureUnknownProperties(json, "input", "display", "meta", "growthModifier", "categories");
+        captureUnknownProperties(json, "input", "growthModifier", "categories");
     }
 
     @Override
     public void write(JsonObject json) {
         json.addProperty("input", this.inputItem);
-        json.addProperty("display", this.displayBlock);
-        json.addProperty("meta", this.displayMeta);
         json.addProperty("growthModifier", this.growthModifier);
 
         if (this.categories != null && !this.categories.isEmpty()) {
@@ -53,14 +47,5 @@ public class SoilMaterial extends AbstractJsonMaterial {
         }
 
         writeUnknownProperties(json);
-    }
-
-    @Override
-    public boolean validate() {
-        if (growthModifier < 0) {
-            logValidationError("Growth modifier của " + inputItem + " không được âm!");
-            return false;
-        }
-        return true;
     }
 }

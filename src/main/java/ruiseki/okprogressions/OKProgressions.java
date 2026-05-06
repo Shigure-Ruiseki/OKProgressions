@@ -29,6 +29,7 @@ import ruiseki.okcore.world.gen.RetroGenRegistry;
 import ruiseki.okprogressions.common.init.ModBlocks;
 import ruiseki.okprogressions.common.init.ModItems;
 import ruiseki.okprogressions.common.init.ModRecipes;
+import ruiseki.okprogressions.common.soil.SoilLoader;
 import ruiseki.okprogressions.common.world.WorldGen;
 import ruiseki.okprogressions.config.ModConfig;
 
@@ -61,6 +62,7 @@ public class OKProgressions extends ModBase {
         getRegistryManager().addRegistry(IRetroGenRegistry.class, new RetroGenRegistry(this));
         putGenericReference(REFKEY_RETROGEN, true);
 
+        addInitListeners(new SoilLoader());
         addInitListeners(new ModRecipes());
         addInitListeners(new WorldGen());
     }
