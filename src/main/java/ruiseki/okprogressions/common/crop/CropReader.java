@@ -1,4 +1,4 @@
-package ruiseki.okprogressions.common.soil;
+package ruiseki.okprogressions.common.crop;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,14 +10,14 @@ import com.google.gson.JsonElement;
 
 import ruiseki.okcore.json.AbstractJsonReader;
 
-public class SoilReader extends AbstractJsonReader<List<SoilMaterial>> {
+public class CropReader extends AbstractJsonReader<List<CropMaterial>> {
 
-    public SoilReader(File path) {
+    public CropReader(File path) {
         super(path);
     }
 
     @Override
-    public List<SoilMaterial> read() throws IOException {
+    public List<CropMaterial> read() throws IOException {
         this.cache = new ArrayList<>();
         if (path.exists()) {
             if (path.isDirectory()) {
@@ -33,13 +33,13 @@ public class SoilReader extends AbstractJsonReader<List<SoilMaterial>> {
     }
 
     @Override
-    protected List<SoilMaterial> readFile(JsonElement root, File file) {
-        List<SoilMaterial> results = new ArrayList<>();
+    protected List<CropMaterial> readFile(JsonElement root, File file) {
+        List<CropMaterial> results = new ArrayList<>();
         if (root.isJsonArray()) {
             JsonArray array = root.getAsJsonArray();
             for (JsonElement e : array) {
                 if (e.isJsonObject()) {
-                    SoilMaterial item = new SoilMaterial();
+                    CropMaterial item = new CropMaterial();
                     item.setSourceFile(file);
                     item.read(e.getAsJsonObject());
                     if (item.validate()) {

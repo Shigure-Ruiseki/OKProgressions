@@ -1,6 +1,5 @@
 creativetab.okprogressions=OK Progressions
 
-
 #Tooltip
 
 tooltip.cobblegen_1=Only Holds %d Blocks!
@@ -48,6 +47,36 @@ tooltip.obsidian_1=Wither Proof!
 
 tooltip.birthday_1=Super Fast Pickaxe!
 tooltip.birthday_2=Right-click for a Surprise!
+
+tooltip.pot.normal=A small pot for growing many kinds of plants.
+tooltip.pot.hopper=A small pot for growing many kinds of plants. Can automatically harvest the crop, putting it in the inventory below.
+tooltip.advanced.seed_item=Botany Pot Seed
+
+tooltip.growth_progress=Progress: %d%%
+tooltip.growth_time=Grow Time: %s
+tooltip.crop=Crop: %s
+tooltip.soil=Soil: %s
+tooltip.crop.id=Crop ID: %s
+tooltip.crop.ticks=Crop Growth Ticks: %s
+tooltip.crop.categories=Crop Soil Categories: %s
+tooltip.soil.id=Soil ID: %s
+tooltip.soil.modifier=Soil Growth Modifier: %s
+tooltip.soil.categories=Soil Categories: %s
+tooltip.pot.totalticks=Total Ticks: %d
+tooltip.pot.growticks=Grow Ticks: %d
+
+tooltip.growthrate=Growth Rate: %d (%s)
+tooltip.growthmodifier=Growth Modifier: %d (%s)
+tooltip.dropchance=Chance: %d%%
+tooltip.rolls=Rolls: %d
+tooltip.rollrange=Rolls: %d - %d
+
+config.waila.plugin_botanypots=Botany Pots
+config.waila.plugin_botanypots.show_crop=Show Crop
+config.waila.plugin_botanypots.show_soil=Show Soil
+config.waila.plugin_botanypots.show_progress=Show Progress
+config.waila.plugin_botanypots.show_time=Show Grow Time
+config.waila.plugin_botanypots.show_debug=Show Debug
 #Item
 
 item.mycelium_seeds.name=Mycelium Seed
@@ -93,4 +122,7 @@ tile.ore_ender.name=Ender Ore
 
 tile.reinforced_obsidian.name=Reinforced Obsidian
 tile.reinforced_glass.name=Reinforced Glass
+
+tile.botany_pot.name=Botany Pot
+tile.hopper_botany_pot.name=Hopper Botany Pot
 

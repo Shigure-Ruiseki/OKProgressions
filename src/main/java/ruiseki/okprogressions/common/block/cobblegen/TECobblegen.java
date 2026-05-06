@@ -6,13 +6,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import org.jetbrains.annotations.Nullable;
-
 import lombok.experimental.Delegate;
-import ruiseki.okcore.helper.ItemStackHelpers;
+import ruiseki.okcore.helper.InventoryHelpers;
 import ruiseki.okcore.item.ItemStackHandler;
 import ruiseki.okcore.persist.nbt.NBTPersist;
 import ruiseki.okcore.tileentity.TileEntityOK;
@@ -81,84 +78,20 @@ public class TECobblegen extends TileEntityOK implements TileEntityOK.ITickingTi
             outputInventory.setStackInSlot(0, stack);
         }
 
-        // Push to inventory above
-        TileEntity tile = getPos().offset(ForgeDirection.UP)
-            .getTileEntity(worldObj);
-        if (tile instanceof IInventory inv && stack.stackSize > 0) {
-
-            ItemStack remaining = putStackInInventoryAllSlots(
-                inv,
+        IInventory inventory = InventoryHelpers.getInventoryAtSide(worldObj, getPos(), ForgeDirection.DOWN);
+        if (inventory != null && stack.stackSize > 0) {
+            ItemStack remaining = InventoryHelpers.addToInventory(
+                inventory,
                 new ItemStack(stack.getItem(), 1, stack.getItemDamage()),
-                ForgeDirection.UP);
-
+                ForgeDirection.UP,
+                false);
             if (remaining == null) {
                 stack.stackSize--;
-                inv.markDirty();
+                inventory.markDirty();
             }
         }
 
         markDirty();
-    }
-
-    public static ItemStack putStackInInventoryAllSlots(IInventory inventoryIn, ItemStack stack,
-        @Nullable ForgeDirection side) {
-        if (inventoryIn instanceof ISidedInventory isidedinventory && side != null
-            && !(inventoryIn instanceof TECobblegen)) {
-            int[] aint = isidedinventory.getAccessibleSlotsFromSide(side.ordinal());
-
-            for (int k = 0; k < aint.length && stack != null && stack.stackSize > 0; ++k)
-                stack = insertStack(inventoryIn, stack, aint[k], side);
-        } else {
-            int i = inventoryIn.getSizeInventory();
-
-            for (int j = 0; j < i && stack != null && stack.stackSize > 0; ++j)
-                stack = insertStack(inventoryIn, stack, j, side);
-        }
-
-        if (stack != null && stack.stackSize == 0) stack = null;
-
-        return stack;
-    }
-
-    private static ItemStack insertStack(IInventory inv, ItemStack stack, int index, ForgeDirection side) {
-        if (stack == null || stack.stackSize <= 0) return stack;
-
-        if (!canInsertItemInSlot(inv, stack, index, side)) return stack;
-
-        ItemStack existing = inv.getStackInSlot(index);
-
-        int limit = Math.min(stack.getMaxStackSize(), inv.getInventoryStackLimit());
-
-        if (existing == null) {
-            int toMove = Math.min(stack.stackSize, limit);
-
-            ItemStack newStack = stack.splitStack(toMove);
-            inv.setInventorySlotContents(index, newStack);
-            inv.markDirty();
-
-            return stack.stackSize <= 0 ? null : stack;
-        }
-
-        if (!ItemStackHelpers.areStackMergable(existing, stack)) return stack;
-
-        int max = Math.min(existing.getMaxStackSize(), limit);
-        if (existing.stackSize >= max) return stack;
-
-        int space = max - existing.stackSize;
-        int toMove = Math.min(stack.stackSize, space);
-
-        existing.stackSize += toMove;
-        stack.stackSize -= toMove;
-
-        inv.markDirty();
-
-        return stack.stackSize <= 0 ? null : stack;
-    }
-
-    private static boolean canInsertItemInSlot(IInventory inventoryIn, ItemStack stack, int index,
-        ForgeDirection side) {
-        return inventoryIn.isItemValidForSlot(index, stack) && (!(inventoryIn instanceof ISidedInventory)
-            || ((ISidedInventory) inventoryIn).canInsertItem(index, stack, side.ordinal()));
     }
 
     @Override

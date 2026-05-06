@@ -10,6 +10,7 @@ import ruiseki.okcore.block.IBlock;
 import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.common.block.BlockOreEnder;
 import ruiseki.okprogressions.common.block.BlockStoneTorch;
+import ruiseki.okprogressions.common.block.botanypot.BlockBotanyPot;
 import ruiseki.okprogressions.common.block.cobblegen.BlockCobblegen;
 import ruiseki.okprogressions.common.block.compressed.BlockBone;
 import ruiseki.okprogressions.common.block.compressed.BlockCharcoal;
@@ -49,6 +50,9 @@ public enum ModBlocks {
     REINFORCED_GLASS(new BLockReinforcedGlass()),
 
     ORE_ENDER(new BlockOreEnder()),
+
+    BOTANY_POT(new BlockBotanyPot("botany_pot")),
+    HOPPER_BOTANY_POT(new BlockBotanyPot(true, "hopper_botany_pot")),
 
     ;
 

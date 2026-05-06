@@ -1,4 +1,4 @@
-package ruiseki.okprogressions.common.soil;
+package ruiseki.okprogressions.common.crop;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,19 +10,17 @@ import net.minecraft.item.ItemStack;
 import ruiseki.okcore.init.IRegistry;
 import ruiseki.okcore.inventory.ItemStackKey;
 
-public class SoilRegistry implements IRegistry {
+public class CropRegistry implements IRegistry {
 
-    private static final Map<ItemStackKey, SoilMaterial> ITEM_MAP = new HashMap<>();
+    private static final Map<ItemStackKey, CropMaterial> ITEM_MAP = new HashMap<>();
 
-    public SoilRegistry() {}
-
-    public static void register(SoilMaterial material) {
+    public static void register(CropMaterial material) {
         if (material == null || !material.validate() || material.stack == null || material.stack.getItem() == null)
             return;
         ITEM_MAP.put(ItemStackKey.of(material.stack), material);
     }
 
-    public static SoilMaterial getByStack(ItemStack stack) {
+    public static CropMaterial getByStack(ItemStack stack) {
         if (stack == null) return null;
         return ITEM_MAP.get(ItemStackKey.of(stack));
     }
@@ -35,7 +33,7 @@ public class SoilRegistry implements IRegistry {
         return ITEM_MAP.size();
     }
 
-    public Collection<SoilMaterial> getSoils() {
+    public Collection<CropMaterial> getSoils() {
         return new ArrayList<>(ITEM_MAP.values());
     }
 }
