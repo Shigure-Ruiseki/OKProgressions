@@ -101,14 +101,14 @@ public class TEBotanyPot extends TileEntityOK implements TileEntityOK.ITickingTi
         this.currentGrowthTicks = 0;
 
         if (this.soil != null) {
-            this.soil = SoilRegistry.getByStack(this.soil.stack);
+            this.soil = SoilRegistry.getByStack(this.soil.getStack());
             if (this.soil == null) {
                 this.crop = null;
             }
         }
 
         if (this.crop != null) {
-            this.crop = CropRegistry.getByStack(this.crop.stack);
+            this.crop = CropRegistry.getByStack(this.crop.getStack());
         }
 
         this.autoHarvestCooldown = 5;

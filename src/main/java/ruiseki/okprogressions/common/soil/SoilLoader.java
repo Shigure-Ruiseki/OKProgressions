@@ -19,134 +19,148 @@ import ruiseki.okprogressions.Reference;
 
 public class SoilLoader implements IInitListener {
 
-    private static final File configDir = new File("config/" + Reference.MOD_ID + "/soils.json");
+    private static final File configFolder = new File("config/" + Reference.MOD_ID + "/soils/");
 
     @Override
     public void onInit(Step step) {
         if (step != Step.POSTINIT) return;
 
-        SoilReader reader = new SoilReader(configDir);
-
         try {
-            File[] files = configDir.listFiles();
-            if (!configDir.exists() || files == null || files.length == 0) {
-                List<SoilMaterial> defaults = createDefaults();
-                try {
-                    new SoilWriter(configDir).write(defaults);
-                } catch (IOException e) {
-                    OKProgressions.okLog(Level.ERROR, "Failed to write default config soils: " + e.getMessage());
+            if (!configFolder.exists()) {
+                configFolder.mkdirs();
+            }
+
+            generateDefaultConfigsIfMissing();
+            File[] files = configFolder.listFiles((dir, name) -> name.endsWith(".json"));
+            if (files != null) {
+                for (File file : files) {
+                    SoilReader reader = new SoilReader(file);
+                    List<SoilMaterial> materials = reader.read();
+                    for (SoilMaterial material : materials) {
+                        SoilRegistry.register(material);
+                    }
                 }
             }
 
-            List<SoilMaterial> materials = reader.read();
-            for (SoilMaterial material : materials) {
-                SoilRegistry.register(material);
-            }
-
-            OKProgressions.okLog("Loaded " + SoilRegistry.size() + " soil types.");
+            OKProgressions.okLog(
+                "Loaded " + SoilRegistry.size() + " soil types from " + (files != null ? files.length : 0) + " files.");
 
         } catch (IOException e) {
-            OKProgressions.okLog(Level.ERROR, "Could not load soil configs!" + e);
+            OKProgressions.okLog(Level.ERROR, "Could not load soil configs! " + e.getMessage());
         }
+
+    }
+
+    private static void generateDefaultConfigsIfMissing() throws IOException {
+        File treesFile = new File(configFolder, "soils.json");
+        if (!treesFile.exists()) {
+            writeGroupToFile(treesFile, createDefaults());
+        }
+    }
+
+    private static void writeGroupToFile(File targetFile, List<SoilMaterial> materials) throws IOException {
+        if (materials == null || materials.isEmpty()) return;
+        new SoilWriter(targetFile).write(materials);
+        OKProgressions.okLog("Generated default config file: " + targetFile.getName());
     }
 
     private static List<SoilMaterial> createDefaults() {
         List<SoilMaterial> list = new ArrayList<>();
-
         SoilMaterial dirt = new SoilMaterial();
-        dirt.stack = new ItemStack(Blocks.dirt);
-        dirt.displayBlock = Blocks.dirt;
-        dirt.displayMeta = 0;
-        dirt.growthModifier = 0f;
-        dirt.categories = Collections.singletonList("dirt");
+
+        dirt.setStack(new ItemStack(Blocks.dirt));
+        dirt.setDisplayBlock(Blocks.dirt);
+        dirt.setDisplayMeta(0);
+        dirt.setGrowthModifier(0f);
+        dirt.setCategories(Collections.singletonList("dirt"));
         list.add(dirt);
 
-        SoilMaterial end_stone = new SoilMaterial();
-        end_stone.stack = new ItemStack(Blocks.end_stone);
-        end_stone.displayBlock = Blocks.end_stone;
-        end_stone.displayMeta = 0;
-        end_stone.growthModifier = -0.5f;
-        end_stone.categories = Collections.singletonList("end_stone");
-        list.add(end_stone);
+        SoilMaterial endStone = new SoilMaterial();
+        endStone.setStack(new ItemStack(Blocks.end_stone));
+        endStone.setDisplayBlock(Blocks.end_stone);
+        endStone.setDisplayMeta(0);
+        endStone.setGrowthModifier(-0.5f);
+        endStone.setCategories(Collections.singletonList("end_stone"));
+        list.add(endStone);
 
         SoilMaterial farmland = new SoilMaterial();
-        farmland.stack = new ItemStack(Blocks.farmland);
-        farmland.displayBlock = Blocks.farmland;
-        farmland.displayMeta = 7;
-        farmland.growthModifier = 0.15f;
-        farmland.categories = Arrays.asList("dirt", "farmland");
+        farmland.setStack(new ItemStack(Blocks.farmland));
+        farmland.setDisplayBlock(Blocks.farmland);
+        farmland.setDisplayMeta(7);
+        farmland.setGrowthModifier(0.15f);
+        farmland.setCategories(Arrays.asList("dirt", "farmland"));
         list.add(farmland);
 
         SoilMaterial grass = new SoilMaterial();
-        grass.stack = new ItemStack(Blocks.grass);
-        grass.displayBlock = Blocks.grass;
-        grass.displayMeta = 0;
-        grass.growthModifier = 0.05f;
-        grass.categories = Arrays.asList("dirt", "grass");
+        grass.setStack(new ItemStack(Blocks.grass));
+        grass.setDisplayBlock(Blocks.grass);
+        grass.setDisplayMeta(0);
+        grass.setGrowthModifier(0.05f);
+        grass.setCategories(Arrays.asList("dirt", "grass"));
         list.add(grass);
 
         SoilMaterial mycelium = new SoilMaterial();
-        mycelium.stack = new ItemStack(Blocks.mycelium);
-        mycelium.displayBlock = Blocks.mycelium;
-        mycelium.displayMeta = 0;
-        mycelium.growthModifier = 0.05f;
-        mycelium.categories = Arrays.asList("dirt", "mushroom");
+        mycelium.setStack(new ItemStack(Blocks.mycelium));
+        mycelium.setDisplayBlock(Blocks.mycelium);
+        mycelium.setDisplayMeta(0);
+        mycelium.setGrowthModifier(0.05f);
+        mycelium.setCategories(Arrays.asList("dirt", "mushroom"));
         list.add(mycelium);
 
         SoilMaterial netherrack = new SoilMaterial();
-        netherrack.stack = new ItemStack(Blocks.netherrack);
-        netherrack.displayBlock = Blocks.netherrack;
-        netherrack.displayMeta = 0;
-        netherrack.growthModifier = 0f;
-        netherrack.categories = Collections.singletonList("nether");
+        netherrack.setStack(new ItemStack(Blocks.netherrack));
+        netherrack.setDisplayBlock(Blocks.netherrack);
+        netherrack.setDisplayMeta(0);
+        netherrack.setGrowthModifier(0f);
+        netherrack.setCategories(Collections.singletonList("nether"));
         list.add(netherrack);
 
         SoilMaterial podzol = new SoilMaterial();
-        podzol.stack = new ItemStack(Blocks.dirt, 1, 2);
-        podzol.displayBlock = Blocks.dirt;
-        podzol.displayMeta = 2;
-        podzol.growthModifier = 0.05f;
-        podzol.categories = Arrays.asList("dirt", "grass", "podzol", "mushroom");
+        podzol.setStack(new ItemStack(Blocks.dirt, 1, 2));
+        podzol.setDisplayBlock(Blocks.dirt);
+        podzol.setDisplayMeta(2);
+        podzol.setGrowthModifier(0.05f);
+        podzol.setCategories(Arrays.asList("dirt", "grass", "podzol", "mushroom"));
         list.add(podzol);
 
-        SoilMaterial red_sand = new SoilMaterial();
-        red_sand.stack = new ItemStack(Blocks.sand, 1, 1);
-        red_sand.displayBlock = Blocks.sand;
-        red_sand.displayMeta = 1;
-        red_sand.growthModifier = 0f;
-        red_sand.categories = Arrays.asList("sand", "red_sand");
-        list.add(red_sand);
+        SoilMaterial redSand = new SoilMaterial();
+        redSand.setStack(new ItemStack(Blocks.sand, 1, 1));
+        redSand.setDisplayBlock(Blocks.sand);
+        redSand.setDisplayMeta(1);
+        redSand.setGrowthModifier(0f);
+        redSand.setCategories(Arrays.asList("sand", "red_sand"));
+        list.add(redSand);
 
         SoilMaterial sand = new SoilMaterial();
-        sand.stack = new ItemStack(Blocks.sand);
-        sand.displayBlock = Blocks.sand;
-        sand.displayMeta = 0;
-        sand.growthModifier = 0f;
-        sand.categories = Collections.singletonList("sand");
+        sand.setStack(new ItemStack(Blocks.sand));
+        sand.setDisplayBlock(Blocks.sand);
+        sand.setDisplayMeta(0);
+        sand.setGrowthModifier(0f);
+        sand.setCategories(Collections.singletonList("sand"));
         list.add(sand);
 
-        SoilMaterial soul_sand = new SoilMaterial();
-        soul_sand.stack = new ItemStack(Blocks.soul_sand);
-        soul_sand.displayBlock = Blocks.soul_sand;
-        soul_sand.displayMeta = 0;
-        soul_sand.growthModifier = -0.3f;
-        soul_sand.categories = Arrays.asList("soul_sand", "nether");
-        list.add(soul_sand);
+        SoilMaterial soulSand = new SoilMaterial();
+        soulSand.setStack(new ItemStack(Blocks.soul_sand));
+        soulSand.setDisplayBlock(Blocks.soul_sand);
+        soulSand.setDisplayMeta(0);
+        soulSand.setGrowthModifier(-0.3f);
+        soulSand.setCategories(Arrays.asList("soul_sand", "nether"));
+        list.add(soulSand);
 
         SoilMaterial water = new SoilMaterial();
-        water.stack = new ItemStack(Items.water_bucket);
-        water.displayBlock = Blocks.water;
-        water.displayMeta = 0;
-        water.growthModifier = 0f;
-        water.categories = Arrays.asList("water", "fluid", "liquid");
+        water.setStack(new ItemStack(Items.water_bucket));
+        water.setDisplayBlock(Blocks.water);
+        water.setDisplayMeta(0);
+        water.setGrowthModifier(0f);
+        water.setCategories(Arrays.asList("water", "fluid", "liquid"));
         list.add(water);
 
         SoilMaterial lava = new SoilMaterial();
-        lava.stack = new ItemStack(Items.lava_bucket);
-        lava.displayBlock = Blocks.lava;
-        lava.displayMeta = 0;
-        lava.growthModifier = 0f;
-        lava.categories = Arrays.asList("lava", "fluid", "liquid");
+        lava.setStack(new ItemStack(Items.lava_bucket));
+        lava.setDisplayBlock(Blocks.lava);
+        lava.setDisplayMeta(0);
+        lava.setGrowthModifier(0f);
+        lava.setCategories(Arrays.asList("lava", "fluid", "liquid"));
         list.add(lava);
 
         return list;

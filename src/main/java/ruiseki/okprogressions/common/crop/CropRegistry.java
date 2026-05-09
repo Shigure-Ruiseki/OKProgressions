@@ -15,9 +15,12 @@ public class CropRegistry implements IRegistry {
     private static final Map<ItemStackKey, CropMaterial> ITEM_MAP = new HashMap<>();
 
     public static void register(CropMaterial material) {
-        if (material == null || !material.validate() || material.stack == null || material.stack.getItem() == null)
+        if (material == null || !material.validate()
+            || material.getStack() == null
+            || material.getStack()
+                .getItem() == null)
             return;
-        ITEM_MAP.put(ItemStackKey.of(material.stack), material);
+        ITEM_MAP.put(ItemStackKey.of(material.getStack()), material);
     }
 
     public static CropMaterial getByStack(ItemStack stack) {

@@ -19,8 +19,8 @@ public class BotanyPotHelpers {
     }
 
     public static boolean isSoilValidForCrop(SoilMaterial soil, CropMaterial crop) {
-        for (final String soilCategory : soil.categories) {
-            for (final String cropCategory : crop.categories) {
+        for (final String soilCategory : soil.getCategories()) {
+            for (final String cropCategory : crop.getCategories()) {
                 if (soilCategory.equalsIgnoreCase(cropCategory)) {
                     return true;
                 }
@@ -32,7 +32,7 @@ public class BotanyPotHelpers {
 
     public static List<ItemStack> generateDrop(Random rand, CropMaterial crop) {
         final List<ItemStack> drops = new ArrayList<>();
-        for (final HarvestMaterial cropEntry : crop.results) {
+        for (final HarvestMaterial cropEntry : crop.getResults()) {
             if (rand.nextFloat() <= cropEntry.chance) {
                 final int rolls = rand.nextInt(cropEntry.maxRolls - cropEntry.minRolls + 1) + cropEntry.minRolls;
                 if (rolls > 0) {

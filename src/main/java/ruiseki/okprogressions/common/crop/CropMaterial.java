@@ -18,17 +18,73 @@ import ruiseki.okprogressions.common.soil.SoilMaterial;
 
 public class CropMaterial extends AbstractJsonMaterial {
 
-    public ItemStack stack;
-    public int growthTicks;
-    public int lightLevel = -1;
-    public List<String> categories = new ArrayList<>();
-    public Block displayBlock;
-    public int displayMeta;
-    public List<HarvestMaterial> results = new ArrayList<>();
+    private ItemStack stack;
+    private int growthTicks;
+    private int lightLevel = -1;
+    private List<String> categories = new ArrayList<>();
+    private Block displayBlock;
+    private int displayMeta;
+    private List<HarvestMaterial> results = new ArrayList<>();
+
+    public ItemStack getStack() {
+        return stack;
+    }
+
+    public void setStack(ItemStack stack) {
+        this.stack = stack;
+    }
+
+    public int getGrowthTicks() {
+        return growthTicks;
+    }
+
+    public void setGrowthTicks(int growthTicks) {
+        this.growthTicks = growthTicks;
+    }
+
+    public int getLightLevel() {
+        return lightLevel;
+    }
+
+    public void setLightLevel(int lightLevel) {
+        this.lightLevel = lightLevel;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+
+    public Block getDisplayBlock() {
+        return displayBlock;
+    }
+
+    public void setDisplayBlock(Block displayBlock) {
+        this.displayBlock = displayBlock;
+    }
+
+    public int getDisplayMeta() {
+        return displayMeta;
+    }
+
+    public void setDisplayMeta(int displayMeta) {
+        this.displayMeta = displayMeta;
+    }
+
+    public List<HarvestMaterial> getResults() {
+        return results;
+    }
+
+    public void setResults(List<HarvestMaterial> results) {
+        this.results = results;
+    }
 
     public int getGrowthTicksForSoil(SoilMaterial soil) {
         final float requiredGrowthTicks = this.growthTicks;
-        final float growthModifier = soil.growthModifier;
+        final float growthModifier = soil.getGrowthModifier();
         if (growthModifier > -1) {
             return MathHelper.floor_double(requiredGrowthTicks * (1 + growthModifier * -1));
         }

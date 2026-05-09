@@ -181,7 +181,10 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TEBotanyPot pot) {
             int light = 0;
-            if (pot.getCrop() != null) light = Math.max(light, pot.getCrop().lightLevel);
+            if (pot.getCrop() != null) light = Math.max(
+                light,
+                pot.getCrop()
+                    .getLightLevel());
             return light;
         }
         return 0;

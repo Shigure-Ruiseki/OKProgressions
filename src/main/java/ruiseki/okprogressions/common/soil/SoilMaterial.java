@@ -16,11 +16,51 @@ import ruiseki.okcore.json.ItemJson;
 
 public class SoilMaterial extends AbstractJsonMaterial {
 
-    public ItemStack stack;
-    public Block displayBlock;
-    public int displayMeta;
-    public float growthModifier;
-    public List<String> categories = new ArrayList<>();
+    private ItemStack stack;
+    private Block displayBlock;
+    private int displayMeta;
+    private float growthModifier;
+    private List<String> categories = new ArrayList<>();
+
+    public void setStack(ItemStack stack) {
+        this.stack = stack;
+    }
+
+    public ItemStack getStack() {
+        return stack;
+    }
+
+    public Block getDisplayBlock() {
+        return displayBlock;
+    }
+
+    public void setDisplayBlock(Block displayBlock) {
+        this.displayBlock = displayBlock;
+    }
+
+    public int getDisplayMeta() {
+        return displayMeta;
+    }
+
+    public void setDisplayMeta(int displayMeta) {
+        this.displayMeta = displayMeta;
+    }
+
+    public float getGrowthModifier() {
+        return growthModifier;
+    }
+
+    public void setGrowthModifier(float growthModifier) {
+        this.growthModifier = growthModifier;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
 
     @Override
     public void read(JsonObject json) {

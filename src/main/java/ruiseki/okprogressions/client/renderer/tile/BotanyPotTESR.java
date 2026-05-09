@@ -27,15 +27,21 @@ public class BotanyPotTESR extends TileEntitySpecialRenderer {
 
         GL11.glDisable(GL11.GL_LIGHTING);
 
-        if (pot.getSoil() != null && pot.getSoil().displayBlock != null) {
+        if (pot.getSoil() != null && pot.getSoil()
+            .getDisplayBlock() != null) {
             GL11.glPushMatrix();
             GL11.glTranslatef(0.5f, 0.4f, 0.5f);
             GL11.glScalef(0.625f, 0.1f, 0.625f);
-            this.renderBlock(pot.getSoil().displayBlock, pot.getSoil().displayMeta);
+            this.renderBlock(
+                pot.getSoil()
+                    .getDisplayBlock(),
+                pot.getSoil()
+                    .getDisplayMeta());
             GL11.glPopMatrix();
         }
 
-        if (pot.getCrop() != null && pot.getCrop().displayBlock != null) {
+        if (pot.getCrop() != null && pot.getCrop()
+            .getDisplayBlock() != null) {
             GL11.glPushMatrix();
 
             GL11.glTranslated(0.5, 0.45, 0.5);
@@ -50,7 +56,11 @@ public class BotanyPotTESR extends TileEntitySpecialRenderer {
             GL11.glScalef(finalScale, finalScale, finalScale);
 
             GL11.glTranslatef(0.0f, 0.45f, 0.0f);
-            this.renderBlock(pot.getCrop().displayBlock, pot.getCrop().displayMeta);
+            this.renderBlock(
+                pot.getCrop()
+                    .getDisplayBlock(),
+                pot.getCrop()
+                    .getDisplayMeta());
 
             GL11.glPopMatrix();
         }
