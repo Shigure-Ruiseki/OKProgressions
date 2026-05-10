@@ -10,6 +10,7 @@ import ruiseki.okcore.item.ItemOK;
 import ruiseki.okprogressions.OKPCreativeTab;
 import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.Reference;
+import ruiseki.okprogressions.common.item.ItemEnderSack;
 import ruiseki.okprogressions.common.item.apple.ItemDiamondApple;
 import ruiseki.okprogressions.common.item.apple.ItemEmeraldApple;
 import ruiseki.okprogressions.common.item.apple.ItemIronApple;
@@ -49,6 +50,8 @@ public enum ModItems {
         .setCreativeTab(OKPCreativeTab.INSTANCE)),
 
     CLIMBING_GLOVE(new ItemClimbingGlove()),
+
+    ENDER_SACK(new ItemEnderSack()),
 
     ;
 
