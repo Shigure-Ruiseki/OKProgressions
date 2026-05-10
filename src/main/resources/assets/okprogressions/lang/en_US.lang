@@ -60,6 +60,8 @@ tooltip.charm.off=Off
 tooltip.charm.on=On
 
 tooltip.climbing_glove=Climb any vertical surface
+
+tooltip.ender_sack=Portable Ender Chest
 #Item
 
 item.mycelium_seeds.name=Mycelium Seed
@@ -84,6 +86,7 @@ item.diamond_paxel.name=Diamond Paxel
 
 item.climbing_glove.name=Climbing Gloves
 
+item.ender_sack.name=Ender Sack
 #Block
 tile.cobblegen.name=Cobblestone Generator
 tile.iron_cobblegen.name=Cobblestone Generator Tier 2
