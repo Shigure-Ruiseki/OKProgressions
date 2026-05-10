@@ -1,6 +1,5 @@
 creativetab.okprogressions=OK Progressions
 
-
 #Tooltip
 
 tooltip.cobblegen_1=Only Holds %d Blocks!
@@ -48,6 +47,13 @@ tooltip.obsidian_1=Wither Proof!
 
 tooltip.birthday_1=Super Fast Pickaxe!
 tooltip.birthday_2=Right-click for a Surprise!
+
+tooltip.pot.normal=A small pot for growing many kinds of plants.
+tooltip.pot.hopper=A small pot for growing many kinds of plants. Can automatically harvest the crop, putting it in the inventory below.
+tooltip.advanced.seed_item=Botany Pot Seed
+
+tooltip.pot.progress=Progress: %.1f%%
+tooltip.pot.ready=Ready to Harvest!
 #Item
 
 item.mycelium_seeds.name=Mycelium Seed
@@ -93,4 +99,7 @@ tile.ore_ender.name=Ender Ore
 
 tile.reinforced_obsidian.name=Reinforced Obsidian
 tile.reinforced_glass.name=Reinforced Glass
+
+tile.botany_pot.name=Botany Pot
+tile.hopper_botany_pot.name=Hopper Botany Pot
 

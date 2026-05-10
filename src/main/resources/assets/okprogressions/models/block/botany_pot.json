@@ -1,0 +1,68 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"particle": "block/hardened_clay",
+		"terracotta": "block/hardened_clay"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [2, 0, 2],
+			"to": [14, 1, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 12, 1], "texture": "#terracotta"},
+				"east": {"uv": [0, 0, 12, 1], "texture": "#terracotta"},
+				"south": {"uv": [0, 0, 12, 1], "texture": "#terracotta"},
+				"west": {"uv": [0, 0, 12, 1], "texture": "#terracotta"},
+				"up": {"uv": [0, 0, 12, 12], "texture": "#terracotta"},
+				"down": {"uv": [0, 0, 12, 12], "texture": "#terracotta"}
+			}
+		},
+		{
+			"name": "north",
+			"from": [2, 1, 2],
+			"to": [14, 8, 3],
+			"faces": {
+				"north": {"uv": [0, 0, 12, 7], "texture": "#terracotta"},
+				"east": {"uv": [0, 0, 1, 7], "texture": "#terracotta"},
+				"south": {"uv": [0, 0, 12, 7], "texture": "#terracotta"},
+				"west": {"uv": [0, 0, 1, 7], "texture": "#terracotta"},
+				"up": {"uv": [0, 0, 12, 1], "texture": "#terracotta"}
+			}
+		},
+		{
+			"name": "south",
+			"from": [2, 1, 13],
+			"to": [14, 8, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 12, 7], "texture": "#terracotta"},
+				"east": {"uv": [0, 0, 1, 7], "texture": "#terracotta"},
+				"south": {"uv": [0, 0, 12, 7], "texture": "#terracotta"},
+				"west": {"uv": [0, 0, 1, 7], "texture": "#terracotta"},
+				"up": {"uv": [0, 0, 12, 1], "texture": "#terracotta"}
+			}
+		},
+		{
+			"name": "west",
+			"from": [2, 1, 3],
+			"to": [3, 8, 13],
+			"faces": {
+				"east": {"uv": [0, 0, 10, 7], "texture": "#terracotta"},
+				"west": {"uv": [0, 0, 10, 7], "texture": "#terracotta"},
+				"up": {"uv": [0, 0, 1, 10], "texture": "#terracotta"}
+			}
+		},
+		{
+			"name": "east",
+			"from": [13, 1, 3],
+			"to": [14, 8, 13],
+			"faces": {
+				"east": {"uv": [0, 0, 10, 7], "texture": "#terracotta"},
+				"west": {"uv": [0, 0, 10, 7], "texture": "#terracotta"},
+				"up": {"uv": [0, 0, 1, 10], "texture": "#terracotta"}
+			}
+		}
+	]
+}

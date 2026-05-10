@@ -3,6 +3,8 @@ package ruiseki.okprogressions;
 import ruiseki.okcore.client.key.IKeyRegistry;
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.proxy.ClientProxyComponent;
+import ruiseki.okprogressions.client.renderer.tile.BotanyPotTESR;
+import ruiseki.okprogressions.common.block.botanypot.TEBotanyPot;
 
 public class ClientProxy extends ClientProxyComponent {
 
@@ -23,5 +25,12 @@ public class ClientProxy extends ClientProxyComponent {
     @Override
     public void registerEventHooks() {
         super.registerEventHooks();
+    }
+
+    @Override
+    public void registerRenderers() {
+        registerRenderer(TEBotanyPot.class, new BotanyPotTESR());
+
+        super.registerRenderers();
     }
 }

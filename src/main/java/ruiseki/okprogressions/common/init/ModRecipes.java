@@ -219,6 +219,40 @@ public class ModRecipes implements IInitListener {
                 'c',
                 new ItemStack(Items.coal, 1, 1)));
 
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.BOTANY_POT.newItemStack(),
+                "h h",
+                "hph",
+                " h ",
+                'h',
+                Blocks.hardened_clay,
+                'p',
+                Items.flower_pot));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.HOPPER_BOTANY_POT.newItemStack(),
+                "p",
+                "h",
+                'p',
+                ModBlocks.BOTANY_POT.newItemStack(),
+                'h',
+                Blocks.hopper));
+
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModBlocks.HOPPER_BOTANY_POT.newItemStack(),
+                "huh",
+                "hph",
+                " h ",
+                'u',
+                Blocks.hopper,
+                'h',
+                Blocks.hardened_clay,
+                'p',
+                Items.flower_pot));
+
     }
 
     public static void itemRecipes() {
