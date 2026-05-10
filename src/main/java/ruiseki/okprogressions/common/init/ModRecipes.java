@@ -424,6 +424,18 @@ public class ModRecipes implements IInitListener {
                 new ItemStack(Items.dye, 1, 0),
                 'l',
                 new ItemStack(Items.leather, 1, 0)));
+
+        // Ender Sack
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.ENDER_SACK.newItemStack(),
+                " l ",
+                "lsl",
+                " l ",
+                's',
+                new ItemStack(Blocks.ender_chest),
+                'l',
+                new ItemStack(Items.leather, 1, 0)));
     }
 
     private void fuelRecipes() {
