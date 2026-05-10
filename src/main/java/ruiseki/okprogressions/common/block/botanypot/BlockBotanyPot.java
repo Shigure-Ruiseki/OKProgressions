@@ -111,7 +111,7 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
                     }
                 }
 
-                if (!this.isHopper() && pot.isDoneGrowing() && pot.getCrop() != null) {
+                if (!this.isHopper() && pot.isDoneGrowing() && pot.getCrop() != null && pot.canHarvest()) {
                     List<ItemStack> drops = BotanyPotHelpers.generateDrop(world.rand, pot.getCrop());
                     for (ItemStack stack : drops) {
                         InventoryHelpers.dropItems(world, stack, new BlockPos(x, y, z));
@@ -133,8 +133,8 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean b) {
         list.add(
-            this.isHopper() ? new ChatComponentTranslation("tooltip.pot.normal").getFormattedText()
-                : new ChatComponentTranslation("tooltip.pot.hopper").getFormattedText());
+            this.isHopper() ? new ChatComponentTranslation("tooltip.pot.hopper").getFormattedText()
+                : new ChatComponentTranslation("tooltip.pot.normal").getFormattedText());
     }
 
     // canGrow

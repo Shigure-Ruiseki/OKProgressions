@@ -38,7 +38,7 @@ public class SoilRegistry implements IRegistry {
         return ITEM_MAP.size();
     }
 
-    public Collection<SoilMaterial> getSoils() {
+    public static Collection<SoilMaterial> getSoils() {
         return new ArrayList<>(ITEM_MAP.values());
     }
 }

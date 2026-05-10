@@ -36,7 +36,7 @@ public class CropRegistry implements IRegistry {
         return ITEM_MAP.size();
     }
 
-    public Collection<CropMaterial> getSoils() {
+    public static Collection<CropMaterial> getCrops() {
         return new ArrayList<>(ITEM_MAP.values());
     }
 }

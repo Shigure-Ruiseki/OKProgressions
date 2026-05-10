@@ -4,10 +4,13 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.Nullable;
@@ -15,7 +18,12 @@ import org.jetbrains.annotations.Nullable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import lombok.experimental.Delegate;
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.IWailaDataAccessor;
+import ruiseki.okcore.addon.waila.IWailaTileInfoProvider;
 import ruiseki.okcore.helper.InventoryHelpers;
+import ruiseki.okcore.helper.LangHelpers;
+import ruiseki.okcore.helper.WailaHelpers;
 import ruiseki.okcore.item.ItemStackHandler;
 import ruiseki.okcore.persist.nbt.NBTPersist;
 import ruiseki.okcore.tileentity.TileEntityOK;
@@ -25,13 +33,37 @@ import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
 import ruiseki.okprogressions.common.soil.SoilMaterial;
 import ruiseki.okprogressions.common.soil.SoilRegistry;
 
-public class TEBotanyPot extends TileEntityOK implements TileEntityOK.ITickingTile, ISidedInventory {
+public class TEBotanyPot extends TileEntityOK
+    implements TileEntityOK.ITickingTile, ISidedInventory, IWailaTileInfoProvider {
 
     @Delegate
     protected final TileEntityOK.ITickingTile tickingTileComponent = new TileEntityOK.TickingTileComponent(this);
 
     @NBTPersist("inventory")
-    private final ItemStackHandler inv = new ItemStackHandler(2);
+    private final ItemStackHandler inv = new ItemStackHandler(2) {
+
+        @Override
+        protected int getStackLimit(int slot, @Nullable ItemStack stack) {
+            return 1;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 1;
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            if (stack == null) return false;
+
+            if (slot == 0) {
+                return SoilRegistry.getByStack(stack) != null;
+            } else if (slot == 1 && getStackInSlot(0) != null) {
+                return CropRegistry.getByStack(stack) != null;
+            }
+            return false;
+        }
+    };
 
     @Nullable
     private SoilMaterial soil;
@@ -204,7 +236,7 @@ public class TEBotanyPot extends TileEntityOK implements TileEntityOK.ITickingTi
 
     @Override
     public boolean canInsertItem(int slot, ItemStack stack, int side) {
-        return false;
+        return isItemValidForSlot(slot, stack) && getStackInSlot(slot) == null;
     }
 
     @Override
@@ -235,6 +267,19 @@ public class TEBotanyPot extends TileEntityOK implements TileEntityOK.ITickingTi
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
         inv.setStackInSlot(index, stack);
+
+        if (index == 0) {
+            this.soil = SoilRegistry.getByStack(stack);
+        } else if (index == 1) {
+            this.crop = CropRegistry.getByStack(stack);
+        }
+
+        this.resetGrowthTime();
+
+        if (!this.worldObj.isRemote) {
+            this.markDirty();
+            onSendUpdate();
+        }
     }
 
     @Override
@@ -265,6 +310,13 @@ public class TEBotanyPot extends TileEntityOK implements TileEntityOK.ITickingTi
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
+        if (stack == null) return false;
+
+        if (index == 0) {
+            return SoilRegistry.getByStack(stack) != null;
+        } else if (index == 1 && getSoilStack() != null) {
+            return CropRegistry.getByStack(stack) != null;
+        }
         return false;
     }
 
@@ -308,4 +360,22 @@ public class TEBotanyPot extends TileEntityOK implements TileEntityOK.ITickingTi
             this.crop = null;
         }
     }
+
+    @Override
+    public void getWailaBody(List<String> tooltip, ItemStack itemStack, IWailaDataAccessor accessor,
+        IWailaConfigHandler config) {
+        float percent = getGrowthPercent() * 100;
+
+        if (percent >= 100.0f) {
+            tooltip.add(LangHelpers.localize("tooltip.pot.ready"));
+        } else {
+            tooltip.add(LangHelpers.localize("tooltip.pot.progress", percent));
+        }
+
+        tooltip.add(WailaHelpers.getInventoryTooltip(this));
+    }
+
+    @Override
+    public void getWailaNBTData(EntityPlayerMP player, TileEntity tile, NBTTagCompound tag, World world, int x, int y,
+        int z) {}
 }

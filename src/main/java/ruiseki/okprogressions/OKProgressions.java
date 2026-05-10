@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.Level;
 
@@ -23,9 +24,11 @@ import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import ruiseki.okcore.command.CommandMod;
 import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ModBase;
+import ruiseki.okcore.lib.LibMods;
 import ruiseki.okcore.proxy.ICommonProxy;
 import ruiseki.okcore.world.gen.IRetroGenRegistry;
 import ruiseki.okcore.world.gen.RetroGenRegistry;
+import ruiseki.okprogressions.common.addon.nei.NEIConfig;
 import ruiseki.okprogressions.common.crop.CropLoader;
 import ruiseki.okprogressions.common.init.ModBlocks;
 import ruiseki.okprogressions.common.init.ModItems;
@@ -77,6 +80,12 @@ public class OKProgressions extends ModBase {
         ModItems.preInit();
         if (MinecraftHelpers.isClientSide()) {
             ModelRegistry.registerModid(Reference.MOD_ID);
+        }
+
+        if (LibMods.NotEnoughItems.isLoaded()) {
+            NEIConfig config = new NEIConfig();
+            MinecraftForge.EVENT_BUS.register(config);
+            config.loadConfig();
         }
     }
 

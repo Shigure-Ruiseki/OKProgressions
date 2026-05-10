@@ -52,31 +52,8 @@ tooltip.pot.normal=A small pot for growing many kinds of plants.
 tooltip.pot.hopper=A small pot for growing many kinds of plants. Can automatically harvest the crop, putting it in the inventory below.
 tooltip.advanced.seed_item=Botany Pot Seed
 
-tooltip.growth_progress=Progress: %d%%
-tooltip.growth_time=Grow Time: %s
-tooltip.crop=Crop: %s
-tooltip.soil=Soil: %s
-tooltip.crop.id=Crop ID: %s
-tooltip.crop.ticks=Crop Growth Ticks: %s
-tooltip.crop.categories=Crop Soil Categories: %s
-tooltip.soil.id=Soil ID: %s
-tooltip.soil.modifier=Soil Growth Modifier: %s
-tooltip.soil.categories=Soil Categories: %s
-tooltip.pot.totalticks=Total Ticks: %d
-tooltip.pot.growticks=Grow Ticks: %d
-
-tooltip.growthrate=Growth Rate: %d (%s)
-tooltip.growthmodifier=Growth Modifier: %d (%s)
-tooltip.dropchance=Chance: %d%%
-tooltip.rolls=Rolls: %d
-tooltip.rollrange=Rolls: %d - %d
-
-config.waila.plugin_botanypots=Botany Pots
-config.waila.plugin_botanypots.show_crop=Show Crop
-config.waila.plugin_botanypots.show_soil=Show Soil
-config.waila.plugin_botanypots.show_progress=Show Progress
-config.waila.plugin_botanypots.show_time=Show Grow Time
-config.waila.plugin_botanypots.show_debug=Show Debug
+tooltip.pot.progress=Progress: %.1f%%
+tooltip.pot.ready=Ready to Harvest!
 #Item
 
 item.mycelium_seeds.name=Mycelium Seed
