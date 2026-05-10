@@ -54,6 +54,12 @@ tooltip.advanced.seed_item=Botany Pot Seed
 
 tooltip.pot.progress=Progress: %.1f%%
 tooltip.pot.ready=Ready to Harvest!
+
+tooltip.charm.info=Shift & Right-Click to toggle: 
+tooltip.charm.off=Off
+tooltip.charm.on=On
+
+tooltip.climbing_glove=Climb any vertical surface
 #Item
 
 item.mycelium_seeds.name=Mycelium Seed
@@ -75,6 +81,8 @@ item.stone_paxel.name=Stone Paxel
 item.golden_paxel.name=Golden Paxel
 item.iron_paxel.name=Iron Paxel
 item.diamond_paxel.name=Diamond Paxel
+
+item.climbing_glove.name=Climbing Gloves
 
 #Block
 tile.cobblegen.name=Cobblestone Generator
