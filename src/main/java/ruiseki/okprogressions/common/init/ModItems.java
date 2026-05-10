@@ -14,6 +14,7 @@ import ruiseki.okprogressions.common.item.apple.ItemDiamondApple;
 import ruiseki.okprogressions.common.item.apple.ItemEmeraldApple;
 import ruiseki.okprogressions.common.item.apple.ItemIronApple;
 import ruiseki.okprogressions.common.item.apple.ItemRedstoneApple;
+import ruiseki.okprogressions.common.item.charm.ItemClimbingGlove;
 import ruiseki.okprogressions.common.item.misc.ItemMyceliumSeeds;
 import ruiseki.okprogressions.common.item.tool.ItemBirthdayPickaxe;
 import ruiseki.okprogressions.common.item.tool.ItemPaxel;
@@ -45,7 +46,11 @@ public enum ModItems {
         .setCreativeTab(OKPCreativeTab.INSTANCE)),
 
     ENDER_DUST((IItem) new ItemOK("ender_dust").setTextureName(Reference.PREFIX_MOD + "ender_dust")
-        .setCreativeTab(OKPCreativeTab.INSTANCE)),;
+        .setCreativeTab(OKPCreativeTab.INSTANCE)),
+
+    CLIMBING_GLOVE(new ItemClimbingGlove()),
+
+    ;
 
     // spotless: on
 
