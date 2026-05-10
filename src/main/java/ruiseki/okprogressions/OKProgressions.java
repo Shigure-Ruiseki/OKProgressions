@@ -82,7 +82,7 @@ public class OKProgressions extends ModBase {
             ModelRegistry.registerModid(Reference.MOD_ID);
         }
 
-        if (LibMods.NotEnoughItems.isLoaded()) {
+        if ((MinecraftHelpers.isClientSide() && LibMods.NotEnoughItems.isLoaded())) {
             NEIConfig config = new NEIConfig();
             MinecraftForge.EVENT_BUS.register(config);
             config.loadConfig();
