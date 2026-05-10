@@ -408,6 +408,22 @@ public class ModRecipes implements IInitListener {
                 new ItemStack(Items.diamond_pickaxe),
                 's',
                 "stickWood"));
+
+        // Climbing Glove
+        GameRegistry.addRecipe(
+            new ShapedOreRecipe(
+                ModItems.CLIMBING_GLOVE.newItemStack(),
+                "ssl",
+                "skl",
+                "lli",
+                's',
+                new ItemStack(Items.slime_ball, 1, 0),
+                'i',
+                "ingotIron",
+                'k',
+                new ItemStack(Items.dye, 1, 0),
+                'l',
+                new ItemStack(Items.leather, 1, 0)));
     }
 
     private void fuelRecipes() {
