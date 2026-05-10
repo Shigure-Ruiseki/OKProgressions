@@ -8,6 +8,7 @@
 
 ## Features:
 - [x] Cobblestone Generators.
+- [x] Botany Pot.
 - [x] Growth Crystals.
 - [x] Mycelium Seeds.
 - [x] Emerald Apple.
