@@ -26,8 +26,6 @@ import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.lib.LibMods;
 import ruiseki.okcore.proxy.ICommonProxy;
-import ruiseki.okcore.world.gen.IRetroGenRegistry;
-import ruiseki.okcore.world.gen.RetroGenRegistry;
 import ruiseki.okprogressions.common.addon.nei.NEIConfig;
 import ruiseki.okprogressions.common.crop.CropLoader;
 import ruiseki.okprogressions.common.init.ModBlocks;
@@ -62,9 +60,6 @@ public class OKProgressions extends ModBase {
     public OKProgressions() {
         super(Reference.MOD_ID, Reference.MOD_NAME);
         putGenericReference(REFKEY_MOD_VERSION, Reference.VERSION);
-
-        getRegistryManager().addRegistry(IRetroGenRegistry.class, new RetroGenRegistry(this));
-        putGenericReference(REFKEY_RETROGEN, ModConfig.retrogenEnabled);
 
         addInitListeners(new SoilLoader());
         addInitListeners(new CropLoader());

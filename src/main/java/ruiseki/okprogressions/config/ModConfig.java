@@ -72,8 +72,4 @@ public class ModConfig {
     @Config.DefaultInt(750)
     @Config.RangeInt(min = 1)
     public static int particalTicks;
-
-    @Config.DefaultBoolean(true)
-    @Config.Comment("Enable retrogeneration of world features when the mod is added to an existing world")
-    public static boolean retrogenEnabled;
 }
