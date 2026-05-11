@@ -64,7 +64,7 @@ public class OKProgressions extends ModBase {
         putGenericReference(REFKEY_MOD_VERSION, Reference.VERSION);
 
         getRegistryManager().addRegistry(IRetroGenRegistry.class, new RetroGenRegistry(this));
-        putGenericReference(REFKEY_RETROGEN, true);
+        putGenericReference(REFKEY_RETROGEN, ModConfig.retrogenEnabled);
 
         addInitListeners(new SoilLoader());
         addInitListeners(new CropLoader());
