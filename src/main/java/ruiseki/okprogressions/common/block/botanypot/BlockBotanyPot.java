@@ -140,9 +140,9 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
     // canGrow
     @Override
     public boolean func_149851_a(World worldIn, int x, int y, int z, boolean isClient) {
-        TEBotanyPot tile = TileHelpers.getSafeTile(worldIn, x, y, z, TEBotanyPot.class);
-        if (tile != null) {
-            return tile.hasSoilAndCrop() && !tile.isDoneGrowing();
+        TEBotanyPot pot = TileHelpers.getSafeTile(worldIn, x, y, z, TEBotanyPot.class);
+        if (pot != null) {
+            return pot.hasSoilAndCrop() && !pot.isDoneGrowing();
         }
         return false;
     }
@@ -156,10 +156,8 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
     // grow
     @Override
     public void func_149853_b(World worldIn, Random random, int x, int y, int z) {
-        TEBotanyPot tile = TileHelpers.getSafeTile(worldIn, x, y, z, TEBotanyPot.class);
-        if (tile != null) {
-            tile.addGrowth((random.nextInt(15 - 3 + 1) + 3) * 20);
-        }
+        TileHelpers.getTileEntity(worldIn, new BlockPos(x, y, z), TEBotanyPot.class)
+            .ifPresent(pot -> pot.addGrowth((random.nextInt(15 - 3 + 1) + 3) * 20));
     }
 
     @Override

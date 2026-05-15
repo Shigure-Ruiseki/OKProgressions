@@ -156,4 +156,8 @@ public class OKProgressions extends ModBase {
     public static void okLog(Level level, String message) {
         OKProgressions.instance.log(level, message);
     }
+
+    public static void okLog(Level level, String message, Object... params) {
+        OKProgressions.instance.log(level, message, params);
+    }
 }

@@ -1,16 +1,13 @@
 package ruiseki.okprogressions.common.block.botanypot;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.Nullable;
@@ -22,9 +19,14 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import ruiseki.okcore.addon.waila.IWailaTileInfoProvider;
 import ruiseki.okcore.helper.InventoryHelpers;
+import ruiseki.okcore.helper.ItemHelpers;
 import ruiseki.okcore.helper.LangHelpers;
+import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okcore.helper.WailaHelpers;
+import ruiseki.okcore.inventory.IInventoryExclusion;
+import ruiseki.okcore.inventory.SidedInventoryComponent;
 import ruiseki.okcore.item.ItemStackHandler;
+import ruiseki.okcore.item.ItemTransfer;
 import ruiseki.okcore.persist.nbt.NBTPersist;
 import ruiseki.okcore.tileentity.TileEntityOK;
 import ruiseki.okprogressions.common.crop.CropMaterial;
@@ -40,17 +42,7 @@ public class TEBotanyPot extends TileEntityOK
     protected final TileEntityOK.ITickingTile tickingTileComponent = new TileEntityOK.TickingTileComponent(this);
 
     @NBTPersist("inventory")
-    private final ItemStackHandler inv = new ItemStackHandler(2) {
-
-        @Override
-        protected int getStackLimit(int slot, @Nullable ItemStack stack) {
-            return 1;
-        }
-
-        @Override
-        public int getSlotLimit(int slot) {
-            return 1;
-        }
+    private final ItemStackHandler inv = new ItemStackHandler(14) {
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
@@ -62,6 +54,50 @@ public class TEBotanyPot extends TileEntityOK
                 return CropRegistry.getByStack(stack) != null;
             }
             return false;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            if (slot == 0 || slot == 1) {
+                return 1;
+            }
+            return super.getSlotLimit(slot);
+        }
+    };
+
+    @Delegate(excludes = IInventoryExclusion.class)
+    protected final SidedInventoryComponent inventoryComponent = new SidedInventoryComponent(
+        this,
+        inv,
+        "container.botanypot") {
+
+        @Override
+        public int[] getAccessibleSlotsFromSide(int side) {
+            return IntStream.range(0, this.getSizeInventory())
+                .toArray();
+        }
+
+        @Override
+        public boolean canInsertItem(int slot, ItemStack stack, int side) {
+            return this.isItemValidForSlot(slot, stack) && getStackInSlot(slot) == null;
+        }
+
+        @Override
+        public boolean canExtractItem(int index, ItemStack stack, int side) {
+            return index != 0 && index != 1;
+        }
+
+        @Override
+        public void setInventorySlotContents(int index, ItemStack stack) {
+
+            if (index == 0) {
+                soil = SoilRegistry.getByStack(stack);
+            } else if (index == 1) {
+                crop = CropRegistry.getByStack(stack);
+            }
+
+            resetGrowthTime();
+            super.setInventorySlotContents(index, stack);
         }
     };
 
@@ -76,9 +112,6 @@ public class TEBotanyPot extends TileEntityOK
 
     @NBTPersist
     private int currentGrowthTicks = 0;
-
-    @NBTPersist
-    private int autoHarvestCooldown = 0;
 
     public TEBotanyPot() {
 
@@ -143,8 +176,6 @@ public class TEBotanyPot extends TileEntityOK
             this.crop = CropRegistry.getByStack(this.crop.getStack());
         }
 
-        this.autoHarvestCooldown = 5;
-
         if (this.worldObj != null) {
             this.worldObj.func_147453_f(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
             if (!this.worldObj.isRemote) {
@@ -203,121 +234,53 @@ public class TEBotanyPot extends TileEntityOK
     private void attemptAutoHarvest() {
         Block block = getBlockType();
         if (block instanceof BlockBotanyPot && ((BlockBotanyPot) block).isHopper()) {
-            if (this.autoHarvestCooldown > 0) {
-                this.autoHarvestCooldown--;
-                return;
-            }
-
-            IInventory inventory = InventoryHelpers.getInventoryAtSide(worldObj, getPos(), ForgeDirection.DOWN);
-            if (inventory != null) {
-                boolean didAutoHarvest = false;
-                final List<ItemStack> drops = getDrops();
-                for (ItemStack stack : drops) {
-                    if (stack == null) continue;
-                    ItemStack remaining = InventoryHelpers.addToInventory(inventory, stack, ForgeDirection.UP, false);
-                    if (remaining == null || remaining.stackSize < stack.stackSize) {
-                        didAutoHarvest = true;
+            if (this.isDoneGrowing()) {
+                List<ItemStack> drops = getDrops();
+                if (!drops.isEmpty()) {
+                    boolean movedToSelf = false;
+                    for (ItemStack stack : drops) {
+                        if (stack == null) continue;
+                        ItemStack stackToInsert = InventoryHelpers.insertStack(this.inv, stack, false);
+                        if (stackToInsert == null || stackToInsert.stackSize < stack.stackSize) {
+                            movedToSelf = true;
+                        }
                     }
+                    if (movedToSelf) this.resetGrowthTime();
                 }
-
-                if (didAutoHarvest || drops.isEmpty()) {
-                    this.resetGrowthTime();
-                } else {
-                    this.autoHarvestCooldown = 20;
-                }
+                attemptTransfer();
             }
         }
     }
 
-    @Override
-    public int[] getAccessibleSlotsFromSide(int side) {
-        return new int[] { 0, 1 };
-    }
-
-    @Override
-    public boolean canInsertItem(int slot, ItemStack stack, int side) {
-        return isItemValidForSlot(slot, stack) && getStackInSlot(slot) == null;
-    }
-
-    @Override
-    public boolean canExtractItem(int slot, ItemStack stack, int side) {
-        return false;
-    }
-
-    @Override
-    public int getSizeInventory() {
-        return 2;
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int index) {
-        return inv.getStackInSlot(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return inv.extractItem(index, count, false);
-    }
-
-    @Override
-    public ItemStack getStackInSlotOnClosing(int index) {
-        return null;
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
-        inv.setStackInSlot(index, stack);
-
-        if (index == 0) {
-            this.soil = SoilRegistry.getByStack(stack);
-        } else if (index == 1) {
-            this.crop = CropRegistry.getByStack(stack);
+    private void attemptTransfer() {
+        boolean hasItemToTransfer = false;
+        for (int slot : IntStream.range(2, this.inv.getSlots())
+            .toArray()) {
+            if (this.inv.getStackInSlot(slot) != null) {
+                hasItemToTransfer = true;
+                break;
+            }
         }
 
-        this.resetGrowthTime();
+        if (!hasItemToTransfer) return;
 
-        if (!this.worldObj.isRemote) {
-            this.markDirty();
-            onSendUpdate();
+        TileEntity tile = TileHelpers.getSafeTile(
+            worldObj,
+            this.getPos()
+                .offset(ForgeDirection.DOWN),
+            TileEntity.class);
+        if (tile != null) {
+            ItemTransfer transfer = new ItemTransfer();
+            transfer.source(ItemHelpers.getItemSource(this, ForgeDirection.DOWN));
+            transfer.sink(ItemHelpers.getItemSink(tile, ForgeDirection.UP));
+            transfer.setStacksToTransfer(inv.getSlots());
+
+            int moved = transfer.transfer();
+            if (moved > 0) {
+                this.markDirty();
+                onSendUpdate();
+            }
         }
-    }
-
-    @Override
-    public String getInventoryName() {
-        return "container.botanypot";
-    }
-
-    @Override
-    public boolean hasCustomInventoryName() {
-        return false;
-    }
-
-    @Override
-    public int getInventoryStackLimit() {
-        return 64;
-    }
-
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this;
-    }
-
-    @Override
-    public void openInventory() {}
-
-    @Override
-    public void closeInventory() {}
-
-    @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
-        if (stack == null) return false;
-
-        if (index == 0) {
-            return SoilRegistry.getByStack(stack) != null;
-        } else if (index == 1 && getSoilStack() != null) {
-            return CropRegistry.getByStack(stack) != null;
-        }
-        return false;
     }
 
     public boolean isGrowing() {
@@ -335,25 +298,28 @@ public class TEBotanyPot extends TileEntityOK
     }
 
     public ItemStack getSoilStack() {
-        return this.inv.getStackInSlot(0);
+        return this.getStackInSlot(0);
     }
 
     public ItemStack getCropStack() {
-        return this.inv.getStackInSlot(1);
+        return this.getStackInSlot(1);
     }
 
     @Override
     public void readCommon(NBTTagCompound tag) {
         super.readCommon(tag);
 
-        ItemStack soilStack = this.inv.getStackInSlot(0);
+        // Backward Compatibility
+        if (inv.getSlots() < 14) inv.setSize(14);
+
+        ItemStack soilStack = this.getSoilStack();
         if (soilStack != null) {
             this.soil = SoilRegistry.getByStack(soilStack);
         } else {
             this.soil = null;
         }
 
-        ItemStack cropStack = this.inv.getStackInSlot(1);
+        ItemStack cropStack = this.getCropStack();
         if (cropStack != null) {
             this.crop = CropRegistry.getByStack(cropStack);
         } else {
@@ -374,8 +340,4 @@ public class TEBotanyPot extends TileEntityOK
 
         tooltip.add(WailaHelpers.getInventoryTooltip(this));
     }
-
-    @Override
-    public void getWailaNBTData(EntityPlayerMP player, TileEntity tile, NBTTagCompound tag, World world, int x, int y,
-        int z) {}
 }

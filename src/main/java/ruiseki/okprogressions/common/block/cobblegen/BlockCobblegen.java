@@ -18,6 +18,7 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 import ruiseki.okcore.block.BlockOK;
 import ruiseki.okcore.block.IBlockTooltipProvider;
+import ruiseki.okcore.datastructure.BlockPos;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okprogressions.OKPCreativeTab;
 
@@ -70,26 +71,24 @@ public class BlockCobblegen extends BlockOK implements IBlockTooltipProvider {
         if (world.isRemote) {
             return true;
         }
-        TECobblegen tile = TileHelpers.getSafeTile(world, x, y, z, TECobblegen.class);
-
-        if (tile != null) {
-            if (!player.isSneaking()) {
-                ItemStack stack = tile.outputInventory.getAndRemoveSlot(0);
-                if (stack != null) {
-                    if (!player.inventory.addItemStackToInventory(stack)) {
-                        ForgeHooks.onPlayerTossEvent(player, stack, false);
-                    } else if (player instanceof EntityPlayerMP) {
-                        ((EntityPlayerMP) player).sendContainerToPlayer(player.inventoryContainer);
+        TileHelpers.getTileEntity(world, new BlockPos(x, y, z), TECobblegen.class)
+            .ifPresent(tile -> {
+                if (!player.isSneaking()) {
+                    ItemStack stack = tile.outputInventory.getAndRemoveSlot(0);
+                    if (stack != null) {
+                        if (!player.inventory.addItemStackToInventory(stack)) {
+                            ForgeHooks.onPlayerTossEvent(player, stack, false);
+                        } else if (player instanceof EntityPlayerMP) {
+                            ((EntityPlayerMP) player).sendContainerToPlayer(player.inventoryContainer);
+                        }
                     }
+                } else {
+                    ItemStack stack = tile.outputInventory.getStackInSlot(0);
+                    player.addChatComponentMessage(
+                        new ChatComponentText(
+                            Blocks.cobblestone.getLocalizedName() + " x " + (stack == null ? 0 : stack.stackSize)));
                 }
-            } else {
-                ItemStack stack = tile.outputInventory.getStackInSlot(0);
-                player.addChatComponentMessage(
-                    new ChatComponentText(
-                        Blocks.cobblestone.getLocalizedName() + " x " + (stack == null ? 0 : stack.stackSize)));
-            }
-        }
-
+            });
         return true;
     }
 }

@@ -32,6 +32,7 @@ public class BotanyPotHelpers {
 
     public static List<ItemStack> generateDrop(Random rand, CropMaterial crop) {
         final List<ItemStack> drops = new ArrayList<>();
+        if (crop == null) return drops;
         for (final HarvestMaterial cropEntry : crop.getResults()) {
             if (rand.nextFloat() <= cropEntry.chance) {
                 final int rolls = rand.nextInt(cropEntry.maxRolls - cropEntry.minRolls + 1) + cropEntry.minRolls;
