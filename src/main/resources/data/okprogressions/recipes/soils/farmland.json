@@ -1,0 +1,16 @@
+{
+  "type": "okprogressions:soil",
+  "input": {
+    "item": "minecraft:farmland",
+    "meta": 0
+  },
+  "display": {
+    "block": "minecraft:farmland",
+    "meta": 7
+  },
+  "growthModifier": 0.15,
+  "categories": [
+    "dirt",
+    "farmland"
+  ]
+}

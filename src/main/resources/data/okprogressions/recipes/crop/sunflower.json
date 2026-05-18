@@ -1,0 +1,26 @@
+{
+  "type": "okprogressions:crop",
+  "seed": {
+    "item": "minecraft:double_plant",
+    "meta": 0
+  },
+  "categories": [
+    "dirt"
+  ],
+  "growthTicks": 1200,
+  "display": {
+    "block": "minecraft:double_plant",
+    "meta": 0
+  },
+  "results": [
+    {
+      "chance": 0.75,
+      "output": {
+        "item": "minecraft:double_plant",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    }
+  ]
+}

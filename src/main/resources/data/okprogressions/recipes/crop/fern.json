@@ -1,0 +1,35 @@
+{
+  "type": "okprogressions:crop",
+  "seed": {
+    "item": "minecraft:tallgrass",
+    "meta": 2
+  },
+  "categories": [
+    "dirt"
+  ],
+  "growthTicks": 600,
+  "display": {
+    "block": "minecraft:tallgrass",
+    "meta": 0
+  },
+  "results": [
+    {
+      "chance": 0.75,
+      "output": {
+        "item": "minecraft:tallgrass",
+        "meta": 2
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    },
+    {
+      "chance": 0.05,
+      "output": {
+        "item": "minecraft:tallgrass",
+        "meta": 2
+      },
+      "minRolls": 1,
+      "maxRolls": 2
+    }
+  ]
+}

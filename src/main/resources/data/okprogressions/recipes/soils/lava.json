@@ -1,0 +1,17 @@
+{
+  "type": "okprogressions:soil",
+  "input": {
+    "item": "minecraft:lava_bucket",
+    "meta": 0
+  },
+  "display": {
+    "block": "minecraft:lava",
+    "meta": 0
+  },
+  "growthModifier": 0.0,
+  "categories": [
+    "lava",
+    "fluid",
+    "liquid"
+  ]
+}

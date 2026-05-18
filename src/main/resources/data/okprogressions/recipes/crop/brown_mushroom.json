@@ -1,0 +1,36 @@
+{
+  "type": "okprogressions:crop",
+  "seed": {
+    "item": "minecraft:brown_mushroom",
+    "meta": 0
+  },
+  "categories": [
+    "dirt",
+    "mushroom"
+  ],
+  "growthTicks": 1600,
+  "display": {
+    "block": "minecraft:brown_mushroom",
+    "meta": 0
+  },
+  "results": [
+    {
+      "chance": 0.75,
+      "output": {
+        "item": "minecraft:brown_mushroom",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    },
+    {
+      "chance": 0.05,
+      "output": {
+        "item": "minecraft:brown_mushroom",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 2
+    }
+  ]
+}

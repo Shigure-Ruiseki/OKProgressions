@@ -19,7 +19,7 @@ public class ItemClimbingGlove extends ItemCharm {
 
     public ItemClimbingGlove() {
         super("climbing_glove", 6000);
-        setTextureName(Reference.PREFIX_MOD + "climbing_glove");
+        this.setTextureName(Reference.PREFIX_MOD + "climbing_glove");
     }
 
     @Override

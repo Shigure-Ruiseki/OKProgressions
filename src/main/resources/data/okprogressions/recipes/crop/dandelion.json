@@ -1,0 +1,35 @@
+{
+  "type": "okprogressions:crop",
+  "seed": {
+    "item": "minecraft:yellow_flower",
+    "meta": 0
+  },
+  "categories": [
+    "dirt"
+  ],
+  "growthTicks": 1200,
+  "display": {
+    "block": "minecraft:yellow_flower",
+    "meta": 0
+  },
+  "results": [
+    {
+      "chance": 0.75,
+      "output": {
+        "item": "minecraft:yellow_flower",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    },
+    {
+      "chance": 0.05,
+      "output": {
+        "item": "minecraft:yellow_flower",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 2
+    }
+  ]
+}

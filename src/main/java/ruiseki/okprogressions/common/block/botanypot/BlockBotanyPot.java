@@ -19,11 +19,9 @@ import ruiseki.okcore.datastructure.BlockPos;
 import ruiseki.okcore.helper.InventoryHelpers;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okprogressions.OKPCreativeTab;
-import ruiseki.okprogressions.common.crop.CropMaterial;
-import ruiseki.okprogressions.common.crop.CropRegistry;
+import ruiseki.okprogressions.common.data.crop.CropInfo;
+import ruiseki.okprogressions.common.data.soil.SoilInfo;
 import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
-import ruiseki.okprogressions.common.soil.SoilMaterial;
-import ruiseki.okprogressions.common.soil.SoilRegistry;
 
 public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipProvider {
 
@@ -61,7 +59,7 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
             ItemStack heldItem = player.getHeldItem();
 
             if (player.isSneaking()) {
-                CropMaterial crop = pot.getCrop();
+                CropInfo crop = pot.getCrop();
 
                 if (crop != null) {
                     if (pot.canSetCrop(null)) {
@@ -73,7 +71,7 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
                         return true;
                     }
                 } else {
-                    SoilMaterial soil = pot.getSoil();
+                    SoilInfo soil = pot.getSoil();
                     if (soil != null) {
                         ItemStack soilStack = pot.getSoilStack();
                         if (soilStack != null && pot.canSetSoil(null)) {
@@ -86,18 +84,18 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
             } else {
                 if (heldItem != null) {
                     if (pot.getSoil() == null) {
-                        SoilMaterial soilForStack = SoilRegistry.getByStack(heldItem);
-                        if (soilForStack != null && pot.canSetSoil(soilForStack)) {
+                        SoilInfo info = BotanyPotHelpers.getSoilFormStack(heldItem);
+                        if (info != null && pot.canSetSoil(info)) {
                             ItemStack inStack = heldItem.copy();
                             inStack.stackSize = 1;
-                            pot.setSoil(soilForStack, inStack);
+                            pot.setSoil(info, inStack);
                             if (!player.capabilities.isCreativeMode) {
                                 heldItem.stackSize--;
                             }
                             return true;
                         }
                     } else if (pot.getCrop() == null) {
-                        CropMaterial cropForStack = CropRegistry.getByStack(heldItem);
+                        CropInfo cropForStack = BotanyPotHelpers.getCropFormStack(heldItem);
                         if (cropForStack != null && BotanyPotHelpers.isSoilValidForCrop(pot.getSoil(), cropForStack)
                             && pot.canSetCrop(cropForStack)) {
                             ItemStack inStack = heldItem.copy();

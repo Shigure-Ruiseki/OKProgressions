@@ -1,0 +1,26 @@
+{
+  "type": "okprogressions:crop",
+  "seed": {
+    "item": "minecraft:reeds",
+    "meta": 0
+  },
+  "categories": [
+    "sand"
+  ],
+  "growthTicks": 800,
+  "display": {
+    "block": "minecraft:reeds",
+    "meta": 0
+  },
+  "results": [
+    {
+      "chance": 0.75,
+      "output": {
+        "item": "minecraft:reeds",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    }
+  ]
+}

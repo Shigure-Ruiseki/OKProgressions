@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 
 import ruiseki.okcore.helper.TileHelpers;
+import ruiseki.okprogressions.OKPCreativeTab;
 import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.common.block.machine.BlockMachine;
 
@@ -17,6 +18,7 @@ public class BlockMiner extends BlockMachine {
         this.setHardness(3.0F);
         this.setResistance(5.0F);
         this.setStepSound(soundTypeMetal);
+        this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.isDirection = true;
     }
 

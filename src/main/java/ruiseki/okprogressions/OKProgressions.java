@@ -1,10 +1,14 @@
 package ruiseki.okprogressions;
 
+import static ruiseki.okprogressions.common.data.crop.CropMaterial.CROP_KEY;
+import static ruiseki.okprogressions.common.data.soil.SoilMaterial.SOIL_KEY;
+
 import java.util.Map;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.RecipeSorter;
 
 import org.apache.logging.log4j.Level;
 
@@ -27,11 +31,11 @@ import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.lib.LibMods;
 import ruiseki.okcore.proxy.ICommonProxy;
 import ruiseki.okprogressions.common.addon.nei.NEIConfig;
-import ruiseki.okprogressions.common.crop.CropLoader;
+import ruiseki.okprogressions.common.data.crop.CropInfo;
+import ruiseki.okprogressions.common.data.soil.SoilInfo;
 import ruiseki.okprogressions.common.init.ModBlocks;
 import ruiseki.okprogressions.common.init.ModItems;
 import ruiseki.okprogressions.common.init.ModRecipes;
-import ruiseki.okprogressions.common.soil.SoilLoader;
 import ruiseki.okprogressions.common.world.WorldGen;
 import ruiseki.okprogressions.config.ModConfig;
 
@@ -61,8 +65,6 @@ public class OKProgressions extends ModBase {
         super(Reference.MOD_ID, Reference.MOD_NAME);
         putGenericReference(REFKEY_MOD_VERSION, Reference.VERSION);
 
-        addInitListeners(new SoilLoader());
-        addInitListeners(new CropLoader());
         addInitListeners(new ModRecipes());
         addInitListeners(new WorldGen());
     }

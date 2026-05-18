@@ -29,11 +29,9 @@ import ruiseki.okcore.item.ItemStackHandler;
 import ruiseki.okcore.item.ItemTransfer;
 import ruiseki.okcore.persist.nbt.NBTPersist;
 import ruiseki.okcore.tileentity.TileEntityOK;
-import ruiseki.okprogressions.common.crop.CropMaterial;
-import ruiseki.okprogressions.common.crop.CropRegistry;
+import ruiseki.okprogressions.common.data.crop.CropInfo;
+import ruiseki.okprogressions.common.data.soil.SoilInfo;
 import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
-import ruiseki.okprogressions.common.soil.SoilMaterial;
-import ruiseki.okprogressions.common.soil.SoilRegistry;
 
 public class TEBotanyPot extends TileEntityOK
     implements TileEntityOK.ITickingTile, ISidedInventory, IWailaTileInfoProvider {
@@ -49,9 +47,9 @@ public class TEBotanyPot extends TileEntityOK
             if (stack == null) return false;
 
             if (slot == 0) {
-                return SoilRegistry.getByStack(stack) != null;
+                return BotanyPotHelpers.getSoilFormStack(stack) != null;
             } else if (slot == 1 && getStackInSlot(0) != null) {
-                return CropRegistry.getByStack(stack) != null;
+                return BotanyPotHelpers.getCropFormStack(stack) != null;
             }
             return false;
         }
@@ -91,9 +89,9 @@ public class TEBotanyPot extends TileEntityOK
         public void setInventorySlotContents(int index, ItemStack stack) {
 
             if (index == 0) {
-                soil = SoilRegistry.getByStack(stack);
+                soil = BotanyPotHelpers.getSoilFormStack(stack);
             } else if (index == 1) {
-                crop = CropRegistry.getByStack(stack);
+                crop = BotanyPotHelpers.getCropFormStack(stack);
             }
 
             resetGrowthTime();
@@ -102,10 +100,10 @@ public class TEBotanyPot extends TileEntityOK
     };
 
     @Nullable
-    private SoilMaterial soil;
+    private SoilInfo soil;
 
     @Nullable
-    private CropMaterial crop;
+    private CropInfo crop;
 
     @NBTPersist
     private int totalGrowthTicks = -1;
@@ -117,11 +115,11 @@ public class TEBotanyPot extends TileEntityOK
 
     }
 
-    public boolean canSetSoil(@Nullable SoilMaterial newSoil) {
+    public boolean canSetSoil(@Nullable SoilInfo newSoil) {
         return newSoil == null || this.getSoil() == null;
     }
 
-    public void setSoil(@Nullable SoilMaterial newSoil, ItemStack stack) {
+    public void setSoil(@Nullable SoilInfo newSoil, ItemStack stack) {
         this.soil = newSoil;
         this.inv.setStackInSlot(0, stack);
         this.resetGrowthTime();
@@ -129,11 +127,11 @@ public class TEBotanyPot extends TileEntityOK
         onSendUpdate();
     }
 
-    public boolean canSetCrop(@Nullable CropMaterial newCrop) {
+    public boolean canSetCrop(@Nullable CropInfo newCrop) {
         return newCrop == null || this.getSoil() != null && this.getCrop() == null;
     }
 
-    public void setCrop(@Nullable CropMaterial newCrop, ItemStack stack) {
+    public void setCrop(@Nullable CropInfo newCrop, ItemStack stack) {
         this.crop = newCrop;
         this.inv.setStackInSlot(1, stack);
         this.resetGrowthTime();
@@ -141,11 +139,11 @@ public class TEBotanyPot extends TileEntityOK
         onSendUpdate();
     }
 
-    public @Nullable SoilMaterial getSoil() {
+    public @Nullable SoilInfo getSoil() {
         return soil;
     }
 
-    public @Nullable CropMaterial getCrop() {
+    public @Nullable CropInfo getCrop() {
         return crop;
     }
 
@@ -166,14 +164,14 @@ public class TEBotanyPot extends TileEntityOK
         this.currentGrowthTicks = 0;
 
         if (this.soil != null) {
-            this.soil = SoilRegistry.getByStack(this.soil.getStack());
+            this.soil = BotanyPotHelpers.getSoilFormStack(this.soil.getStack());
             if (this.soil == null) {
                 this.crop = null;
             }
         }
 
         if (this.crop != null) {
-            this.crop = CropRegistry.getByStack(this.crop.getStack());
+            this.crop = BotanyPotHelpers.getCropFormStack(this.crop.getStack());
         }
 
         if (this.worldObj != null) {
@@ -314,14 +312,14 @@ public class TEBotanyPot extends TileEntityOK
 
         ItemStack soilStack = this.getSoilStack();
         if (soilStack != null) {
-            this.soil = SoilRegistry.getByStack(soilStack);
+            this.soil = BotanyPotHelpers.getSoilFormStack(soilStack);
         } else {
             this.soil = null;
         }
 
         ItemStack cropStack = this.getCropStack();
         if (cropStack != null) {
-            this.crop = CropRegistry.getByStack(cropStack);
+            this.crop = BotanyPotHelpers.getCropFormStack(cropStack);
         } else {
             this.crop = null;
         }

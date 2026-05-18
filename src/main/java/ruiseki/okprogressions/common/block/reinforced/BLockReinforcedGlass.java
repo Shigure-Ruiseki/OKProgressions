@@ -31,7 +31,7 @@ public class BLockReinforcedGlass extends BlockGlass implements IBlock, IBlockTo
         this.setHarvestLevel("pickaxe", 1);
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.setStepSound(Block.soundTypeGlass);
-        setBlockName(getName());
+        this.setBlockName(getName());
     }
 
     @Override

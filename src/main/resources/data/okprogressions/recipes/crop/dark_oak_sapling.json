@@ -1,0 +1,44 @@
+{
+  "type": "okprogressions:crop",
+  "seed": {
+    "item": "minecraft:sapling",
+    "meta": 5
+  },
+  "categories": [
+    "dirt"
+  ],
+  "growthTicks": 2400,
+  "display": {
+    "block": "minecraft:sapling",
+    "meta": 5
+  },
+  "results": [
+    {
+      "chance": 1.0,
+      "output": {
+        "item": "minecraft:log2",
+        "meta": 1
+      },
+      "minRolls": 2,
+      "maxRolls": 4
+    },
+    {
+      "chance": 0.1,
+      "output": {
+        "item": "minecraft:stick",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 2
+    },
+    {
+      "chance": 0.15,
+      "output": {
+        "item": "minecraft:sapling",
+        "meta": 5
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    }
+  ]
+}

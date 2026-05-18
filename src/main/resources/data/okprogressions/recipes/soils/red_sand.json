@@ -1,0 +1,16 @@
+{
+  "type": "okprogressions:soil",
+  "input": {
+    "item": "minecraft:sand",
+    "meta": 1
+  },
+  "display": {
+    "block": "minecraft:sand",
+    "meta": 1
+  },
+  "growthModifier": 0.0,
+  "categories": [
+    "sand",
+    "red_sand"
+  ]
+}
