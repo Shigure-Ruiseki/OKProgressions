@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bbb",
+    "bbb",
+    "bbb"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:coal",
+      "meta": 1
+    }
+  },
+  "result": {
+    "item": "okprogressions:charcoal_block",
+    "amount": 1
+  }
+}

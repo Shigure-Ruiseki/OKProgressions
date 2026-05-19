@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "c",
+    "s"
+  ],
+  "key": {
+    "c": {
+      "item": "minecraft:coal",
+      "meta": 0
+    },
+    "s": {
+      "item": "okprogressions:stone_stick"
+    }
+  },
+  "result": {
+    "item": "okprogressions:stone_torch",
+    "amount": 4
+  }
+}

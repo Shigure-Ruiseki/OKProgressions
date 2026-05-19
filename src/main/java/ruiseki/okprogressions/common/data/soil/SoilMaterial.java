@@ -22,7 +22,6 @@ public class SoilMaterial extends AbstractRecipeMaterial<SoilInfo> implements IR
 
     public static String SOIL_KEY = "okprogressions:soil";
 
-    private ResourceLocation id;
     private BlockMaterial displayBlock;
     private float growthModifier;
     private List<String> categories = new ArrayList<>();
@@ -34,7 +33,7 @@ public class SoilMaterial extends AbstractRecipeMaterial<SoilInfo> implements IR
 
     @Override
     public void fromJson(ResourceLocation id, JsonObject json) {
-        this.id = id;
+        super.fromJson(id, json);
         if (json.has("input")) {
             JsonElement resultElement = json.get("input");
             if (resultElement.isJsonObject()) {
@@ -67,6 +66,10 @@ public class SoilMaterial extends AbstractRecipeMaterial<SoilInfo> implements IR
 
     @Override
     public boolean validate() {
+        if (!super.validate()) {
+            return false;
+        }
+
         if (this.displayBlock == null || !this.displayBlock.validate()) {
             OKCore.okLog("Soil display is missing or invalid!");
             return false;
@@ -76,7 +79,7 @@ public class SoilMaterial extends AbstractRecipeMaterial<SoilInfo> implements IR
             OKCore.okLog("Growth modifier cannot be less than -1.0!");
             return false;
         }
-        return super.validate();
+        return true;
     }
 
     @Override

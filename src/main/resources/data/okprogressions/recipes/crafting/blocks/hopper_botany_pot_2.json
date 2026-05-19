@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "p",
+    "h"
+  ],
+  "key": {
+    "p": {
+      "item": "okprogressions:botany_pot"
+    },
+    "h": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "item": "okprogressions:hopper_botany_pot",
+    "amount": 1
+  }
+}

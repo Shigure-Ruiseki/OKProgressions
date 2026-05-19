@@ -7,9 +7,12 @@ import java.util.Objects;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 
+import org.apache.logging.log4j.Level;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import ruiseki.okcore.OKCore;
 import ruiseki.okcore.data.loader.recipes.AbstractRecipeMaterial;
 import ruiseki.okcore.data.loader.recipes.IRecipeType;
 import ruiseki.okcore.data.loader.recipes.RecipeData;
@@ -22,7 +25,6 @@ public class CropMaterial extends AbstractRecipeMaterial<CropInfo> implements IR
 
     public static String CROP_KEY = "okprogressions:crop";
 
-    private ResourceLocation id;
     private BlockMaterial displayBlock;
     private int growthTicks;
     private int lightLevel = -1;
@@ -36,7 +38,7 @@ public class CropMaterial extends AbstractRecipeMaterial<CropInfo> implements IR
 
     @Override
     public void fromJson(ResourceLocation id, JsonObject json) {
-        this.id = id;
+        super.fromJson(id, json);
         if (json.has("seed")) {
             JsonElement resultElement = json.get("seed");
             if (resultElement.isJsonObject()) {
@@ -99,6 +101,41 @@ public class CropMaterial extends AbstractRecipeMaterial<CropInfo> implements IR
             categories,
             results);
         return List.of(info);
+    }
+
+    @Override
+    public boolean validate() {
+        if (!super.validate()) {
+            return false;
+        }
+
+        if (this.displayBlock == null || !this.displayBlock.validate()) {
+            OKCore.okLog("Crop display is missing or invalid!");
+            return false;
+        }
+
+        if (this.results.isEmpty()) {
+            OKCore.okLog(Level.ERROR, "CropMaterial [{}]: At least one harvest result is required!", id);
+            return false;
+        }
+
+        for (HarvestMaterial material : this.results) {
+            if (material == null || !material.validate()) {
+                OKCore.okLog(Level.ERROR, "CropMaterial [{}]: Contains an invalid harvest result entry!", id);
+                return false;
+            }
+        }
+
+        if (this.growthTicks <= 0) {
+            OKCore.okLog(
+                Level.WARN,
+                "CropMaterial [{}]: growthTicks is <= 0 ({}), forcing default to 1200.",
+                id,
+                this.growthTicks);
+            return false;
+        }
+
+        return true;
     }
 
     @Override
