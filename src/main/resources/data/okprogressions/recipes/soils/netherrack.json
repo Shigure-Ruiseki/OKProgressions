@@ -1,0 +1,15 @@
+{
+  "type": "okprogressions:soil",
+  "input": {
+    "item": "minecraft:netherrack",
+    "meta": 0
+  },
+  "display": {
+    "block": "minecraft:netherrack",
+    "meta": 0
+  },
+  "growthModifier": 0.0,
+  "categories": [
+    "nether"
+  ]
+}

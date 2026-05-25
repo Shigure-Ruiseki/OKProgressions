@@ -1,0 +1,44 @@
+{
+  "type": "okprogressions:crop",
+  "seed": {
+    "item": "minecraft:wheat_seeds",
+    "meta": 0
+  },
+  "categories": [
+    "dirt"
+  ],
+  "growthTicks": 1000,
+  "display": {
+    "block": "minecraft:wheat",
+    "meta": 7
+  },
+  "results": [
+    {
+      "chance": 0.75,
+      "output": {
+        "item": "minecraft:wheat",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    },
+    {
+      "chance": 0.05,
+      "output": {
+        "item": "minecraft:wheat",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 2
+    },
+    {
+      "chance": 0.05,
+      "output": {
+        "item": "minecraft:wheat_seeds",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 2
+    }
+  ]
+}

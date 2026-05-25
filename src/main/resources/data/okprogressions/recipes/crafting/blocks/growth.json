@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ibi",
+    "ded",
+    "ibi"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "okprogressions:bone_block"
+    },
+    "d": {
+      "item": "minecraft:potion",
+      "meta": 8194
+    },
+    "e": {
+      "item": "minecraft:waterlily"
+    }
+  },
+  "result": {
+    "item": "okprogressions:growth",
+    "amount": 1
+  }
+}

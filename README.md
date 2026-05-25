@@ -3,9 +3,9 @@
 [![](https://jitpack.io/v/Shigure-Ruiseki/OKProgressions.svg)](https://jitpack.io/#Shigure-Ruiseki/OKProgressions)
 ## Required Dependencies:
 
-- [ModularUI2 (>= 2.3.56)](https://github.com/GTNewHorizons/ModularUI2)
-- [GTNHLib (>= 0.9.59)](https://github.com/GTNewHorizons/GTNHLib)
-- [OKCore (>= 1.3.4.1)](https://github.com/Shigure-Ruiseki/OKCore)
+- [ModularUI2 (>= 2.3.63)](https://github.com/GTNewHorizons/ModularUI2)
+- [GTNHLib (>= 0.9.66)](https://github.com/GTNewHorizons/GTNHLib)
+- [OKCore (>= 1.4.6.4)](https://github.com/Shigure-Ruiseki/OKCore)
 
 ## Features:
 - [x] Cobblestone Generators.

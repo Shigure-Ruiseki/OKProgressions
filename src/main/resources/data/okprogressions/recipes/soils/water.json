@@ -1,0 +1,17 @@
+{
+  "type": "okprogressions:soil",
+  "input": {
+    "item": "minecraft:water_bucket",
+    "meta": 0
+  },
+  "display": {
+    "block": "minecraft:water",
+    "meta": 0
+  },
+  "growthModifier": 0.0,
+  "categories": [
+    "water",
+    "fluid",
+    "liquid"
+  ]
+}

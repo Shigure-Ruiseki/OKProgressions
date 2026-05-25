@@ -1,0 +1,16 @@
+{
+  "type": "okprogressions:soil",
+  "input": {
+    "item": "minecraft:mycelium",
+    "meta": 0
+  },
+  "display": {
+    "block": "minecraft:mycelium",
+    "meta": 0
+  },
+  "growthModifier": 0.05,
+  "categories": [
+    "dirt",
+    "mushroom"
+  ]
+}

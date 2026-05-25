@@ -1,0 +1,35 @@
+{
+  "type": "okprogressions:crop",
+  "seed": {
+    "item": "minecraft:carrot",
+    "meta": 0
+  },
+  "categories": [
+    "dirt"
+  ],
+  "growthTicks": 1100,
+  "display": {
+    "block": "minecraft:carrots",
+    "meta": 7
+  },
+  "results": [
+    {
+      "chance": 0.75,
+      "output": {
+        "item": "minecraft:carrot",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    },
+    {
+      "chance": 0.05,
+      "output": {
+        "item": "minecraft:carrot",
+        "meta": 0
+      },
+      "minRolls": 1,
+      "maxRolls": 2
+    }
+  ]
+}

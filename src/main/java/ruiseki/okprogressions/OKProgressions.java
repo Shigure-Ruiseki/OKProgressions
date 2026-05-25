@@ -24,14 +24,11 @@ import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import ruiseki.okcore.command.CommandMod;
 import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ModBase;
-import ruiseki.okcore.lib.LibMods;
 import ruiseki.okcore.proxy.ICommonProxy;
+import ruiseki.okprogressions.common.addon.nei.Mods;
 import ruiseki.okprogressions.common.addon.nei.NEIConfig;
-import ruiseki.okprogressions.common.crop.CropLoader;
 import ruiseki.okprogressions.common.init.ModBlocks;
 import ruiseki.okprogressions.common.init.ModItems;
-import ruiseki.okprogressions.common.init.ModRecipes;
-import ruiseki.okprogressions.common.soil.SoilLoader;
 import ruiseki.okprogressions.common.world.WorldGen;
 import ruiseki.okprogressions.config.ModConfig;
 
@@ -61,9 +58,6 @@ public class OKProgressions extends ModBase {
         super(Reference.MOD_ID, Reference.MOD_NAME);
         putGenericReference(REFKEY_MOD_VERSION, Reference.VERSION);
 
-        addInitListeners(new SoilLoader());
-        addInitListeners(new CropLoader());
-        addInitListeners(new ModRecipes());
         addInitListeners(new WorldGen());
     }
 
@@ -77,7 +71,7 @@ public class OKProgressions extends ModBase {
             ModelRegistry.registerModid(Reference.MOD_ID);
         }
 
-        if ((MinecraftHelpers.isClientSide() && LibMods.NotEnoughItems.isLoaded())) {
+        if ((MinecraftHelpers.isClientSide() && Mods.NotEnoughItems.isModLoaded())) {
             NEIConfig config = new NEIConfig();
             MinecraftForge.EVENT_BUS.register(config);
             config.loadConfig();
@@ -155,5 +149,9 @@ public class OKProgressions extends ModBase {
      */
     public static void okLog(Level level, String message) {
         OKProgressions.instance.log(level, message);
+    }
+
+    public static void okLog(Level level, String message, Object... params) {
+        OKProgressions.instance.log(level, message, params);
     }
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "obo",
+    "bob",
+    "obo"
+  ],
+  "key": {
+    "o": {
+      "item": "minecraft:obsidian"
+    },
+    "b": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "okprogressions:reinforced_glass",
+    "amount": 1
+  }
+}

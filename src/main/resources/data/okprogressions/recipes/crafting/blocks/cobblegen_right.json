@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "lgw",
+    "ccc"
+  ],
+  "key": {
+    "c": {
+      "ore": "cobblestone"
+    },
+    "g": {
+      "ore": "blockGlass"
+    },
+    "w": {
+      "item": "minecraft:water_bucket"
+    },
+    "l": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "result": {
+    "item": "okprogressions:cobblegen",
+    "amount": 1
+  }
+}

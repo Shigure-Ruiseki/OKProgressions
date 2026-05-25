@@ -1,0 +1,13 @@
+{
+  "type": "okprogressions:soil",
+  "input": {
+    "item": "minecraft:dirt"
+  },
+  "display": {
+    "block": "minecraft:dirt"
+  },
+  "growthModifier": 0.0,
+  "categories": [
+    "dirt"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "igi",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "ore": "gemDiamond"
+    },
+    "g": {
+      "item": "okprogressions:gold_cobblegen"
+    }
+  },
+  "result": {
+    "item": "okprogressions:diamond_cobblegen",
+    "amount": 1
+  }
+}

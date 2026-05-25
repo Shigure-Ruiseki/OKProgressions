@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "h h",
+    "hph",
+    " h "
+  ],
+  "key": {
+    "h": {
+      "item": "minecraft:hardened_clay"
+    },
+    "p": {
+      "item": "minecraft:flower_pot"
+    }
+  },
+  "result": {
+    "item": "okprogressions:botany_pot",
+    "amount": 1
+  }
+}
