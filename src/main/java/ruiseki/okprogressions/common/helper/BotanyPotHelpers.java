@@ -1,9 +1,10 @@
 package ruiseki.okprogressions.common.helper;
 
-import static ruiseki.okprogressions.common.data.crop.CropMaterial.CROP_KEY;
-import static ruiseki.okprogressions.common.data.soil.SoilMaterial.SOIL_KEY;
+import static ruiseki.okprogressions.common.data.crop.CropType.CROP;
+import static ruiseki.okprogressions.common.data.soil.SoilType.SOIL;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -11,17 +12,18 @@ import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.Nullable;
 
-import ruiseki.okcore.data.loader.recipes.RecipeHandler;
 import ruiseki.okcore.helper.ItemStackHelpers;
-import ruiseki.okcore.helper.RecipeHelpers;
+import ruiseki.okcore.recipe.RecipeManager;
+import ruiseki.okcore.recipe.RecipeRegistry;
 import ruiseki.okprogressions.common.data.crop.CropInfo;
 import ruiseki.okprogressions.common.data.crop.HarvestInfo;
 import ruiseki.okprogressions.common.data.soil.SoilInfo;
 
 public class BotanyPotHelpers {
 
-    public static List<SoilInfo> getSoils() {
-        return RecipeHelpers.getRecipeList(RecipeHandler.getType(SOIL_KEY));
+    public static Collection<SoilInfo> getSoils() {
+        return RecipeManager.getManager()
+            .getRecipesByType(RecipeRegistry.getType(SOIL));
     }
 
     @Nullable
@@ -34,8 +36,9 @@ public class BotanyPotHelpers {
         return null;
     }
 
-    public static List<CropInfo> getCrops() {
-        return RecipeHelpers.getRecipeList(RecipeHandler.getType(CROP_KEY));
+    public static Collection<CropInfo> getCrops() {
+        return RecipeManager.getManager()
+            .getRecipesByType(RecipeRegistry.getType(CROP));
     }
 
     @Nullable

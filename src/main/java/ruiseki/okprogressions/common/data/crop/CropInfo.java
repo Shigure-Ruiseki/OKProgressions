@@ -1,6 +1,6 @@
 package ruiseki.okprogressions.common.data.crop;
 
-import static ruiseki.okprogressions.common.data.crop.CropMaterial.CROP_KEY;
+import static ruiseki.okprogressions.common.data.crop.CropType.CROP;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
-import ruiseki.okcore.data.loader.recipes.IRecipeSerializer;
-import ruiseki.okcore.data.loader.recipes.IRecipeType;
-import ruiseki.okcore.data.loader.recipes.RecipeHandler;
 import ruiseki.okcore.datastructure.BlockStack;
+import ruiseki.okcore.recipe.IRecipeSerializer;
+import ruiseki.okcore.recipe.IRecipeType;
 import ruiseki.okcore.recipe.RecipeDataBase;
+import ruiseki.okcore.recipe.RecipeRegistry;
 import ruiseki.okprogressions.common.data.soil.SoilInfo;
 
 public class CropInfo extends RecipeDataBase {
@@ -70,12 +70,12 @@ public class CropInfo extends RecipeDataBase {
     }
 
     @Override
-    public IRecipeType<?> getRecipeType() {
-        return RecipeHandler.getType(CROP_KEY);
+    public IRecipeSerializer<?> getSerializer() {
+        return RecipeRegistry.getSerializer(CROP);
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer() {
-        return RecipeHandler.getSerializer(CROP_KEY);
+    public IRecipeType<?> getType() {
+        return RecipeRegistry.getType(CROP);
     }
 }

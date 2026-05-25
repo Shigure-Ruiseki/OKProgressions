@@ -1,17 +1,22 @@
 package ruiseki.okprogressions.common.data.crop;
 
+import java.io.IOException;
 import java.util.Objects;
 
 import net.minecraft.item.ItemStack;
 
 import ruiseki.okcore.inventory.ItemStackKey;
+import ruiseki.okcore.json.IJsonNetwork;
+import ruiseki.okcore.network.ExtendedBuffer;
 
-public class HarvestInfo {
+public class HarvestInfo implements IJsonNetwork {
 
     private ItemStack stack;
     private float chance;
     private int minRolls;
     private int maxRolls;
+
+    public HarvestInfo() {}
 
     public HarvestInfo(ItemStack stack, float chance, int minRolls, int maxRolls) {
         this.stack = stack;
@@ -76,5 +81,19 @@ public class HarvestInfo {
             + ", maxRolls="
             + maxRolls
             + '}';
+    }
+
+    public void toNetwork(ExtendedBuffer buffer) throws IOException {
+        buffer.writeItemStackToBuffer(this.stack);
+        buffer.writeFloat(this.chance);
+        buffer.writeInt(this.minRolls);
+        buffer.writeInt(this.maxRolls);
+    }
+
+    public void fromNetwork(ExtendedBuffer buffer) throws IOException {
+        this.stack = buffer.readItemStackFromBuffer();
+        this.chance = buffer.readFloat();
+        this.minRolls = buffer.readInt();
+        this.maxRolls = buffer.readInt();
     }
 }

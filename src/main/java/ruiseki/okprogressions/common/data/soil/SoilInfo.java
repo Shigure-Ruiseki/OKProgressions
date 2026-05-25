@@ -1,6 +1,6 @@
 package ruiseki.okprogressions.common.data.soil;
 
-import static ruiseki.okprogressions.common.data.soil.SoilMaterial.SOIL_KEY;
+import static ruiseki.okprogressions.common.data.soil.SoilType.SOIL;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,12 +8,12 @@ import java.util.Objects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import ruiseki.okcore.data.loader.recipes.IRecipeSerializer;
-import ruiseki.okcore.data.loader.recipes.IRecipeType;
-import ruiseki.okcore.data.loader.recipes.RecipeHandler;
 import ruiseki.okcore.datastructure.BlockStack;
 import ruiseki.okcore.inventory.ItemStackKey;
+import ruiseki.okcore.recipe.IRecipeSerializer;
+import ruiseki.okcore.recipe.IRecipeType;
 import ruiseki.okcore.recipe.RecipeDataBase;
+import ruiseki.okcore.recipe.RecipeRegistry;
 
 public class SoilInfo extends RecipeDataBase {
 
@@ -48,13 +48,13 @@ public class SoilInfo extends RecipeDataBase {
     }
 
     @Override
-    public IRecipeType<?> getRecipeType() {
-        return RecipeHandler.getType(SOIL_KEY);
+    public IRecipeType<?> getType() {
+        return RecipeRegistry.getType(SOIL);
     }
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeHandler.getSerializer(SOIL_KEY);
+        return RecipeRegistry.getSerializer(SOIL);
     }
 
     @Override
