@@ -3,23 +3,23 @@
 [![](https://jitpack.io/v/Shigure-Ruiseki/OKProgressions.svg)](https://jitpack.io/#Shigure-Ruiseki/OKProgressions)
 ## Required Dependencies:
 
-- [ModularUI2 (>= 2.3.63)](https://github.com/GTNewHorizons/ModularUI2)
-- [GTNHLib (>= 0.9.66)](https://github.com/GTNewHorizons/GTNHLib)
-- [OKCore (>= 1.5.4.1)](https://github.com/Shigure-Ruiseki/OKCore)
+*   [ModularUI2 (>= 2.3.73)](https://github.com/GTNewHorizons/ModularUI2)
+*   [GTNHLib (>= 0.11.9)](https://github.com/GTNewHorizons/GTNHLib)
+*   [OKCore (>= 1.5.4.1)](https://github.com/Shigure-Ruiseki/OKCore)
 
 ## Features:
-- [x] Cobblestone Generators.
-- [x] Botany Pot.
-- [x] Growth Crystals.
-- [x] Mycelium Seeds.
-- [x] Emerald Apple.
-- [x] Diamond Apple.
-- [x] Charcoal Block.
-- [x] Bone Block.
-- [x] Flint Block.
-- [x] Reinforced Obsidian.
-- [x] Reinforced Glass.
-- [x] Stone Stick And Torch.
-- [x] Ender Ore And Dust.
-- [x] Party Pickaxe.
-- [x] Vanilla style Paxel.
+*   Cobblestone Generators.
+*   Botany Pot.
+*   Growth Crystals.
+*   Mycelium Seeds.
+*   Emerald Apple.
+*   Diamond Apple.
+*   Charcoal Block.
+*   Bone Block.
+*   Flint Block.
+*   Reinforced Obsidian.
+*   Reinforced Glass.
+*   Stone Stick And Torch.
+*   Ender Ore And Dust.
+*   Party Pickaxe.
+*   Vanilla style Paxel.
