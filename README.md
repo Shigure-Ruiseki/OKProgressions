@@ -1,11 +1,12 @@
 [![](https://cf.way2muchnoise.eu/full_1527501_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/okprogressions)
 [![](https://cf.way2muchnoise.eu/versions/For%20MC_1527501_all.svg)](https://www.curseforge.com/minecraft/mc-mods/okprogressions)
 [![](https://jitpack.io/v/Shigure-Ruiseki/OKProgressions.svg)](https://jitpack.io/#Shigure-Ruiseki/OKProgressions)
+
 ## Required Dependencies:
 
 *   [ModularUI2 (>= 2.3.73)](https://github.com/GTNewHorizons/ModularUI2)
 *   [GTNHLib (>= 0.11.9)](https://github.com/GTNewHorizons/GTNHLib)
-*   [OKCore (>= 26.06.22.0)](https://github.com/Shigure-Ruiseki/OKCore)
+*   [OKCore (>= 26.06.22.1)](https://github.com/Shigure-Ruiseki/OKCore)
 
 ## Features:
 *   Cobblestone Generators.
