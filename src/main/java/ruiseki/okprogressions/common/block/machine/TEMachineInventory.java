@@ -6,13 +6,8 @@ import java.util.stream.IntStream;
 
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import lombok.experimental.Delegate;
-import ruiseki.okcore.capabilities.Capability;
 import ruiseki.okcore.energy.EnergyStorage;
 import ruiseki.okcore.inventory.IInventoryExclusion;
 import ruiseki.okcore.inventory.SidedInventoryComponent;
@@ -194,15 +189,5 @@ public class TEMachineInventory extends TEMachine implements ISidedInventory {
             value = 0;
         }
         speed = Math.min(value, maxSpeed);
-    }
-
-    @Override
-    public boolean hasCapability(@NotNull Capability<?> capability, @Nullable ForgeDirection facing) {
-        return super.hasCapability(capability, facing);
-    }
-
-    @Override
-    public <T> T getCapability(@NotNull Capability<T> capability, @Nullable ForgeDirection facing) {
-        return super.getCapability(capability, facing);
     }
 }
