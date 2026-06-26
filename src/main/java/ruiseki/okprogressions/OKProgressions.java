@@ -57,6 +57,8 @@ public class OKProgressions extends ModBase {
     public OKProgressions() {
         super(Reference.MOD_ID, Reference.MOD_NAME);
         putGenericReference(REFKEY_MOD_VERSION, Reference.VERSION);
+        putGenericReference(REFKEY_VERSION_CHECKER, ModConfig.useVersionChecker);
+        putGenericReference(REFKEY_VERSION_CHECKER_URL, Reference.UPDATE_URL);
 
         addInitListeners(new WorldGen());
     }
