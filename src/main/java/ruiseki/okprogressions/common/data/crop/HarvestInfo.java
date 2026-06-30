@@ -6,10 +6,10 @@ import java.util.Objects;
 import net.minecraft.item.ItemStack;
 
 import ruiseki.okcore.inventory.ItemStackKey;
-import ruiseki.okcore.json.IJsonNetwork;
 import ruiseki.okcore.network.ExtendedBuffer;
+import ruiseki.okcore.network.INetworkMaterial;
 
-public class HarvestInfo implements IJsonNetwork {
+public class HarvestInfo implements INetworkMaterial {
 
     private ItemStack stack;
     private float chance;
