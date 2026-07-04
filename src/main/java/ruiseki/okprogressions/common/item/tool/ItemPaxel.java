@@ -117,5 +117,4 @@ public class ItemPaxel extends ItemPickaxe implements IItem {
 
         return 1.0F;
     }
-
 }

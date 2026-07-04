@@ -53,6 +53,11 @@ public enum ModItems {
 
     ENDER_SACK(new ItemEnderSack()),
 
+    TINY_COAL((IItem) new ItemOK("tiny_coal").setTextureName(Reference.PREFIX_MOD + "tiny_coal")
+        .setCreativeTab(OKPCreativeTab.INSTANCE)),
+    TINY_CHARCOAL((IItem) new ItemOK("tiny_charcoal").setTextureName(Reference.PREFIX_MOD + "tiny_charcoal")
+        .setCreativeTab(OKPCreativeTab.INSTANCE)),
+
     ;
 
     // spotless: on
