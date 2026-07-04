@@ -87,6 +87,10 @@ item.diamond_paxel.name=Diamond Paxel
 item.climbing_glove.name=Climbing Gloves
 
 item.ender_sack.name=Ender Sack
+
+item.tiny_coal.name=Tiny Coal
+item.tiny_charcoal.name=Tiny Charcoal
+
 #Block
 tile.cobblegen.name=Cobblestone Generator
 tile.iron_cobblegen.name=Cobblestone Generator Tier 2

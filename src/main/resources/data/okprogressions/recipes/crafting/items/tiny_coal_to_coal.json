@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "item": "okprogressions:tiny_coal"
+    }
+  },
+  "result": {
+    "item": "minecraft:coal",
+    "amount": 1
+  }
+}
