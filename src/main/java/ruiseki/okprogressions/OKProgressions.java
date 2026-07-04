@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.Level;
@@ -25,8 +26,14 @@ import ruiseki.okcore.command.CommandMod;
 import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.proxy.ICommonProxy;
+import ruiseki.okcore.recipe.RecipeRegistry;
 import ruiseki.okprogressions.common.addon.nei.Mods;
 import ruiseki.okprogressions.common.addon.nei.NEIConfig;
+import ruiseki.okprogressions.common.data.crop.CropSerializer;
+import ruiseki.okprogressions.common.data.crop.CropType;
+import ruiseki.okprogressions.common.data.soil.SoilSerializer;
+import ruiseki.okprogressions.common.data.soil.SoilType;
+import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
 import ruiseki.okprogressions.common.init.ModBlocks;
 import ruiseki.okprogressions.common.init.ModItems;
 import ruiseki.okprogressions.common.world.WorldGen;
@@ -72,6 +79,14 @@ public class OKProgressions extends ModBase {
         if (MinecraftHelpers.isClientSide()) {
             ModelRegistry.registerModid(Reference.MOD_ID);
         }
+        BotanyPotHelpers.SOIL_TYPE = RecipeRegistry
+            .registerType(new ResourceLocation(Reference.MOD_ID, "soil"), SoilType.INSTANCE);
+        BotanyPotHelpers.CROP_TYPE = RecipeRegistry
+            .registerType(new ResourceLocation(Reference.MOD_ID, "crop"), CropType.INSTANCE);
+        BotanyPotHelpers.SOIL_SERIALIZER = RecipeRegistry
+            .registerSerializer(new ResourceLocation(Reference.MOD_ID, "soil"), SoilSerializer.INSTANCE);
+        BotanyPotHelpers.CROP_SERIALIZER = RecipeRegistry
+            .registerSerializer(new ResourceLocation(Reference.MOD_ID, "crop"), CropSerializer.INSTANCE);
 
         if ((MinecraftHelpers.isClientSide() && Mods.NotEnoughItems.isModLoaded())) {
             NEIConfig config = new NEIConfig();

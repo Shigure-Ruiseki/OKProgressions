@@ -1,7 +1,5 @@
 package ruiseki.okprogressions.common.data.crop;
 
-import static ruiseki.okprogressions.common.data.crop.CropType.CROP;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +17,11 @@ import ruiseki.okcore.json.AbstractJsonMaterial;
 import ruiseki.okcore.json.block.BlockMaterial;
 import ruiseki.okcore.json.item.ItemMaterial;
 import ruiseki.okcore.network.ExtendedBuffer;
-import ruiseki.okcore.recipe.RecipeData;
 import ruiseki.okcore.recipe.RecipeSerializerBase;
 
-@RecipeData
 public class CropSerializer extends RecipeSerializerBase<CropInfo> {
 
-    @Override
-    public String getTypeKey() {
-        return CROP;
-    }
+    public static final CropSerializer INSTANCE = new CropSerializer();
 
     @Override
     protected CropInfo readWithCondition(ResourceLocation id, JsonObject json) {

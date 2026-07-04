@@ -1,7 +1,5 @@
 package ruiseki.okprogressions.common.data.soil;
 
-import static ruiseki.okprogressions.common.data.soil.SoilType.SOIL;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +18,10 @@ import ruiseki.okcore.json.block.BlockMaterial;
 import ruiseki.okcore.json.item.ItemMaterial;
 import ruiseki.okcore.network.ExtendedBuffer;
 import ruiseki.okcore.recipe.IRecipeSerializer;
-import ruiseki.okcore.recipe.RecipeData;
 
-@RecipeData
 public class SoilSerializer implements IRecipeSerializer<SoilInfo> {
 
-    @Override
-    public String getTypeKey() {
-        return SOIL;
-    }
+    public static final SoilSerializer INSTANCE = new SoilSerializer();
 
     @Override
     public SoilInfo fromJson(ResourceLocation id, JsonObject json) {
