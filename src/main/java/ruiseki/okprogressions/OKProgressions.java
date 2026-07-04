@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -13,6 +14,7 @@ import com.google.common.collect.Maps;
 import com.gtnewhorizon.gtnhlib.client.model.loading.ModelRegistry;
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 
+import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -22,7 +24,9 @@ import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import ruiseki.okcore.command.CommandMod;
+import ruiseki.okcore.helper.ItemStackHelpers;
 import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.proxy.ICommonProxy;
@@ -87,6 +91,23 @@ public class OKProgressions extends ModBase {
             .registerSerializer(new ResourceLocation(Reference.MOD_ID, "soil"), SoilSerializer.INSTANCE);
         BotanyPotHelpers.CROP_SERIALIZER = RecipeRegistry
             .registerSerializer(new ResourceLocation(Reference.MOD_ID, "crop"), CropSerializer.INSTANCE);
+
+        GameRegistry.registerFuelHandler(new IFuelHandler() {
+
+            @Override
+            public int getBurnTime(ItemStack fuel) {
+                if (ItemStackHelpers.areStacksEqual(fuel, ModItems.TINY_CHARCOAL.newItemStack())) {
+                    return 200;
+                }
+                if (ItemStackHelpers.areStacksEqual(fuel, ModItems.TINY_COAL.newItemStack())) {
+                    return 200;
+                }
+                if (ItemStackHelpers.areStacksEqual(fuel, ModBlocks.CHARCOAL_BLOCK.newItemStack())) {
+                    return 16000;
+                }
+                return 0;
+            }
+        });
 
         if ((MinecraftHelpers.isClientSide() && Mods.NotEnoughItems.isModLoaded())) {
             NEIConfig config = new NEIConfig();

@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:fuel",
-  "input": {
-    "item": "okprogressions:tiny_charcoal"
-  },
-  "cookingtime": 200
-}
