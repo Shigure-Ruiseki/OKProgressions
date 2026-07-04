@@ -11,6 +11,7 @@
 ## Features:
 *   Cobblestone Generators.
 *   Botany Pot.
+*   Tiny Coal.
 *   Growth Crystals.
 *   Mycelium Seeds.
 *   Emerald Apple.
