@@ -1,7 +1,5 @@
 package ruiseki.okprogressions.common.data.soil;
 
-import static ruiseki.okprogressions.common.data.soil.SoilType.SOIL;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +11,7 @@ import ruiseki.okcore.inventory.ItemStackKey;
 import ruiseki.okcore.recipe.IRecipeSerializer;
 import ruiseki.okcore.recipe.IRecipeType;
 import ruiseki.okcore.recipe.RecipeDataBase;
-import ruiseki.okcore.recipe.RecipeRegistry;
+import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
 
 public class SoilInfo extends RecipeDataBase {
 
@@ -49,12 +47,12 @@ public class SoilInfo extends RecipeDataBase {
 
     @Override
     public IRecipeType<?> getType() {
-        return RecipeRegistry.getType(SOIL);
+        return BotanyPotHelpers.SOIL_TYPE;
     }
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeRegistry.getSerializer(SOIL);
+        return BotanyPotHelpers.SOIL_SERIALIZER;
     }
 
     @Override

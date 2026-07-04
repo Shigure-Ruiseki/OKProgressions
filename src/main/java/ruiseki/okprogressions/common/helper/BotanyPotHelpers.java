@@ -1,8 +1,5 @@
 package ruiseki.okprogressions.common.helper;
 
-import static ruiseki.okprogressions.common.data.crop.CropType.CROP;
-import static ruiseki.okprogressions.common.data.soil.SoilType.SOIL;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -13,17 +10,23 @@ import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import ruiseki.okcore.helper.ItemStackHelpers;
+import ruiseki.okcore.recipe.IRecipeSerializer;
+import ruiseki.okcore.recipe.IRecipeType;
 import ruiseki.okcore.recipe.RecipeManager;
-import ruiseki.okcore.recipe.RecipeRegistry;
 import ruiseki.okprogressions.common.data.crop.CropInfo;
 import ruiseki.okprogressions.common.data.crop.HarvestInfo;
 import ruiseki.okprogressions.common.data.soil.SoilInfo;
 
 public class BotanyPotHelpers {
 
+    public static IRecipeType<SoilInfo> SOIL_TYPE;
+    public static IRecipeType<CropInfo> CROP_TYPE;
+    public static IRecipeSerializer<SoilInfo> SOIL_SERIALIZER;
+    public static IRecipeSerializer<CropInfo> CROP_SERIALIZER;
+
     public static Collection<SoilInfo> getSoils() {
         return RecipeManager.getManager()
-            .getRecipesByType(RecipeRegistry.getType(SOIL));
+            .getRecipesByType(SOIL_TYPE);
     }
 
     @Nullable
@@ -38,7 +41,7 @@ public class BotanyPotHelpers {
 
     public static Collection<CropInfo> getCrops() {
         return RecipeManager.getManager()
-            .getRecipesByType(RecipeRegistry.getType(CROP));
+            .getRecipesByType(CROP_TYPE);
     }
 
     @Nullable
