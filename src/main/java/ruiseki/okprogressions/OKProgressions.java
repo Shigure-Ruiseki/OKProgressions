@@ -117,14 +117,6 @@ public class OKProgressions extends ModBase {
     }
 
     @Override
-    protected CommandMod constructBaseCommand() {
-        Map<String, ICommand> commands = Maps.newHashMap();
-        CommandMod command = new CommandMod(this, commands);
-        command.addAlias("okprogresstion");
-        return command;
-    }
-
-    @Override
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         super.init(event);

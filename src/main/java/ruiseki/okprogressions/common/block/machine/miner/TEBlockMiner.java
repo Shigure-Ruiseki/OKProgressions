@@ -18,7 +18,7 @@ import ruiseki.okcore.persist.nbt.NBTPersist;
 import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.common.block.machine.TEMachineInventory;
 
-public class TEMiner extends TEMachineInventory {
+public class TEBlockMiner extends TEMachineInventory {
 
     @NBTPersist
     private UUID uuid;
@@ -34,7 +34,7 @@ public class TEMiner extends TEMachineInventory {
 
     private WeakReference<FakePlayer> fakePlayer;
 
-    public TEMiner() {
+    public TEBlockMiner() {
         super(0);
     }
 
@@ -127,10 +127,5 @@ public class TEMiner extends TEMachineInventory {
             worldObj.destroyBlockInWorldPartially(uuid.hashCode(), x, y, z, -1);
             curBlockDamage = 0;
         }
-    }
-
-    @Override
-    public boolean onlyRunIfPowered() {
-        return this.needsRedstone == 1;
     }
 }
