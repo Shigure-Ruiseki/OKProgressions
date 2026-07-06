@@ -9,6 +9,7 @@ import com.cleanroommc.modularui.value.sync.EnumSyncValue;
 import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.cleanroommc.modularui.widgets.layout.Flow;
 
+import ruiseki.okcore.client.gui.component.TitleWidget;
 import ruiseki.okcore.client.gui.component.button.RedstoneModeButton;
 import ruiseki.okcore.enums.RedstoneMode;
 
@@ -30,6 +31,11 @@ public class MachinePanel<T extends TEMachine> extends ModularPanel {
         this.settings = settings;
         this.player = data.getPlayer();
         this.machine = machine;
+
+        this.child(
+            new TitleWidget(
+                this.machine.getBlock()
+                    .getLocalizedName()));
 
         this.settingCol = createSettingColumn();
         this.child(settingCol);
