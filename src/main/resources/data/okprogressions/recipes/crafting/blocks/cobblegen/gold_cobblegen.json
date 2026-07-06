@@ -7,14 +7,14 @@
   ],
   "key": {
     "i": {
-      "ore": "gemDiamond"
+      "ore": "#forge:ingots/gold"
     },
     "g": {
-      "item": "okprogressions:gold_cobblegen"
+      "item": "okprogressions:iron_cobblegen"
     }
   },
   "result": {
-    "item": "okprogressions:diamond_cobblegen",
+    "item": "okprogressions:gold_cobblegen",
     "amount": 1
   }
 }

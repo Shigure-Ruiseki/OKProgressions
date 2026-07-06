@@ -1,4 +1,4 @@
-package ruiseki.okprogressions.common.item;
+package ruiseki.okprogressions.common.item.misc;
 
 import java.util.List;
 

@@ -7,19 +7,16 @@
   ],
   "key": {
     "s": {
-      "item": "minecraft:slime_ball",
-      "meta": 0
+      "item": "minecraft:slime_ball"
     },
     "i": {
-      "ore": "ingotIron"
+      "ore": "#forge:ingots/iron"
     },
     "k": {
-      "item": "minecraft:dye",
-      "meta": 0
+      "ore": "#forge:dyes/black"
     },
     "l": {
-      "item": "minecraft:leather",
-      "meta": 0
+      "item": "minecraft:leather"
     }
   },
   "result": {

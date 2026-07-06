@@ -7,14 +7,14 @@
   ],
   "key": {
     "i": {
-      "ore": "ingotGold"
+      "ore": "#forge:ingots/iron"
     },
     "g": {
-      "item": "okprogressions:iron_cobblegen"
+      "item": "okprogressions:cobblegen"
     }
   },
   "result": {
-    "item": "okprogressions:gold_cobblegen",
+    "item": "okprogressions:iron_cobblegen",
     "amount": 1
   }
 }

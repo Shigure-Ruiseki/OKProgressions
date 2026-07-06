@@ -7,20 +7,20 @@
   ],
   "key": {
     "A": {
-      "item": "minecraft:iron_axe"
+      "item": "minecraft:golden_axe"
     },
     "S": {
-      "item": "minecraft:iron_shovel"
+      "item": "minecraft:golden_shovel"
     },
     "P": {
-      "item": "minecraft:iron_pickaxe"
+      "item": "minecraft:golden_pickaxe"
     },
     "s": {
-      "ore": "stickWood"
+      "ore": "#forge:rods/wooden"
     }
   },
   "result": {
-    "item": "okprogressions:iron_paxel",
+    "item": "okprogressions:golden_paxel",
     "amount": 1
   }
 }

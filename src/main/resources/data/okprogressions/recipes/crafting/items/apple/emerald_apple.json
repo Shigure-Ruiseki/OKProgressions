@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "ddd",
-    "dad",
-    "ddd"
+    "eee",
+    "eae",
+    "eee"
   ],
   "key": {
-    "d": {
-      "ore": "gemDiamond"
+    "e": {
+      "ore": "#forge:gems/emerald"
     },
     "a": {
       "item": "minecraft:apple"
     }
   },
   "result": {
-    "item": "okprogressions:diamond_apple",
+    "item": "okprogressions:emerald_apple",
     "amount": 1
   }
 }

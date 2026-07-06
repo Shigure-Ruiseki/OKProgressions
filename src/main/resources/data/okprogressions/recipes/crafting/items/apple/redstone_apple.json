@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "iii",
-    "iai",
-    "iii"
+    "rrr",
+    "rar",
+    "rrr"
   ],
   "key": {
-    "i": {
-      "ore": "ingotIron"
+    "r": {
+      "ore": "#forge:dusts/redstone"
     },
     "a": {
       "item": "minecraft:apple"
     }
   },
   "result": {
-    "item": "okprogressions:iron_apple",
+    "item": "okprogressions:redstone_apple",
     "amount": 1
   }
 }

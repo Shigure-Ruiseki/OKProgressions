@@ -7,13 +7,13 @@
   ],
   "key": {
     "b": {
-      "item": "minecraft:bone"
+      "ore": "#forge:bones"
     },
     "d": {
       "item": "minecraft:dispenser"
     },
     "o": {
-      "item": "minecraft:mossy_cobblestone"
+      "ore": "#forge:cobblestone/mossy"
     },
     "p": {
       "item": "minecraft:iron_pickaxe"

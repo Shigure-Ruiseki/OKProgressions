@@ -16,7 +16,7 @@
       "item": "minecraft:diamond_pickaxe"
     },
     "s": {
-      "ore": "stickWood"
+      "ore": "#forge:rods/wooden"
     }
   },
   "result": {

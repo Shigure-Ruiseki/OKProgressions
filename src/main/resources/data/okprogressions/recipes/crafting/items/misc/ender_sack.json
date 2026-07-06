@@ -7,11 +7,10 @@
   ],
   "key": {
     "s": {
-      "item": "minecraft:ender_chest"
+      "ore": "#forge:chests/ender"
     },
     "l": {
-      "item": "minecraft:leather",
-      "meta": 0
+      "item": "minecraft:leather"
     }
   },
   "result": {

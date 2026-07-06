@@ -7,11 +7,11 @@
   ],
   "key": {
     "b": {
-      "item": "minecraft:bone"
+      "ore": "#forge:nether_stars"
     }
   },
   "result": {
-    "item": "okprogressions:bone_block",
+    "item": "okprogressions:nether_star_block",
     "amount": 1
   }
 }

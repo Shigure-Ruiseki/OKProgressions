@@ -6,9 +6,6 @@
     "cnc"
   ],
   "key": {
-    "e": {
-      "item": "minecraft:glass"
-    },
     "w": {
       "item": "minecraft:potion",
       "meta": 8194
@@ -17,7 +14,10 @@
       "item": "okprogressions:growth"
     },
     "n": {
-      "item": "minecraft:nether_star"
+      "ore": "#forge:nether_stars"
+    },
+    "e": {
+      "ore": "#forge:glass"
     }
   },
   "result": {

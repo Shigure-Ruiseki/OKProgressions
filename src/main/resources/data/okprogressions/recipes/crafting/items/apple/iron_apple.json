@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "iii",
-    "igi",
+    "iai",
     "iii"
   ],
   "key": {
     "i": {
-      "ore": "gemEmerald"
+      "ore": "#forge:ingots/iron"
     },
-    "g": {
-      "item": "okprogressions:diamond_cobblegen"
+    "a": {
+      "item": "minecraft:apple"
     }
   },
   "result": {
-    "item": "okprogressions:emerald_cobblegen",
+    "item": "okprogressions:iron_apple",
     "amount": 1
   }
 }

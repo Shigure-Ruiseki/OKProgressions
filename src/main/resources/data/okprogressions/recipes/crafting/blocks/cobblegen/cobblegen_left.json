@@ -2,15 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "ccc",
-    "lgw",
+    "wgl",
     "ccc"
   ],
   "key": {
     "c": {
-      "ore": "cobblestone"
+      "ore": "#forge:cobblestone/normal"
     },
     "g": {
-      "ore": "blockGlass"
+      "ore": "#forge:glass"
     },
     "w": {
       "item": "minecraft:water_bucket"
