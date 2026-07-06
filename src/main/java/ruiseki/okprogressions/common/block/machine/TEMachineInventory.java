@@ -109,6 +109,10 @@ public class TEMachineInventory extends TEMachine implements ISidedInventory {
                 .collect(Collectors.toList()));
     }
 
+    public ItemStackHandler getInv() {
+        return inv;
+    }
+
     protected void initEnergy(EnergyStorage store) {
         initEnergy(store, 0);
     }

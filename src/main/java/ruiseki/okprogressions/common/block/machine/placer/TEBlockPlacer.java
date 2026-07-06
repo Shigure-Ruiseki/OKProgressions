@@ -90,11 +90,20 @@ public class TEBlockPlacer extends TEMachineInventory {
         }
 
         if (trigger) {
-            if (fakePlayer != null) {
+            if (fakePlayer != null && fakePlayer.get() != null) {
                 EntityHelpers.setEntityFacing(fakePlayer.get(), this.getDirection());
                 BlockPos placePos = getPos().offset(this.getDirection());
                 if (this.worldObj.isAirBlock(placePos.getX(), placePos.getY(), placePos.getZ())) {
-                    PlaceBlockHelpers.buildStackAsPlayer(this.worldObj, fakePlayer.get(), placePos, stack);
+                    ItemStack itemForPlacement = stack.copy();
+                    boolean success = PlaceBlockHelpers
+                        .buildStackAsPlayer(this.worldObj, fakePlayer.get(), placePos, itemForPlacement);
+                    if (success || itemForPlacement.stackSize != stack.stackSize) {
+                        if (itemForPlacement.stackSize <= 0) {
+                            this.setInventorySlotContents(0, null);
+                        } else {
+                            this.setInventorySlotContents(0, itemForPlacement);
+                        }
+                    }
                 }
             }
         }
@@ -103,6 +112,6 @@ public class TEBlockPlacer extends TEMachineInventory {
 
     @Override
     public ModularPanel buildUI(PosGuiData data, PanelSyncManager syncManager, UISettings settings) {
-        return super.buildUI(data, syncManager, settings);
+        return new BlockPlacerPanel(this, data, syncManager, settings);
     }
 }

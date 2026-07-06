@@ -39,6 +39,9 @@ public class MachinePanel<T extends TEMachine> extends ModularPanel {
 
         this.settingCol = createSettingColumn();
         this.child(settingCol);
+
+        this.syncManager.bindPlayerInventory(this.player);
+        this.bindPlayerInventory();
     }
 
     public Flow createSettingColumn() {
