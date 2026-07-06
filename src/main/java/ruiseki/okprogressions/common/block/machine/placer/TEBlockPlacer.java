@@ -29,10 +29,10 @@ public class TEBlockPlacer extends TEMachineInventory {
     private UUID uuid;
 
     @NBTPersist
-    private static final int buildSpeed = 1;
+    private int buildSpeed = 1;
 
     @NBTPersist
-    public static final int TIMER_FULL = 1;
+    public int TIMER_FULL = 1;
 
     private WeakReference<FakePlayer> fakePlayer;
 

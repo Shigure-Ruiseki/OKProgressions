@@ -39,7 +39,7 @@ public class MachinePanel<T extends TEMachine> extends ModularPanel {
         this.redstoneModeSyncer = new EnumSyncValue<>(
             RedstoneMode.class,
             this.machine::getRedstoneMode,
-            this.machine::setRedstoneMode);
+            this.machine::setRedstoneMode).allowC2S();
         this.syncManager.syncValue("redstoneModeSyncer", redstoneModeSyncer);
 
         return Flow.column()
