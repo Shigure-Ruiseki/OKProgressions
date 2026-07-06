@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "c",
+    "c"
+  ],
+  "key": {
+    "c": {
+      "ore": "#forge:cobblestone/normal"
+    }
+  },
+  "result": {
+    "item": "okprogressions:stone_stick",
+    "amount": 4
+  }
+}

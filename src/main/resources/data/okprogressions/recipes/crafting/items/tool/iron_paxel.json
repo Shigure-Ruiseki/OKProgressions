@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ASP",
+    " s ",
+    " s "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:iron_axe"
+    },
+    "S": {
+      "item": "minecraft:iron_shovel"
+    },
+    "P": {
+      "item": "minecraft:iron_pickaxe"
+    },
+    "s": {
+      "ore": "#forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "okprogressions:iron_paxel",
+    "amount": 1
+  }
+}

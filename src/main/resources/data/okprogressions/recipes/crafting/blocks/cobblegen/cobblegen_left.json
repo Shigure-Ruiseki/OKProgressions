@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "wgl",
+    "ccc"
+  ],
+  "key": {
+    "c": {
+      "ore": "#forge:cobblestone/normal"
+    },
+    "g": {
+      "ore": "#forge:glass"
+    },
+    "w": {
+      "item": "minecraft:water_bucket"
+    },
+    "l": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "result": {
+    "item": "okprogressions:cobblegen",
+    "amount": 1
+  }
+}

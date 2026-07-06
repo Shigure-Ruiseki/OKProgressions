@@ -6,8 +6,7 @@
   ],
   "key": {
     "c": {
-      "item": "minecraft:coal",
-      "meta": 0
+      "ore": "#minecraft:coals"
     },
     "s": {
       "item": "okprogressions:stone_stick"

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "rrr",
+    "rar",
+    "rrr"
+  ],
+  "key": {
+    "r": {
+      "ore": "#forge:dusts/redstone"
+    },
+    "a": {
+      "item": "minecraft:apple"
+    }
+  },
+  "result": {
+    "item": "okprogressions:redstone_apple",
+    "amount": 1
+  }
+}

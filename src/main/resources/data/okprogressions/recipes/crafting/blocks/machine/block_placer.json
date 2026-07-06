@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "rsr",
+    "gbg",
+    "ooo"
+  ],
+  "key": {
+    "o": {
+      "ore": "#forge:cobblestone/normal"
+    },
+    "r": {
+      "item": "minecraft:stone"
+    },
+    "s": {
+      "item": "minecraft:dispenser"
+    },
+    "b": {
+      "ore": "#forge:dusts/redstone"
+    },
+    "g": {
+      "ore": "#forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "okprogressions:block_placer",
+    "count": 1
+  }
+}

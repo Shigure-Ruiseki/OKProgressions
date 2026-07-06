@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bbb",
+    "bbb",
+    "bbb"
+  ],
+  "key": {
+    "b": {
+      "ore": "#forge:nether_stars"
+    }
+  },
+  "result": {
+    "item": "okprogressions:nether_star_block",
+    "amount": 1
+  }
+}

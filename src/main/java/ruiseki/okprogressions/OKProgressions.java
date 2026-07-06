@@ -1,8 +1,5 @@
 package ruiseki.okprogressions;
 
-import java.util.Map;
-
-import net.minecraft.command.ICommand;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +7,6 @@ import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.Level;
 
-import com.google.common.collect.Maps;
 import com.gtnewhorizon.gtnhlib.client.model.loading.ModelRegistry;
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 
@@ -25,7 +21,6 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import ruiseki.okcore.command.CommandMod;
 import ruiseki.okcore.helper.ItemStackHelpers;
 import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ModBase;
@@ -114,14 +109,6 @@ public class OKProgressions extends ModBase {
             MinecraftForge.EVENT_BUS.register(config);
             config.loadConfig();
         }
-    }
-
-    @Override
-    protected CommandMod constructBaseCommand() {
-        Map<String, ICommand> commands = Maps.newHashMap();
-        CommandMod command = new CommandMod(this, commands);
-        command.addAlias("okprogresstion");
-        return command;
     }
 
     @Override

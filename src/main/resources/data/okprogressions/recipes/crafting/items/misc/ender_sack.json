@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " l ",
+    "lsl",
+    " l "
+  ],
+  "key": {
+    "s": {
+      "ore": "#forge:chests/ender"
+    },
+    "l": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "okprogressions:ender_sack",
+    "amount": 1
+  }
+}

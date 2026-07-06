@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bdb",
+    " p ",
+    "ooo"
+  ],
+  "key": {
+    "b": {
+      "ore": "#forge:bones"
+    },
+    "d": {
+      "item": "minecraft:dispenser"
+    },
+    "o": {
+      "ore": "#forge:cobblestone/mossy"
+    },
+    "p": {
+      "item": "minecraft:iron_pickaxe"
+    }
+  },
+  "result": {
+    "item": "okprogressions:block_miner",
+    "count": 1
+  }
+}

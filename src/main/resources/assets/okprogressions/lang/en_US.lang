@@ -119,4 +119,5 @@ tile.botany_pot.name=Botany Pot
 tile.hopper_botany_pot.name=Hopper Botany Pot
 
 tile.block_miner.name=Block Miner
+tile.block_placer.name=Block Placer
 

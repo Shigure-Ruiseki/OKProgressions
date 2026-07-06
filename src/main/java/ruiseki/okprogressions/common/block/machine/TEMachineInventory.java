@@ -7,8 +7,15 @@ import java.util.stream.IntStream;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 
+import org.jetbrains.annotations.NotNull;
+
+import cofh.api.energy.IEnergyStorage;
 import lombok.experimental.Delegate;
+import ruiseki.okcore.capabilities.Capability;
+import ruiseki.okcore.datastructure.LazyOptional;
 import ruiseki.okcore.energy.EnergyStorage;
+import ruiseki.okcore.energy.capability.CapabilityEnergy;
+import ruiseki.okcore.helper.ItemStackHelpers;
 import ruiseki.okcore.inventory.IInventoryExclusion;
 import ruiseki.okcore.inventory.SidedInventoryComponent;
 import ruiseki.okcore.item.InvWrapperRestricted;
@@ -28,12 +35,11 @@ public class TEMachineInventory extends TEMachine implements ISidedInventory {
     protected int speed = 1;
     @NBTPersist
     protected int timer;
-    @NBTPersist
-    protected int needsRedstone = 0;
     InvWrapperRestricted invHandler;
 
     @NBTPersist
     protected EnergyStorage energyStorage = null;
+    protected LazyOptional<IEnergyStorage> energyCap = LazyOptional.of(() -> energyStorage);
 
     @Delegate(excludes = IInventoryExclusion.class)
     protected final SidedInventoryComponent inventoryComponent;
@@ -94,6 +100,17 @@ public class TEMachineInventory extends TEMachine implements ISidedInventory {
     protected void setSlotsForBoth(List<Integer> slots) {
         invHandler.setSlotsInsert(slots);
         invHandler.setSlotsExtract(slots);
+    }
+
+    protected void setSlotsForBoth() {
+        this.setSlotsForBoth(
+            IntStream.rangeClosed(0, this.getSizeInventory())
+                .boxed()
+                .collect(Collectors.toList()));
+    }
+
+    public ItemStackHandler getInv() {
+        return inv;
     }
 
     protected void initEnergy(EnergyStorage store) {
@@ -189,5 +206,59 @@ public class TEMachineInventory extends TEMachine implements ISidedInventory {
             value = 0;
         }
         speed = Math.min(value, maxSpeed);
+    }
+
+    protected void shiftAllUp() {
+        shiftAllUp(0);
+    }
+
+    /**
+     * pass in how many slots on the end ( right ) to skip
+     *
+     * @param endOffset
+     */
+    protected void shiftAllUp(int endOffset) {
+        if (!this.worldObj.isRemote) {
+            for (int i = 0; i < this.getSizeInventory() - endOffset - 1; i++) {
+                shiftPairUp(i, i + 1);
+            }
+        }
+    }
+
+    protected void shiftPairUp(int low, int high) {
+        ItemStack main = getStackInSlot(low);
+        ItemStack second = getStackInSlot(high);
+
+        if (main == null && second != null) {
+            this.setInventorySlotContents(low, second);
+            this.setInventorySlotContents(high, null);
+        } else if (main != null && second != null) {
+            if (ItemStackHelpers.areStacksEqual(main, second)) {
+                int maxStack = main.getMaxStackSize();
+
+                int roomLeft = maxStack - main.stackSize;
+
+                if (roomLeft > 0) {
+                    int amountToMove = Math.min(roomLeft, second.stackSize);
+                    main.stackSize += amountToMove;
+                    this.setInventorySlotContents(low, main);
+                    second.stackSize -= amountToMove;
+
+                    if (second.stackSize <= 0) {
+                        this.setInventorySlotContents(high, null);
+                    } else {
+                        this.setInventorySlotContents(high, second);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
+        if (cap == CapabilityEnergy.ENERGY && energyStorage != null) {
+            return energyCap.cast();
+        }
+        return super.getCapability(cap);
     }
 }

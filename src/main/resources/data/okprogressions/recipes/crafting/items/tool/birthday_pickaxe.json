@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "rdr",
+    " s ",
+    " s "
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:obsidian"
+    },
+    "d": {
+      "ore": "#forge:gems/diamond"
+    },
+    "s": {
+      "ore": "#forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "okprogressions:birthday_pickaxe",
+    "amount": 1
+  }
+}

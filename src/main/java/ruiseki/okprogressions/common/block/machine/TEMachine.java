@@ -12,23 +12,33 @@ import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 
 import lombok.experimental.Delegate;
 import ruiseki.okcore.block.IBlockDirection;
+import ruiseki.okcore.enums.RedstoneMode;
 import ruiseki.okcore.persist.nbt.NBTPersist;
+import ruiseki.okcore.tileentity.IRedstoneMode;
 import ruiseki.okcore.tileentity.TileEntityOK;
 import ruiseki.okprogressions.Reference;
 
 public class TEMachine extends TileEntityOK
-    implements IBlockDirection, TileEntityOK.ITickingTile, IGuiHolder<PosGuiData> {
+    implements IBlockDirection, IRedstoneMode, TileEntityOK.ITickingTile, IGuiHolder<PosGuiData> {
 
     @NBTPersist
     protected ForgeDirection direction = ForgeDirection.NORTH;
 
     @Delegate
+    @SuppressWarnings("all")
     protected final ITickingTile tickingTileComponent = new TickingTileComponent(this);
+
+    @NBTPersist
+    protected RedstoneMode redstoneMode = RedstoneMode.ALWAYS_ON;
 
     public TEMachine() {}
 
     @Override
     public ForgeDirection getDirection(IBlockAccess world, int x, int y, int z) {
+        return direction;
+    }
+
+    public ForgeDirection getDirection() {
         return direction;
     }
 
@@ -40,24 +50,14 @@ public class TEMachine extends TileEntityOK
     }
 
     public boolean isRunning() {
-        if (!this.isValid()) {
-            return false;
-        }
-        return this.isPowered() || !this.onlyRunIfPowered();
+        if (!this.isValid()) return false;
+        return this.canRunInWorld(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
     }
 
     public boolean isValid() {
         return worldObj != null && !this.isInvalid()
             && this.getPos()
                 .isLoaded(worldObj);
-    }
-
-    public boolean isPowered() {
-        return this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
-    }
-
-    public boolean onlyRunIfPowered() {
-        return false;
     }
 
     @Override
@@ -67,6 +67,18 @@ public class TEMachine extends TileEntityOK
 
     @Override
     public ModularPanel buildUI(PosGuiData data, PanelSyncManager syncManager, UISettings settings) {
-        return new ModularPanel("gui");
+        return new MachinePanel<>(this, data, syncManager, settings);
+    }
+
+    @Override
+    public RedstoneMode getRedstoneMode() {
+        return redstoneMode;
+    }
+
+    @Override
+    public void setRedstoneMode(RedstoneMode mode) {
+        this.redstoneMode = mode;
+        this.markDirty();
+        this.onSendUpdate();
     }
 }

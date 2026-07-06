@@ -18,6 +18,7 @@ import ruiseki.okprogressions.common.block.compressed.BlockFlint;
 import ruiseki.okprogressions.common.block.compressed.BlockNetherStar;
 import ruiseki.okprogressions.common.block.growth.BlockGrowth;
 import ruiseki.okprogressions.common.block.machine.miner.BlockMiner;
+import ruiseki.okprogressions.common.block.machine.placer.BlockPlacer;
 import ruiseki.okprogressions.common.block.reinforced.BLockReinforcedGlass;
 import ruiseki.okprogressions.common.block.reinforced.BlockReinforcedObsidian;
 import ruiseki.okprogressions.config.ModConfig;
@@ -56,6 +57,7 @@ public enum ModBlocks {
     HOPPER_BOTANY_POT(new BlockBotanyPot(true, "hopper_botany_pot")),
 
     BLOCK_MINER(new BlockMiner()),
+    BLOCK_PLACER(new BlockPlacer()),
 
     ;
 

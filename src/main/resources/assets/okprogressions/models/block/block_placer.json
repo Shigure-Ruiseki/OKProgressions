@@ -1,0 +1,11 @@
+{
+  "parent": "okprogressions:parent/machine_classic",
+  "textures": {
+    "0": "blocks/dispenser_front_vertical",
+    "1": "blocks/furnace_top",
+    "2": "blocks/cauldron_inner",
+    "3": "blocks/cobblestone",
+    "4": "blocks/stone",
+    "particle": "blocks/iron_block"
+  }
+}

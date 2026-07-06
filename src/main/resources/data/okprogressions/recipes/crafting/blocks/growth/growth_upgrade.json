@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cnc",
+    "wew",
+    "cnc"
+  ],
+  "key": {
+    "w": {
+      "item": "minecraft:potion",
+      "meta": 8194
+    },
+    "c": {
+      "item": "okprogressions:growth"
+    },
+    "n": {
+      "ore": "#forge:nether_stars"
+    },
+    "e": {
+      "ore": "#forge:glass"
+    }
+  },
+  "result": {
+    "item": "okprogressions:growth_upgrade",
+    "amount": 1
+  }
+}
