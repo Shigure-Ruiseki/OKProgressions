@@ -11,7 +11,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.common.block.machine.BlockMachine;
-import ruiseki.okprogressions.common.block.machine.placer.TEBlockPlacer;
 
 public class BlockMiner extends BlockMachine {
 
