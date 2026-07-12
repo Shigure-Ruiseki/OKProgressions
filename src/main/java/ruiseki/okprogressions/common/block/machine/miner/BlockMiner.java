@@ -7,10 +7,12 @@ import net.minecraft.world.World;
 
 import org.apache.logging.log4j.Level;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okprogressions.OKPCreativeTab;
 import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.common.block.machine.BlockMachine;
+import ruiseki.okprogressions.common.block.machine.placer.TEBlockPlacer;
 
 public class BlockMiner extends BlockMachine {
 
@@ -21,6 +23,11 @@ public class BlockMiner extends BlockMachine {
         this.setStepSound(soundTypeMetal);
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.isDirection = true;
+    }
+
+    @Override
+    public void registerTileEntity(String name) {
+        GameRegistry.registerTileEntity(TEBlockPlacer.class, name + "TileEntity");
     }
 
     @Override

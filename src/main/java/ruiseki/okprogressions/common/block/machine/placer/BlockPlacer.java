@@ -4,6 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ruiseki.okprogressions.OKPCreativeTab;
 import ruiseki.okprogressions.common.block.machine.BlockMachine;
 
@@ -16,6 +17,11 @@ public class BlockPlacer extends BlockMachine {
         this.setStepSound(soundTypeMetal);
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.isDirection = true;
+    }
+
+    @Override
+    public void registerTileEntity(String name) {
+        GameRegistry.registerTileEntity(TEBlockPlacer.class, name + "TileEntity");
     }
 
     @Override
