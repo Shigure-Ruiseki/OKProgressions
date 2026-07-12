@@ -18,7 +18,7 @@ import ruiseki.okprogressions.Reference;
 public class ItemMyceliumSeeds extends ItemOK {
 
     public ItemMyceliumSeeds() {
-        super("mycelium_seeds");
+        super();
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.setTextureName(Reference.PREFIX_MOD + "mycelium_seeds");
     }

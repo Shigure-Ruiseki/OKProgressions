@@ -1,6 +1,7 @@
 package ruiseki.okprogressions.common.block.machine;
 
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.cleanroommc.modularui.api.IGuiHolder;
@@ -38,15 +39,16 @@ public class TEMachine extends TileEntityOK
         return direction;
     }
 
-    public ForgeDirection getDirection() {
-        return direction;
-    }
-
     @Override
-    public void setDirection(IBlockAccess world, int x, int y, int z, ForgeDirection direction) {
+    public void setDirection(World world, int x, int y, int z, ForgeDirection direction) {
         this.direction = direction;
         this.markDirty();
         this.onSendUpdate();
+
+    }
+
+    public ForgeDirection getDirection() {
+        return direction;
     }
 
     public boolean isRunning() {

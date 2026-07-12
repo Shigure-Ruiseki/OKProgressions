@@ -13,7 +13,7 @@ import ruiseki.okprogressions.OKPCreativeTab;
 public class BlockCharcoal extends BlockOK implements IOreDictEntry {
 
     public BlockCharcoal() {
-        super("charcoal_block", Material.rock);
+        super(Material.rock);
         this.setHardness(1.5F);
         this.setResistance(10.0F);
         this.setHarvestLevel("pickaxe", 1);

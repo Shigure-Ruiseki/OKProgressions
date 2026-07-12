@@ -15,7 +15,7 @@ import ruiseki.okprogressions.OKPCreativeTab;
 public class BlockFlint extends BlockOK implements IOreDictEntry {
 
     public BlockFlint() {
-        super("flint_block", Material.ground);
+        super(Material.ground);
         this.setHardness(1.0F);
         this.setResistance(5.0F);
         this.setStepSound(soundTypeStone);

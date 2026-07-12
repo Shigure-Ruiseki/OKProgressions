@@ -110,7 +110,7 @@ tile.flint_block.name=Flint Block
 
 tile.stone_torch.name=Stone Torch
 
-tile.ore_ender.name=Ender Ore
+tile.ender_ore.name=Ender Ore
 
 tile.reinforced_obsidian.name=Reinforced Obsidian
 tile.reinforced_glass.name=Reinforced Glass

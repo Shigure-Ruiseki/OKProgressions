@@ -61,19 +61,13 @@ public class ItemBirthdayPickaxe extends ItemTool implements IItem {
         this.maxStackSize = 1;
         this.setHarvestLevel("pickaxe", 4);
 
-        this.setUnlocalizedName(this.getName());
-        this.setTextureName(Reference.PREFIX_MOD + this.getName());
+        this.setTextureName(Reference.PREFIX_MOD + "birthday_pickaxe");
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
     }
 
     @Override
-    public Item getItem() {
+    public Item get() {
         return this;
-    }
-
-    @Override
-    public String getName() {
-        return "birthday_pickaxe";
     }
 
     @Override

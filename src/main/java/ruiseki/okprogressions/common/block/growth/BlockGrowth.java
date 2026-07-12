@@ -30,8 +30,8 @@ public class BlockGrowth extends BlockOK implements IBlockTooltipProvider {
     private final int rangeY;
     private final int growthLvl;
 
-    public BlockGrowth(String name, int growthLvl, int range, int rangeY) {
-        super(name, TEGrowth.class, Material.iron);
+    public BlockGrowth(int growthLvl, int range, int rangeY) {
+        super(Material.iron);
         this.setTickRandomly(true);
         this.setHardness(8.0F);
         this.setResistance(1000.0F);
@@ -44,6 +44,11 @@ public class BlockGrowth extends BlockOK implements IBlockTooltipProvider {
         this.growthLvl = growthLvl;
         this.range = range;
         this.rangeY = rangeY;
+    }
+
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
     }
 
     @Override

@@ -22,7 +22,7 @@ import ruiseki.okprogressions.OKPCreativeTab;
 public class BlockReinforcedObsidian extends BlockOK implements IBlockTooltipProvider {
 
     public BlockReinforcedObsidian() {
-        super("reinforced_obsidian", Material.rock);
+        super(Material.rock);
         this.setHardness(20.0F);
         this.setResistance(2000.0F);
         this.setHarvestLevel("pickaxe", 1);

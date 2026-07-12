@@ -19,12 +19,12 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import ruiseki.okcore.addon.waila.IWailaTileInfoProvider;
 import ruiseki.okcore.helper.InventoryHelpers;
-import ruiseki.okcore.helper.ItemHelpers;
 import ruiseki.okcore.helper.LangHelpers;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okcore.helper.WailaHelpers;
 import ruiseki.okcore.inventory.IInventoryExclusion;
 import ruiseki.okcore.inventory.SidedInventoryComponent;
+import ruiseki.okcore.item.ItemHelpers;
 import ruiseki.okcore.item.ItemStackHandler;
 import ruiseki.okcore.item.ItemTransfer;
 import ruiseki.okcore.persist.nbt.NBTPersist;
@@ -269,8 +269,8 @@ public class TEBotanyPot extends TileEntityOK
             TileEntity.class);
         if (tile != null) {
             ItemTransfer transfer = new ItemTransfer();
-            transfer.source(ItemHelpers.getItemSource(this, ForgeDirection.DOWN));
-            transfer.sink(ItemHelpers.getItemSink(tile, ForgeDirection.UP));
+            transfer.source(ItemHelpers.getItemHandler(this, ForgeDirection.DOWN));
+            transfer.sink(ItemHelpers.getItemHandler(tile, ForgeDirection.UP));
             transfer.setStacksToTransfer(inv.getSlots());
 
             int moved = transfer.transfer();

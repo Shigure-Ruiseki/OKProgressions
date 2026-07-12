@@ -7,26 +7,28 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import org.jetbrains.annotations.Nullable;
-
 import com.cleanroommc.modularui.factory.GuiFactories;
 
 import ruiseki.okcore.block.BlockOK;
-import ruiseki.okcore.block.property.BlockPropertyReg;
-import ruiseki.okcore.block.property.BlockStateProperties;
+import ruiseki.okcore.block.property.BlockProperty;
 import ruiseki.okcore.block.property.DirectionProperty;
 import ruiseki.okcore.helper.BlockStateHelpers;
 import ruiseki.okcore.helper.DirectionHelpers;
+import ruiseki.okprogressions.OKPCreativeTab;
 
 public class BlockMachine extends BlockOK {
 
-    @BlockPropertyReg
-    public static final DirectionProperty DIRECTION = BlockStateProperties.FACING;
+    @BlockProperty
+    public static final DirectionProperty DIRECTION = DirectionProperty.facing(ForgeDirection.NORTH);
 
     protected boolean isDirection;
 
-    protected BlockMachine(String name, @Nullable Class<? extends TEMachine> teClass, Material mat) {
-        super(name, teClass, mat);
+    protected BlockMachine(Material mat) {
+        super(mat);
+        this.setHardness(3.0F);
+        this.setResistance(5.0F);
+        this.setStepSound(soundTypeMetal);
+        this.setCreativeTab(OKPCreativeTab.INSTANCE);
     }
 
     @Override

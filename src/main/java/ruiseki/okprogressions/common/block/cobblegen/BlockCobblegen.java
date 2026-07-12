@@ -27,8 +27,8 @@ public class BlockCobblegen extends BlockOK implements IBlockTooltipProvider {
     private final int cycleUpdate;
     private final int maxStackSize;
 
-    public BlockCobblegen(String name, int cycleUpdate, int maxStackSize) {
-        super(name, TECobblegen.class, Material.iron);
+    public BlockCobblegen(int cycleUpdate, int maxStackSize) {
+        super(Material.iron);
         this.setHardness(1.0F);
         this.setHarvestLevel("pickaxe", 1);
         this.setResistance(1000.0F);
@@ -39,6 +39,11 @@ public class BlockCobblegen extends BlockOK implements IBlockTooltipProvider {
         this.isFullSize = this.isOpaque = false;
         this.cycleUpdate = cycleUpdate;
         this.maxStackSize = maxStackSize;
+    }
+
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
     }
 
     @Override

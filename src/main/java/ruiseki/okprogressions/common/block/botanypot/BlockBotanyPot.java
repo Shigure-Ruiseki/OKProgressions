@@ -27,12 +27,12 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
 
     private final boolean hopper;
 
-    public BlockBotanyPot(String name) {
-        this(false, name);
+    public BlockBotanyPot() {
+        this(false);
     }
 
-    public BlockBotanyPot(boolean hopper, String name) {
-        super(name, TEBotanyPot.class, Material.circuits);
+    public BlockBotanyPot(boolean hopper) {
+        super(Material.circuits);
         this.hopper = hopper;
         this.setHardness(1.25F);
         this.setResistance(4.2F);
@@ -40,6 +40,16 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
         this.setBlockBounds(0.125F, 0.0F, 0.125F, 0.875F, 0.5F, 0.875F);
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.isFullSize = this.isOpaque = false;
+    }
+
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
+    }
+
+    @Override
+    public TileEntity createTileEntity(World world, int metadata) {
+        return new TEBotanyPot();
     }
 
     public boolean isHopper() {

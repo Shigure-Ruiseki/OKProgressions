@@ -15,15 +15,9 @@ public class BlockStoneTorch extends BlockTorch implements IBlock, IOreDictEntry
 
     public BlockStoneTorch() {
         super();
-        this.setBlockName(getName());
-        this.setBlockTextureName(Reference.PREFIX_MOD + getName());
+        this.setBlockTextureName(Reference.PREFIX_MOD + "stone_torch");
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.setLightLevel(1.0F);
-    }
-
-    @Override
-    public Block getBlock() {
-        return this;
     }
 
     @Override
@@ -32,12 +26,12 @@ public class BlockStoneTorch extends BlockTorch implements IBlock, IOreDictEntry
     }
 
     @Override
-    public String getName() {
-        return "stone_torch";
+    public Map<String, ItemStack> getOreMappings() {
+        return Map.of("torch", new ItemStack(this));
     }
 
     @Override
-    public Map<String, ItemStack> getOreMappings() {
-        return Map.of("torch", new ItemStack(this));
+    public Block get() {
+        return this;
     }
 }

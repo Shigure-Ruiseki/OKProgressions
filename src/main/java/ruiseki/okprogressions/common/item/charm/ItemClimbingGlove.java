@@ -18,7 +18,7 @@ public class ItemClimbingGlove extends ItemCharm {
     private static final double CLIMB_SPEED = 0.288D;
 
     public ItemClimbingGlove() {
-        super("climbing_glove", 6000);
+        super(6000);
         this.setTextureName(Reference.PREFIX_MOD + "climbing_glove");
     }
 

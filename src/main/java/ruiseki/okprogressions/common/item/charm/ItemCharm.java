@@ -22,8 +22,8 @@ import ruiseki.okprogressions.OKPCreativeTab;
     @Optional.Interface(modid = "Baubles", iface = "baubles.api.IBauble"), })
 public abstract class ItemCharm extends ItemBauble implements IItemToggle {
 
-    public ItemCharm(String name, int durability) {
-        super(name);
+    public ItemCharm(int durability) {
+        super();
         this.setMaxDamage(durability);
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
     }
@@ -35,7 +35,7 @@ public abstract class ItemCharm extends ItemBauble implements IItemToggle {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack stack) {
+    public boolean hasEffect(ItemStack stack, int pass) {
         return canTick(stack);
     }
 

@@ -20,14 +20,14 @@ import ruiseki.okprogressions.Reference;
 
 public class ItemIronApple extends ItemFoodOK {
 
-    public ItemIronApple(String name, int amount, float saturation, boolean isWolfFood) {
-        super(name, amount, saturation, isWolfFood);
+    public ItemIronApple(int amount, float saturation, boolean isWolfFood) {
+        super(amount, saturation, isWolfFood);
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.setAlwaysEdible();
     }
 
     public ItemIronApple() {
-        this("iron_apple", 4, 1.0F, false);
+        this(4, 1.0F, false);
         this.setTextureName(Reference.PREFIX_MOD + "iron_apple");
     }
 

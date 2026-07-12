@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ruiseki.okcore.helper.LangHelpers;
-import ruiseki.okprogressions.common.init.ModBlocks;
+import ruiseki.okprogressions.common.init.OKProgressionsBlocks;
 
 public class OKPCreativeTab extends CreativeTabs {
 
@@ -18,7 +18,7 @@ public class OKPCreativeTab extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return ModBlocks.COBBLE_GEN.getItem();
+        return Item.getItemFromBlock(OKProgressionsBlocks.COBBLE_GEN.get());
     }
 
     @Override
