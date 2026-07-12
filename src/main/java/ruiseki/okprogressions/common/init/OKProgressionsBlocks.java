@@ -4,11 +4,11 @@ import java.util.function.Supplier;
 
 import net.minecraft.block.Block;
 
-import ruiseki.okcore.Reference;
 import ruiseki.okcore.block.IBlock;
 import ruiseki.okcore.registries.DeferredRegister;
 import ruiseki.okcore.registries.RegistryObject;
 import ruiseki.okcore.tag.Registries;
+import ruiseki.okprogressions.Reference;
 import ruiseki.okprogressions.common.block.BlockOreEnder;
 import ruiseki.okprogressions.common.block.BlockStoneTorch;
 import ruiseki.okprogressions.common.block.botanypot.BlockBotanyPot;

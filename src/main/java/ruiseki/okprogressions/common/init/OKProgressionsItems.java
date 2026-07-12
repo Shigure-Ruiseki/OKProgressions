@@ -4,13 +4,13 @@ import java.util.function.Supplier;
 
 import net.minecraft.item.Item;
 
-import ruiseki.okcore.Reference;
 import ruiseki.okcore.item.IItem;
 import ruiseki.okcore.item.ItemOK;
 import ruiseki.okcore.registries.DeferredRegister;
 import ruiseki.okcore.registries.RegistryObject;
 import ruiseki.okcore.tag.Registries;
 import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okprogressions.Reference;
 import ruiseki.okprogressions.common.item.apple.ItemDiamondApple;
 import ruiseki.okprogressions.common.item.apple.ItemEmeraldApple;
 import ruiseki.okprogressions.common.item.apple.ItemIronApple;
