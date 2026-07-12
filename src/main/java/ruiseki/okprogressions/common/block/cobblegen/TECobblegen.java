@@ -10,10 +10,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import lombok.experimental.Delegate;
-import ruiseki.okcore.helper.ItemHelpers;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okcore.inventory.IInventoryExclusion;
 import ruiseki.okcore.inventory.SidedInventoryComponent;
+import ruiseki.okcore.item.ItemHelpers;
 import ruiseki.okcore.item.ItemStackHandler;
 import ruiseki.okcore.item.ItemTransfer;
 import ruiseki.okcore.persist.nbt.NBTPersist;
@@ -112,8 +112,8 @@ public class TECobblegen extends TileEntityOK implements TileEntityOK.ITickingTi
             TileEntity.class);
         if (tile != null && stack.stackSize > 0) {
             ItemTransfer transfer = new ItemTransfer();
-            transfer.source(ItemHelpers.getItemSource(this, ForgeDirection.UP));
-            transfer.sink(ItemHelpers.getItemSink(tile, ForgeDirection.DOWN));
+            transfer.source(ItemHelpers.getItemHandler(this, ForgeDirection.UP));
+            transfer.sink(ItemHelpers.getItemHandler(tile, ForgeDirection.DOWN));
             int moved = transfer.transfer();
             if (moved > 0) {
                 changed = true;

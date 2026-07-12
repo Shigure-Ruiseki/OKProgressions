@@ -13,7 +13,7 @@ import ruiseki.okprogressions.Reference;
 public class ItemEnderSack extends ItemOK {
 
     public ItemEnderSack() {
-        super("ender_sack");
+        super();
         this.setMaxStackSize(1);
         this.setTextureName(Reference.PREFIX_MOD + "ender_sack");
     }

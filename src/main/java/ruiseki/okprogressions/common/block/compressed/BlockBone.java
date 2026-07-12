@@ -15,7 +15,7 @@ import ruiseki.okprogressions.OKPCreativeTab;
 public class BlockBone extends BlockOK implements IOreDictEntry {
 
     public BlockBone() {
-        super("bone_block", Material.ground);
+        super(Material.ground);
         this.setHardness(0.5F);
         this.setResistance(5.0F);
         this.setStepSound(soundTypeStone);
