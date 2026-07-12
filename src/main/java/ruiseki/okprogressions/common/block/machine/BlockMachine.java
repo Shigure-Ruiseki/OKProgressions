@@ -14,16 +14,21 @@ import ruiseki.okcore.block.property.BlockProperty;
 import ruiseki.okcore.block.property.DirectionProperty;
 import ruiseki.okcore.helper.BlockStateHelpers;
 import ruiseki.okcore.helper.DirectionHelpers;
+import ruiseki.okprogressions.OKPCreativeTab;
 
 public class BlockMachine extends BlockOK {
 
     @BlockProperty
-    public static final DirectionProperty DIRECTION = DirectionProperty.facing();
+    public static final DirectionProperty DIRECTION = DirectionProperty.facing(ForgeDirection.NORTH);
 
     protected boolean isDirection;
 
     protected BlockMachine(Material mat) {
         super(mat);
+        this.setHardness(3.0F);
+        this.setResistance(5.0F);
+        this.setStepSound(soundTypeMetal);
+        this.setCreativeTab(OKPCreativeTab.INSTANCE);
     }
 
     @Override

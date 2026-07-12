@@ -5,17 +5,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import ruiseki.okprogressions.OKPCreativeTab;
 import ruiseki.okprogressions.common.block.machine.BlockMachine;
 
 public class BlockPlacer extends BlockMachine {
 
     public BlockPlacer() {
         super(Material.iron);
-        this.setHardness(3.0F);
-        this.setResistance(5.0F);
-        this.setStepSound(soundTypeMetal);
-        this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.isDirection = true;
     }
 
