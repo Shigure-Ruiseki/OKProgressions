@@ -16,8 +16,6 @@ import ruiseki.okprogressions.OKPCreativeTab;
 
 public class ItemPaxel extends ItemPickaxe implements IItem {
 
-    private final String name;
-
     private static final Set<Block> effectiveAgainst = Sets.newHashSet(
         Blocks.planks,
         Blocks.bookshelf,

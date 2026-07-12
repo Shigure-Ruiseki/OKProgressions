@@ -35,7 +35,7 @@ public abstract class ItemCharm extends ItemBauble implements IItemToggle {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack stack) {
+    public boolean hasEffect(ItemStack stack, int pass) {
         return canTick(stack);
     }
 
