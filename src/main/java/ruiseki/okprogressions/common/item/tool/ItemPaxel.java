@@ -68,11 +68,9 @@ public class ItemPaxel extends ItemPickaxe implements IItem {
         Blocks.soul_sand,
         Blocks.web);
 
-    public ItemPaxel(String name, ToolMaterial material) {
+    public ItemPaxel(ToolMaterial material) {
         super(material);
 
-        this.name = name;
-        this.setUnlocalizedName(name);
         this.setMaxStackSize(1);
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
 
@@ -81,12 +79,9 @@ public class ItemPaxel extends ItemPickaxe implements IItem {
         this.setHarvestLevel("shovel", material.getHarvestLevel());
     }
 
-    public Item getItem() {
+    @Override
+    public Item get() {
         return this;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     @Override

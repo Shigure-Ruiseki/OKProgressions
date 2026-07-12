@@ -18,7 +18,7 @@ import ruiseki.okprogressions.Reference;
 public class ItemDiamondApple extends ItemIronApple {
 
     public ItemDiamondApple() {
-        super("diamond_apple", 4, 1.0F, false);
+        super(4, 1.0F, false);
         this.setTextureName(Reference.PREFIX_MOD + "diamond_apple");
     }
 

@@ -63,17 +63,12 @@ public class BLockReinforcedGlass extends BlockGlass implements IBlock, IBlockTo
     }
 
     @Override
-    public Block getBlock() {
-        return this;
-    }
-
-    @Override
     public boolean isHasSubtypes() {
         return false;
     }
 
     @Override
-    public String getName() {
-        return "reinforced_glass";
+    public Block get() {
+        return this;
     }
 }

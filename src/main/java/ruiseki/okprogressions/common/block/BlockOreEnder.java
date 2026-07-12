@@ -13,14 +13,14 @@ import net.minecraft.world.World;
 import ruiseki.okcore.block.BlockOK;
 import ruiseki.okcore.recipe.IOreDictEntry;
 import ruiseki.okprogressions.OKPCreativeTab;
-import ruiseki.okprogressions.common.init.ModItems;
+import ruiseki.okprogressions.common.init.OKProgressionsItems;
 
 public class BlockOreEnder extends BlockOK implements IOreDictEntry {
 
     private final Random rand = new Random();
 
     public BlockOreEnder() {
-        super("ore_ender", Material.rock);
+        super(Material.rock);
         this.setHardness(8.0F);
         this.setResistance(10.0F);
         this.setHarvestLevel("pickaxe", 1);
@@ -64,7 +64,7 @@ public class BlockOreEnder extends BlockOK implements IOreDictEntry {
 
     @Override
     public Item getItemDropped(int meta, Random random, int fortune) {
-        return ModItems.ENDER_DUST.getItem();
+        return OKProgressionsItems.ENDER_DUST.get();
     }
 
     @Override

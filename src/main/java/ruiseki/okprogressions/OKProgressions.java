@@ -33,8 +33,8 @@ import ruiseki.okprogressions.common.data.crop.CropType;
 import ruiseki.okprogressions.common.data.soil.SoilSerializer;
 import ruiseki.okprogressions.common.data.soil.SoilType;
 import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
-import ruiseki.okprogressions.common.init.ModBlocks;
-import ruiseki.okprogressions.common.init.ModItems;
+import ruiseki.okprogressions.common.init.OKProgressionsBlocks;
+import ruiseki.okprogressions.common.init.OKProgressionsItems;
 import ruiseki.okprogressions.common.world.WorldGen;
 import ruiseki.okprogressions.config.ModConfig;
 
@@ -73,8 +73,8 @@ public class OKProgressions extends ModBase {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        ModBlocks.preInit();
-        ModItems.preInit();
+        OKProgressionsBlocks.register();
+        OKProgressionsItems.register();
         if (MinecraftHelpers.isClientSide()) {
             ModelRegistry.registerModid(Reference.MOD_ID);
         }
@@ -91,13 +91,13 @@ public class OKProgressions extends ModBase {
 
             @Override
             public int getBurnTime(ItemStack fuel) {
-                if (ItemStackHelpers.areStacksEqual(fuel, ModItems.TINY_CHARCOAL.newItemStack())) {
+                if (ItemStackHelpers.areStacksEqual(fuel, new ItemStack(OKProgressionsItems.TINY_CHARCOAL.get()))) {
                     return 200;
                 }
-                if (ItemStackHelpers.areStacksEqual(fuel, ModItems.TINY_COAL.newItemStack())) {
+                if (ItemStackHelpers.areStacksEqual(fuel, new ItemStack(OKProgressionsItems.TINY_COAL.get()))) {
                     return 200;
                 }
-                if (ItemStackHelpers.areStacksEqual(fuel, ModBlocks.CHARCOAL_BLOCK.newItemStack())) {
+                if (ItemStackHelpers.areStacksEqual(fuel, new ItemStack(OKProgressionsBlocks.CHARCOAL_BLOCK.get()))) {
                     return 16000;
                 }
                 return 0;

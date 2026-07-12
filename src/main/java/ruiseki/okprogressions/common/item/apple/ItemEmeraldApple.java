@@ -18,7 +18,7 @@ import ruiseki.okprogressions.Reference;
 public class ItemEmeraldApple extends ItemIronApple {
 
     public ItemEmeraldApple() {
-        super("emerald_apple", 4, 1.0F, false);
+        super(4, 1.0F, false);
         this.setTextureName(Reference.PREFIX_MOD + "emerald_apple");
     }
 

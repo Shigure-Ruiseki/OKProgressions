@@ -17,14 +17,14 @@ import ruiseki.okcore.json.AbstractJsonMaterial;
 import ruiseki.okcore.json.block.BlockMaterial;
 import ruiseki.okcore.json.item.ItemMaterial;
 import ruiseki.okcore.network.ExtendedBuffer;
-import ruiseki.okcore.recipe.RecipeSerializerBase;
+import ruiseki.okcore.recipe.IRecipeSerializer;
 
-public class CropSerializer extends RecipeSerializerBase<CropInfo> {
+public class CropSerializer implements IRecipeSerializer<CropInfo> {
 
     public static final CropSerializer INSTANCE = new CropSerializer();
 
     @Override
-    protected CropInfo readWithCondition(ResourceLocation id, JsonObject json) {
+    public CropInfo fromJson(ResourceLocation id, JsonObject json) {
         ItemMaterial resultMaterial = new ItemMaterial();
         BlockMaterial displayMaterial = new BlockMaterial();
         List<String> categories = new ArrayList<>();

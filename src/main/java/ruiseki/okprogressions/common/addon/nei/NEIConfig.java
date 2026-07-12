@@ -1,5 +1,7 @@
 package ruiseki.okprogressions.common.addon.nei;
 
+import net.minecraft.item.ItemStack;
+
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 import codechicken.nei.event.NEIRegisterHandlerInfosEvent;
@@ -7,7 +9,7 @@ import codechicken.nei.recipe.HandlerInfo;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ruiseki.okcore.addon.nei.IRecipeHandlerBase;
 import ruiseki.okprogressions.Reference;
-import ruiseki.okprogressions.common.init.ModBlocks;
+import ruiseki.okprogressions.common.init.OKProgressionsBlocks;
 
 public class NEIConfig implements IConfigureNEI {
 
@@ -15,7 +17,7 @@ public class NEIConfig implements IConfigureNEI {
     public void registerHandlerInfo(NEIRegisterHandlerInfosEvent event) {
         event.registerHandlerInfo(
             new HandlerInfo.Builder(BotanyCropsRecipeHandler.UID, Reference.MOD_NAME, Reference.MOD_ID)
-                .setDisplayStack(ModBlocks.BOTANY_POT.newItemStack())
+                .setDisplayStack(new ItemStack(OKProgressionsBlocks.BOTANY_POT.get()))
                 .setHeight(64)
                 .setWidth(166)
                 .build());
@@ -24,8 +26,10 @@ public class NEIConfig implements IConfigureNEI {
     @Override
     public void loadConfig() {
         registerHandler(new BotanyCropsRecipeHandler());
-        API.addRecipeCatalyst(ModBlocks.BOTANY_POT.newItemStack(), BotanyCropsRecipeHandler.UID);
-        API.addRecipeCatalyst(ModBlocks.HOPPER_BOTANY_POT.newItemStack(), BotanyCropsRecipeHandler.UID);
+        API.addRecipeCatalyst(new ItemStack(OKProgressionsBlocks.BOTANY_POT.get()), BotanyCropsRecipeHandler.UID);
+        API.addRecipeCatalyst(
+            new ItemStack(OKProgressionsBlocks.HOPPER_BOTANY_POT.get()),
+            BotanyCropsRecipeHandler.UID);
     }
 
     protected static void registerHandler(IRecipeHandlerBase handler) {
