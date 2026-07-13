@@ -16,6 +16,7 @@ import net.minecraftforge.common.ForgeHooks;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ruiseki.okcore.block.BlockOK;
 import ruiseki.okcore.block.IBlockTooltipProvider;
 import ruiseki.okcore.datastructure.BlockPos;
@@ -44,6 +45,11 @@ public class BlockCobblegen extends BlockOK implements IBlockTooltipProvider {
     @Override
     public boolean hasTileEntity(int metadata) {
         return true;
+    }
+
+    @Override
+    public void registerTileEntity(String name) {
+        GameRegistry.registerTileEntity(TECobblegen.class, name + "TileEntity");
     }
 
     @Override
