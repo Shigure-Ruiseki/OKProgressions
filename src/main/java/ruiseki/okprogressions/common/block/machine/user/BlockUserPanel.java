@@ -13,8 +13,7 @@ public class BlockUserPanel extends MachinePanel<TEBlockUser> {
     public BlockUserPanel(TEBlockUser machine, PosGuiData data, PanelSyncManager syncManager, UISettings settings) {
         super(machine, data, syncManager, settings);
 
-        this.child(
-            new ItemSlot().slot(new ModularSlot(this.machine.getInventory(), 0)));
+        this.child(new ItemSlot().slot(new ModularSlot(this.machine.getInventory(), 0)));
     }
 
 }
