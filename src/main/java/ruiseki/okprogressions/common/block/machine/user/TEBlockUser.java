@@ -25,6 +25,9 @@ public class TEBlockUser extends TEMachineInventory {
     private UUID uuid = UUID.randomUUID();
     @NBTPersist
     private int timerDelay = 20;
+
+    public final int MAX_DELAY = 64;
+
     @NBTPersist
     private boolean useLeftHand = false;
     @NBTPersist
@@ -40,6 +43,10 @@ public class TEBlockUser extends TEMachineInventory {
     @Override
     protected void doUpdate() {
         super.doUpdate();
+        if (this.worldObj == null || this.worldObj.isRemote) {
+            return;
+        }
+
         if (!isRunning()) {
             markDirty();
             return;
@@ -48,20 +55,32 @@ public class TEBlockUser extends TEMachineInventory {
         boolean trigger = updateTimerIsZero();
         if (trigger) {
             try {
-                if (fakePlayer == null) {
-                    fakePlayer = setupBeforeTrigger((WorldServer) worldObj, "user", uuid);
+                this.timer = timerDelay;
+
+                if (this.worldObj instanceof WorldServer worldServer) {
+                    if (this.fakePlayer == null || this.fakePlayer.get() == null) {
+                        this.fakePlayer = setupBeforeTrigger(worldServer, "user", this.uuid);
+                    }
                 }
 
-                TEMachine.tryEquipItem(inventory.getStackInSlot(0), fakePlayer);
+                if (this.fakePlayer == null || this.fakePlayer.get() == null) {
+                    return;
+                }
+
+                TEMachine.tryEquipItem(this.inventory.getStackInSlot(0), this.fakePlayer);
 
                 BlockPos start = getPos().offset(this.direction);
-                if (targetPos == null || targetPos != start) targetPos = start;
-                if (useLeftHand) {
-                    TEMachine.leftClickBlock(fakePlayer, worldObj, targetPos, this.direction);
-                } else {
-                    TEMachine.rightClickBlock(fakePlayer, worldObj, targetPos, this.direction);
+                if (this.targetPos == null || !this.targetPos.equals(start)) {
+                    this.targetPos = start;
                 }
-                TEMachine.syncEquippedItem(inventory, fakePlayer, 0);
+
+                if (this.useLeftHand) {
+                    TEMachine.leftClickBlock(this.fakePlayer, this.worldObj, this.targetPos, this.direction);
+                } else {
+                    TEMachine.rightClickBlock(this.fakePlayer, this.worldObj, this.targetPos, this.direction);
+                }
+
+                TEMachine.syncEquippedItem(this.inventory, this.fakePlayer, 0);
                 this.markDirty();
             } catch (Exception e) {
                 OKProgressions.okLog(Level.ERROR, "User action item error", e);
@@ -70,11 +89,21 @@ public class TEBlockUser extends TEMachineInventory {
     }
 
     public boolean isUsingLeftHand() {
-        return useLeftHand;
+        return this.useLeftHand;
     }
 
     public void setUseLeftHand(final boolean useLeftHand) {
         this.useLeftHand = useLeftHand;
+        this.markDirty();
+    }
+
+    public int getTimerDelay() {
+        return timerDelay;
+    }
+
+    public void setTimerDelay(int timerDelay) {
+        this.timerDelay = timerDelay;
+        this.markDirty();
     }
 
     @Override

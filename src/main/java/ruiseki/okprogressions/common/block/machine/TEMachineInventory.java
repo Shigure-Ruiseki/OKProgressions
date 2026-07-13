@@ -7,14 +7,14 @@ import net.minecraft.item.ItemStack;
 
 import lombok.experimental.Delegate;
 import ruiseki.okcore.capabilities.resolver.BasicCapabilityResolver;
-import ruiseki.okcore.energy.EnergyStorage;
 import ruiseki.okcore.energy.capability.CapabilityEnergy;
+import ruiseki.okcore.energy.handler.EnergyStorage;
 import ruiseki.okcore.helper.ItemStackHelpers;
-import ruiseki.okcore.inventory.IInventoryExclusion;
-import ruiseki.okcore.inventory.SidedInventoryComponent;
-import ruiseki.okcore.item.ItemStackHandler;
-import ruiseki.okcore.item.RestrictedItemStackHandler;
 import ruiseki.okcore.item.capability.CapabilityItemHandler;
+import ruiseki.okcore.item.component.IInventoryExclusion;
+import ruiseki.okcore.item.component.SidedInventoryComponent;
+import ruiseki.okcore.item.handler.ItemStackHandler;
+import ruiseki.okcore.item.handler.RestrictedItemStackHandler;
 import ruiseki.okcore.persist.nbt.NBTPersist;
 
 public class TEMachineInventory extends TEMachine implements ISidedInventory {

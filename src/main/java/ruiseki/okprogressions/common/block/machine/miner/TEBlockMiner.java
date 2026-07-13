@@ -40,63 +40,73 @@ public class TEBlockMiner extends TEMachineInventory {
 
     @Override
     protected void doUpdate() {
-        if (worldObj.isRemote) return;
+        if (this.worldObj == null || this.worldObj.isRemote) {
+            return;
+        }
 
         this.uuid = verifyUuid(this.uuid);
-        if (fakePlayer == null) {
-            fakePlayer = PlayerHelpers.initFakePlayer((WorldServer) worldObj, this.uuid, "block_miner");
-            if (fakePlayer == null) {
-                OKProgressions.okLog("Fake player failed to init ");
+        if (this.fakePlayer == null || this.fakePlayer.get() == null) {
+            this.fakePlayer = PlayerHelpers.initFakePlayer((WorldServer) this.worldObj, this.uuid, "block_miner");
+            if (this.fakePlayer == null || this.fakePlayer.get() == null) {
+                OKProgressions.okLog("Fake player failed to init");
                 return;
             }
         }
+
         tryEquipItem();
 
         BlockPos start = getPos().offset(this.direction);
-        if (targetPos == null || targetPos != start) targetPos = start; // not sure if this is needed
+        if (this.targetPos == null || !this.targetPos.equals(start)) {
+            this.targetPos = start;
+        }
 
         if (isRunning()) {
-            if (!isCurrentlyMining) {
-                if (!worldObj.isAirBlock(targetPos.x, targetPos.y, targetPos.z)) {
-                    isCurrentlyMining = true;
-                    curBlockDamage = 0;
+            if (!this.isCurrentlyMining) {
+                if (!this.worldObj.isAirBlock(this.targetPos.x, this.targetPos.y, this.targetPos.z)) {
+                    this.isCurrentlyMining = true;
+                    this.curBlockDamage = 0;
                 } else {
-                    isCurrentlyMining = false;
-                    resetProgress(targetPos.x, targetPos.y, targetPos.z);
+                    this.isCurrentlyMining = false;
+                    resetProgress(this.targetPos.x, this.targetPos.y, this.targetPos.z);
                 }
             }
         } else {
-            if (isCurrentlyMining) {
-                isCurrentlyMining = false;
-                resetProgress(targetPos.x, targetPos.y, targetPos.z);
+            if (this.isCurrentlyMining) {
+                this.isCurrentlyMining = false;
+                resetProgress(this.targetPos.x, this.targetPos.y, this.targetPos.z);
             }
         }
 
-        if (isCurrentlyMining) {
-            Block targetBlock = targetPos.getBlock(worldObj);
-            int targetMeta = targetPos.getBlockMetadata(worldObj);
-            curBlockDamage += targetBlock
-                .getPlayerRelativeBlockHardness(fakePlayer.get(), worldObj, targetPos.x, targetPos.y, targetPos.z);
-            if (curBlockDamage >= 1.0f) {
-                isCurrentlyMining = false;
-                resetProgress(targetPos.x, targetPos.y, targetPos.z);
-                FakePlayer player = fakePlayer.get();
-                if (player != null) {
-                    player.theItemInWorldManager.tryHarvestBlock(targetPos.x, targetPos.y, targetPos.z);
+        if (this.isCurrentlyMining) {
+            Block targetBlock = this.targetPos.getBlock(this.worldObj);
+            FakePlayer player = this.fakePlayer.get();
+
+            if (player != null && targetBlock != null) {
+                this.curBlockDamage += targetBlock.getPlayerRelativeBlockHardness(
+                    player,
+                    this.worldObj,
+                    this.targetPos.x,
+                    this.targetPos.y,
+                    this.targetPos.z);
+
+                if (this.curBlockDamage >= 1.0f) {
+                    this.isCurrentlyMining = false;
+                    resetProgress(this.targetPos.x, this.targetPos.y, this.targetPos.z);
+                    player.theItemInWorldManager.tryHarvestBlock(this.targetPos.x, this.targetPos.y, this.targetPos.z);
+                } else {
+                    this.worldObj.destroyBlockInWorldPartially(
+                        this.uuid.hashCode(),
+                        this.targetPos.x,
+                        this.targetPos.y,
+                        this.targetPos.z,
+                        (int) (this.curBlockDamage * 10.0F) - 1);
                 }
-            } else {
-                worldObj.destroyBlockInWorldPartially(
-                    uuid.hashCode(),
-                    targetPos.x,
-                    targetPos.y,
-                    targetPos.z,
-                    (int) (curBlockDamage * 10.0F) - 1);
             }
         }
     }
 
     private void tryEquipItem() {
-        FakePlayer player = fakePlayer.get();
+        FakePlayer player = this.fakePlayer.get();
         if (player != null && player.getHeldItem() == null) {
             ItemStack unbreakingPickaxe = new ItemStack(Items.diamond_pickaxe, 1);
             unbreakingPickaxe.addEnchantment(Enchantment.efficiency, 3);
@@ -110,15 +120,15 @@ public class TEBlockMiner extends TEMachineInventory {
     }
 
     public void breakBlock(World worldIn, int x, int y, int z) {
-        if (isCurrentlyMining && uuid != null) {
+        if (this.isCurrentlyMining && this.uuid != null) {
             resetProgress(x, y, z);
         }
     }
 
     private void resetProgress(int x, int y, int z) {
-        if (uuid != null) {
-            worldObj.destroyBlockInWorldPartially(uuid.hashCode(), x, y, z, -1);
-            curBlockDamage = 0;
+        if (this.uuid != null && this.worldObj != null) {
+            this.worldObj.destroyBlockInWorldPartially(this.uuid.hashCode(), x, y, z, -1);
+            this.curBlockDamage = 0;
         }
     }
 }

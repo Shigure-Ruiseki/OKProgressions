@@ -25,7 +25,7 @@ import ruiseki.okcore.datastructure.BlockPos;
 import ruiseki.okcore.enums.RedstoneMode;
 import ruiseki.okcore.helper.EntityHelpers;
 import ruiseki.okcore.helper.PlayerHelpers;
-import ruiseki.okcore.item.IItemHandler;
+import ruiseki.okcore.item.handler.IItemHandler;
 import ruiseki.okcore.persist.nbt.NBTPersist;
 import ruiseki.okcore.tileentity.IRedstoneMode;
 import ruiseki.okcore.tileentity.TileEntityOK;
