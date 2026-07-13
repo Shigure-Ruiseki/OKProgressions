@@ -32,6 +32,11 @@ public class TEMachine extends TileEntityOK
     @NBTPersist
     protected RedstoneMode redstoneMode = RedstoneMode.ALWAYS_ON;
 
+    @NBTPersist
+    protected int speed = 1;
+    @NBTPersist
+    protected int timer;
+
     public TEMachine() {}
 
     @Override
@@ -82,5 +87,17 @@ public class TEMachine extends TileEntityOK
         this.redstoneMode = mode;
         this.markDirty();
         this.onSendUpdate();
+    }
+
+    protected boolean updateTimerIsZero() {
+        timer -= this.getSpeed();
+        if (timer < 0) {
+            timer = 0;
+        }
+        return timer == 0;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 }

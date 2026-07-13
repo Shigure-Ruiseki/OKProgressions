@@ -36,7 +36,7 @@ public class TEBlockPlacer extends TEMachineInventory {
 
     public TEBlockPlacer() {
         super(9);
-        this.setSlotsForBoth();
+        this.inventory.setSlotsForBoth();
     }
 
     @Override

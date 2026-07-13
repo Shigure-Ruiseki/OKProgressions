@@ -17,7 +17,7 @@ public class BlockPlacerPanel extends MachinePanel<TEBlockPlacer> {
 
         ItemSlotSH[] slotSyncers = new ItemSlotSH[9];
         for (int i = 0; i < slotSyncers.length; i++) {
-            ModularSlot slot = new ModularSlot(this.machine.getInv(), i);
+            ModularSlot slot = new ModularSlot(this.machine.getInventory(), i);
             slotSyncers[i] = new ItemSlotSH(slot);
             syncManager.syncValue("slot_syncer_" + i, i, slotSyncers[i]);
         }

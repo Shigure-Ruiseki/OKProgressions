@@ -1,7 +1,5 @@
 package ruiseki.okprogressions.common.block.cobblegen;
 
-import java.util.stream.IntStream;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
@@ -10,12 +8,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import lombok.experimental.Delegate;
+import ruiseki.okcore.capabilities.resolver.BasicCapabilityResolver;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okcore.inventory.IInventoryExclusion;
 import ruiseki.okcore.inventory.SidedInventoryComponent;
 import ruiseki.okcore.item.ItemHelpers;
 import ruiseki.okcore.item.ItemStackHandler;
 import ruiseki.okcore.item.ItemTransfer;
+import ruiseki.okcore.item.capability.CapabilityItemHandler;
 import ruiseki.okcore.persist.nbt.NBTPersist;
 import ruiseki.okcore.tileentity.TileEntityOK;
 
@@ -35,12 +35,11 @@ public class TECobblegen extends TileEntityOK implements TileEntityOK.ITickingTi
     private int maxStackSize = 32;
 
     @Delegate(excludes = IInventoryExclusion.class)
-    protected final SidedInventoryComponent inventoryComponent = new SidedInventoryComponent(this, outputInventory) {
+    protected final SidedInventoryComponent inventoryComponent = new SidedInventoryComponent(this) {
 
         @Override
         public int[] getAccessibleSlotsFromSide(int side) {
-            return IntStream.range(0, this.getSizeInventory())
-                .toArray();
+            return outputInventory.getSlotArray();
         }
 
         @Override
@@ -54,7 +53,10 @@ public class TECobblegen extends TileEntityOK implements TileEntityOK.ITickingTi
         }
     };
 
-    public TECobblegen() {}
+    public TECobblegen() {
+        this.capabilityCache.addCapabilityResolver(
+            BasicCapabilityResolver.create(CapabilityItemHandler.ITEM_HANDLER, () -> outputInventory));
+    }
 
     public int getCycleUpdate() {
         return cycleUpdate;
