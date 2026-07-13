@@ -7,7 +7,7 @@
   ],
   "key": {
     "i": {
-      "ore": "#forge:gems/emerald"
+      "tag": "forge:gems/emerald"
     },
     "g": {
       "item": "okprogressions:diamond_cobblegen"

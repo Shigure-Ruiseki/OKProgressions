@@ -1,9 +1,15 @@
 package ruiseki.okprogressions.common.block.machine;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 import java.util.UUID;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -18,6 +24,7 @@ import com.cleanroommc.modularui.screen.ModularPanel;
 import com.cleanroommc.modularui.screen.ModularScreen;
 import com.cleanroommc.modularui.screen.UISettings;
 import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+import com.google.common.collect.Multimap;
 
 import lombok.experimental.Delegate;
 import ruiseki.okcore.block.IBlockDirection;
@@ -159,12 +166,78 @@ public class TEMachine extends TileEntityOK
 
         try {
             fakePlayer.theItemInWorldManager.onBlockClicked(x, y, z, side.ordinal());
-            return fakePlayer.theItemInWorldManager.tryHarvestBlock(x, y, z);
+            return true;
         } catch (Exception e) {
             OKProgressions
                 .okLog(Level.WARN, "Failed to break block via FakePlayer at [%d, %d, %d]: %s", x, y, z, e.getMessage());
             return false;
         }
+    }
+
+    public static boolean leftClickEntity(final WeakReference<FakePlayer> fp, final World world, final BlockPos pos) {
+        final FakePlayer fakePlayer = fp.get();
+        if (fakePlayer == null || world == null || pos == null) {
+            return false;
+        }
+
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+
+        AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0, y + 1.0, z + 1.0);
+
+        List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(fakePlayer, targetBox);
+
+        if (entities == null || entities.isEmpty()) {
+            return false;
+        }
+
+        for (Entity target : entities) {
+            if (target == null || target.isDead || !target.canAttackWithItem()) {
+                continue;
+            }
+
+            try {
+                fakePlayer.posX = x + 0.5;
+                fakePlayer.posY = y + 0.5;
+                fakePlayer.posZ = z + 0.5;
+
+                ItemStack heldItem = fakePlayer.getHeldItem();
+
+                IAttributeInstance attackDamage = fakePlayer.getEntityAttribute(SharedMonsterAttributes.attackDamage);
+
+                if (attackDamage != null) {
+                    attackDamage.removeAllModifiers();
+
+                    if (heldItem != null && heldItem.getItem() != null) {
+                        Multimap<String, AttributeModifier> modifiers = heldItem.getItem()
+                            .getAttributeModifiers(heldItem);
+
+                        if (modifiers.containsKey(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {
+                            for (net.minecraft.entity.ai.attributes.AttributeModifier modifier : modifiers
+                                .get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName())) {
+                                attackDamage.applyModifier(modifier);
+                            }
+                        }
+                    }
+                }
+
+                fakePlayer.attackTargetEntityWithCurrentItem(target);
+                return true;
+            } catch (Exception e) {
+                OKProgressions.okLog(
+                    Level.WARN,
+                    "Failed to attack entity [%s] via FakePlayer at [%d, %d, %d]: %s",
+                    target.getCommandSenderName(),
+                    x,
+                    y,
+                    z,
+                    e.getMessage());
+                return false;
+            }
+        }
+
+        return false;
     }
 
     public static boolean rightClickBlock(final WeakReference<FakePlayer> fp, final World world, final BlockPos pos,
@@ -207,6 +280,56 @@ public class TEMachine extends TileEntityOK
                 e.getMessage());
             return false;
         }
+    }
+
+    public static boolean rightClickEntity(final WeakReference<FakePlayer> fp, final World world, final BlockPos pos) {
+        final FakePlayer fakePlayer = fp.get();
+        if (fakePlayer == null || world == null || pos == null) {
+            return false;
+        }
+
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+
+        AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0, y + 1.0, z + 1.0);
+
+        List<Entity> entities = world.getEntitiesWithinAABBExcludingEntity(fakePlayer, targetBox);
+
+        if (entities == null || entities.isEmpty()) {
+            return false;
+        }
+
+        for (Entity target : entities) {
+            if (target == null || target.isDead) {
+                continue;
+            }
+
+            try {
+                fakePlayer.posX = x + 0.5;
+                fakePlayer.posY = y + 0.5;
+                fakePlayer.posZ = z + 0.5;
+
+                boolean success = fakePlayer.interactWith(target);
+
+                if (success) {
+                    fakePlayer.inventory.markDirty();
+                    return true;
+                }
+            } catch (Exception e) {
+                OKProgressions.okLog(
+                    Level.WARN,
+                    "Failed to interact with entity [%s] via FakePlayer at [%d, %d, %d]: %s",
+                    target.getCommandSenderName(),
+                    x,
+                    y,
+                    z,
+                    e.getMessage());
+                return false;
+            }
+        }
+
+        return false;
     }
 
     public static boolean tryHarvestBlock(final WeakReference<FakePlayer> fp, final World world, final BlockPos pos) {

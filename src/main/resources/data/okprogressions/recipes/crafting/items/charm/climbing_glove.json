@@ -10,10 +10,10 @@
       "item": "minecraft:slime_ball"
     },
     "i": {
-      "ore": "#forge:ingots/iron"
+      "tag": "forge:ingots/iron"
     },
     "k": {
-      "ore": "#forge:dyes/black"
+      "tag": "forge:dyes/black"
     },
     "l": {
       "item": "minecraft:leather"

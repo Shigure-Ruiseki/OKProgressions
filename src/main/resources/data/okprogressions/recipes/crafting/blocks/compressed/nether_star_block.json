@@ -7,7 +7,7 @@
   ],
   "key": {
     "b": {
-      "ore": "#forge:nether_stars"
+      "tag": "forge:nether_stars"
     }
   },
   "result": {

@@ -6,7 +6,7 @@
   ],
   "key": {
     "c": {
-      "ore": "#forge:cobblestone/normal"
+      "tag": "forge:cobblestone/normal"
     }
   },
   "result": {

@@ -7,7 +7,7 @@
   ],
   "key": {
     "i": {
-      "ore": "#forge:ingots/iron"
+      "tag": "forge:ingots/iron"
     },
     "b": {
       "item": "okprogressions:bone_block"

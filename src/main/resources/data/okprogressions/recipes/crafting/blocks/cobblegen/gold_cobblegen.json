@@ -7,7 +7,7 @@
   ],
   "key": {
     "i": {
-      "ore": "#forge:ingots/gold"
+      "tag": "forge:ingots/gold"
     },
     "g": {
       "item": "okprogressions:iron_cobblegen"

@@ -62,6 +62,13 @@ tooltip.charm.on=On
 tooltip.climbing_glove=Climb any vertical surface
 
 tooltip.ender_sack=Portable Ender Chest
+
+#Gui
+
+gui.user.hand=Use Left Hand
+gui.user.type.entity=Interact with entity
+gui.user.type.block=Interact with block
+
 #Item
 
 item.mycelium_seeds.name=Mycelium Seed
@@ -120,4 +127,5 @@ tile.hopper_botany_pot.name=Hopper Botany Pot
 
 tile.block_miner.name=Block Miner
 tile.block_placer.name=Block Placer
+tile.block_user.name=Block User
 

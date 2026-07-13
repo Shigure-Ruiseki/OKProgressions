@@ -31,6 +31,8 @@ public class TEBlockUser extends TEMachineInventory {
     @NBTPersist
     private boolean useLeftHand = false;
     @NBTPersist
+    private boolean interactWithEntity = false;
+    @NBTPersist
     private BlockPos targetPos = null;
 
     private WeakReference<FakePlayer> fakePlayer;
@@ -75,9 +77,17 @@ public class TEBlockUser extends TEMachineInventory {
                 }
 
                 if (this.useLeftHand) {
-                    TEMachine.leftClickBlock(this.fakePlayer, this.worldObj, this.targetPos, this.direction);
+                    if (interactWithEntity) {
+                        TEMachine.leftClickEntity(this.fakePlayer, this.worldObj, this.targetPos);
+                    } else {
+                        TEMachine.leftClickBlock(this.fakePlayer, this.worldObj, this.targetPos, this.direction);
+                    }
                 } else {
-                    TEMachine.rightClickBlock(this.fakePlayer, this.worldObj, this.targetPos, this.direction);
+                    if (interactWithEntity) {
+                        TEMachine.rightClickEntity(this.fakePlayer, this.worldObj, this.targetPos);
+                    } else {
+                        TEMachine.rightClickBlock(this.fakePlayer, this.worldObj, this.targetPos, this.direction);
+                    }
                 }
 
                 TEMachine.syncEquippedItem(this.inventory, this.fakePlayer, 0);
@@ -94,6 +104,15 @@ public class TEBlockUser extends TEMachineInventory {
 
     public void setUseLeftHand(final boolean useLeftHand) {
         this.useLeftHand = useLeftHand;
+        this.markDirty();
+    }
+
+    public boolean isInteractWithEntity() {
+        return this.interactWithEntity;
+    }
+
+    public void setInteractWithEntity(boolean interactWithEntity) {
+        this.interactWithEntity = interactWithEntity;
         this.markDirty();
     }
 

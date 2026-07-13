@@ -10,10 +10,10 @@
       "item": "minecraft:obsidian"
     },
     "d": {
-      "ore": "#forge:gems/diamond"
+      "tag": "forge:gems/diamond"
     },
     "s": {
-      "ore": "#forge:rods/wooden"
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {
