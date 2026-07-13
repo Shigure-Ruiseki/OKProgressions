@@ -1,10 +1,7 @@
 {
   "parent": "okprogressions:parent/machine_vertical",
   "textures":{
-    "0": "blocks/furnace_top",
-    "1": "blocks/dispenser_front_vertical",
-    "4": "blocks/stone",
-    "3": "blocks/cobblestone",
-    "particle": "blocks/iron_block"
+    "base": "okprogressions:blocks/machine/stone",
+    "stem": "okprogressions:blocks/machine/white"
   }
 }

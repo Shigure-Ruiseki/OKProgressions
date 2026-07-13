@@ -49,9 +49,7 @@ public class TEBlockPlacer extends TEMachineInventory {
     }
 
     private void verifyFakePlayer(WorldServer w) {
-        if (uuid == null) {
-            uuid = UUID.randomUUID();
-        }
+        this.uuid = verifyUuid(this.uuid);
         if (fakePlayer == null) {
             fakePlayer = FakePlayerHelpers.initFakePlayer(
                 w,

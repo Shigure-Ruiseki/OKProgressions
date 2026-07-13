@@ -42,7 +42,7 @@ public class TEBlockMiner extends TEMachineInventory {
     protected void doUpdate() {
         if (worldObj.isRemote) return;
 
-        verifyUuid(worldObj);
+        this.uuid = verifyUuid(this.uuid);
         if (fakePlayer == null) {
             fakePlayer = PlayerHelpers.initFakePlayer((WorldServer) worldObj, this.uuid, "block_miner");
             if (fakePlayer == null) {
@@ -92,13 +92,6 @@ public class TEBlockMiner extends TEMachineInventory {
                     targetPos.z,
                     (int) (curBlockDamage * 10.0F) - 1);
             }
-        }
-    }
-
-    private void verifyUuid(World world) {
-        if (uuid == null) {
-            uuid = UUID.randomUUID();
-            onSendUpdate();
         }
     }
 
