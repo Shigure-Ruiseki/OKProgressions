@@ -53,7 +53,7 @@ public class TEBotanyPot extends TileEntityOK
             } else if (slot == 1 && getStackInSlot(0) != null) {
                 return BotanyPotHelpers.getCropFormStack(stack) != null;
             }
-            return false;
+            return super.isItemValid(slot, stack);
         }
 
         @Override
@@ -270,6 +270,9 @@ public class TEBotanyPot extends TileEntityOK
             ItemTransfer transfer = new ItemTransfer();
             transfer.source(ItemHelpers.getItemHandler(this, ForgeDirection.DOWN));
             transfer.sink(ItemHelpers.getItemHandler(tile, ForgeDirection.UP));
+            transfer.setSourceSlots(
+                IntStream.range(2, inventory.getSlots())
+                    .toArray());
             transfer.setStacksToTransfer(inventory.getSlots());
 
             int moved = transfer.transfer();

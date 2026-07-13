@@ -25,7 +25,7 @@ public class BlockUserPanel extends MachinePanel<TEBlockUser> {
 
     public BlockUserPanel(TEBlockUser machine, PosGuiData data, PanelSyncManager syncManager, UISettings settings) {
         super(machine, data, syncManager, settings);
-        this.height(196);
+        this.height(176);
         createSlider();
     }
 
