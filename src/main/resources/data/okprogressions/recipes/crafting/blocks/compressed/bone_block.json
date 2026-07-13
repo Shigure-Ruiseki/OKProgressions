@@ -7,7 +7,7 @@
   ],
   "key": {
     "b": {
-      "ore": "#forge:bones"
+      "tag": "forge:bones"
     }
   },
   "result": {

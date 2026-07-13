@@ -19,7 +19,7 @@ import ruiseki.okprogressions.OKPCreativeTab;
 public class BlockMachine extends BlockOK {
 
     @BlockProperty
-    public static final DirectionProperty DIRECTION = DirectionProperty.facing(ForgeDirection.NORTH);
+    public static final DirectionProperty DIRECTION = DirectionProperty.facing();
 
     protected boolean isDirection;
 

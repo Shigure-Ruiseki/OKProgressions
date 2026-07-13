@@ -14,10 +14,10 @@
       "item": "okprogressions:growth"
     },
     "n": {
-      "ore": "#forge:nether_stars"
+      "tag": "forge:nether_stars"
     },
     "e": {
-      "ore": "#forge:glass"
+      "tag": "forge:glass"
     }
   },
   "result": {

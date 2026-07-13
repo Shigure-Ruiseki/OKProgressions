@@ -1,0 +1,7 @@
+{
+  "parent": "okprogressions:parent/machine_vertical",
+  "textures":{
+    "base": "okprogressions:blocks/machine/gold",
+    "stem": "okprogressions:blocks/machine/obsidian"
+  }
+}

@@ -23,7 +23,7 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import ruiseki.okcore.item.IItem;
 import ruiseki.okprogressions.OKPCreativeTab;
 import ruiseki.okprogressions.Reference;
-import ruiseki.okprogressions.common.init.ModMaterial;
+import ruiseki.okprogressions.common.init.OKProgressionsMaterial;
 
 public class ItemBirthdayPickaxe extends ItemTool implements IItem {
 
@@ -56,7 +56,7 @@ public class ItemBirthdayPickaxe extends ItemTool implements IItem {
         Blocks.stone_pressure_plate);
 
     public ItemBirthdayPickaxe() {
-        super(2.0F, ModMaterial.BIRTHDAY, effective_against);
+        super(2.0F, OKProgressionsMaterial.BIRTHDAY, effective_against);
         this.setMaxDamage(6521);
         this.maxStackSize = 1;
         this.setHarvestLevel("pickaxe", 4);

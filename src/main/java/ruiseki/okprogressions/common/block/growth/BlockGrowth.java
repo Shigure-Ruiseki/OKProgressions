@@ -17,11 +17,13 @@ import net.minecraft.world.World;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ruiseki.okcore.block.BlockOK;
 import ruiseki.okcore.block.IBlockTooltipProvider;
 import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okprogressions.common.block.cobblegen.TECobblegen;
 import ruiseki.okprogressions.config.ModConfig;
 
 public class BlockGrowth extends BlockOK implements IBlockTooltipProvider {
@@ -44,6 +46,11 @@ public class BlockGrowth extends BlockOK implements IBlockTooltipProvider {
         this.growthLvl = growthLvl;
         this.range = range;
         this.rangeY = rangeY;
+    }
+
+    @Override
+    public void registerTileEntity(String name) {
+        GameRegistry.registerTileEntity(TECobblegen.class, name + "TileEntity");
     }
 
     @Override

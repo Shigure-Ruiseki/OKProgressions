@@ -51,27 +51,31 @@ public final class OKProgressionsItems {
     public static final RegistryObject<Item> WOODEN_PAXEL = register(
         "wooden_paxel",
         () -> true,
-        () -> (IItem) new ItemPaxel(ModMaterial.PWOOD).setTextureName(Reference.PREFIX_MOD + "wooden_paxel"));
+        () -> (IItem) new ItemPaxel(OKProgressionsMaterial.PWOOD)
+            .setTextureName(Reference.PREFIX_MOD + "wooden_paxel"));
 
     public static final RegistryObject<Item> STONE_PAXEL = register(
         "stone_paxel",
         () -> true,
-        () -> (IItem) new ItemPaxel(ModMaterial.PSTONE).setTextureName(Reference.PREFIX_MOD + "stone_paxel"));
+        () -> (IItem) new ItemPaxel(OKProgressionsMaterial.PSTONE)
+            .setTextureName(Reference.PREFIX_MOD + "stone_paxel"));
 
     public static final RegistryObject<Item> IRON_PAXEL = register(
         "iron_paxel",
         () -> true,
-        () -> (IItem) new ItemPaxel(ModMaterial.PIRON).setTextureName(Reference.PREFIX_MOD + "iron_paxel"));
+        () -> (IItem) new ItemPaxel(OKProgressionsMaterial.PIRON).setTextureName(Reference.PREFIX_MOD + "iron_paxel"));
 
     public static final RegistryObject<Item> GOLDEN_PAXEL = register(
         "golden_paxel",
         () -> true,
-        () -> (IItem) new ItemPaxel(ModMaterial.PGOLD).setTextureName(Reference.PREFIX_MOD + "golden_paxel"));
+        () -> (IItem) new ItemPaxel(OKProgressionsMaterial.PGOLD)
+            .setTextureName(Reference.PREFIX_MOD + "golden_paxel"));
 
     public static final RegistryObject<Item> DIAMOND_PAXEL = register(
         "diamond_paxel",
         () -> true,
-        () -> (IItem) new ItemPaxel(ModMaterial.PDIAMOND).setTextureName(Reference.PREFIX_MOD + "diamond_paxel"));
+        () -> (IItem) new ItemPaxel(OKProgressionsMaterial.PDIAMOND)
+            .setTextureName(Reference.PREFIX_MOD + "diamond_paxel"));
 
     public static final RegistryObject<Item> STONE_STICK = register(
         "stone_stick",

@@ -7,7 +7,7 @@
   ],
   "key": {
     "s": {
-      "ore": "#forge:chests/ender"
+      "tag": "forge:chests/ender"
     },
     "l": {
       "item": "minecraft:leather"

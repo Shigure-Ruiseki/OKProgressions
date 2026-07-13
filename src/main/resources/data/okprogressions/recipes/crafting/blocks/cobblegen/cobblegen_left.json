@@ -7,10 +7,10 @@
   ],
   "key": {
     "c": {
-      "ore": "#forge:cobblestone/normal"
+      "tag": "forge:cobblestone/normal"
     },
     "g": {
-      "ore": "#forge:glass"
+      "tag": "forge:glass"
     },
     "w": {
       "item": "minecraft:water_bucket"

@@ -7,7 +7,7 @@
   ],
   "key": {
     "d": {
-      "ore": "#forge:gems/diamond"
+      "tag": "forge:gems/diamond"
     },
     "a": {
       "item": "minecraft:apple"

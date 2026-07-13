@@ -16,7 +16,7 @@
       "item": "minecraft:wooden_pickaxe"
     },
     "s": {
-      "ore": "#forge:rods/wooden"
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

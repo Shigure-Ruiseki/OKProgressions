@@ -1,0 +1,10 @@
+{
+    "variants": {
+      "facing=north":	{ "model": "okprogressions:block/block_user"},
+      "facing=south":	{ "model": "okprogressions:block/block_user", "y": 180 },
+      "facing=west":	{ "model": "okprogressions:block/block_user", "y": 90 },
+      "facing=east":	{ "model": "okprogressions:block/block_user", "y": 270 },
+      "facing=up":		{ "model": "okprogressions:block/block_user_up" },
+      "facing=down":	{ "model": "okprogressions:block/block_user_up", "x": 180 }
+    }
+}

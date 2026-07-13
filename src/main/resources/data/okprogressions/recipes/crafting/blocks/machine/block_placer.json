@@ -7,7 +7,7 @@
   ],
   "key": {
     "o": {
-      "ore": "#forge:cobblestone/normal"
+      "tag": "forge:cobblestone/normal"
     },
     "r": {
       "item": "minecraft:stone"
@@ -16,10 +16,10 @@
       "item": "minecraft:dispenser"
     },
     "b": {
-      "ore": "#forge:dusts/redstone"
+      "tag": "forge:dusts/redstone"
     },
     "g": {
-      "ore": "#forge:ingots/iron"
+      "tag": "forge:ingots/iron"
     }
   },
   "result": {

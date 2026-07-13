@@ -13,6 +13,7 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ruiseki.okcore.block.BlockOK;
 import ruiseki.okcore.block.IBlockTooltipProvider;
 import ruiseki.okcore.datastructure.BlockPos;
@@ -40,6 +41,11 @@ public class BlockBotanyPot extends BlockOK implements IGrowable, IBlockTooltipP
         this.setBlockBounds(0.125F, 0.0F, 0.125F, 0.875F, 0.5F, 0.875F);
         this.setCreativeTab(OKPCreativeTab.INSTANCE);
         this.isFullSize = this.isOpaque = false;
+    }
+
+    @Override
+    public void registerTileEntity(String name) {
+        GameRegistry.registerTileEntity(TEBotanyPot.class, name + "TileEntity");
     }
 
     @Override

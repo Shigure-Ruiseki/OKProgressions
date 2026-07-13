@@ -26,21 +26,21 @@ import ruiseki.okprogressions.common.helper.PlaceBlockHelpers;
 public class TEBlockPlacer extends TEMachineInventory {
 
     @NBTPersist
-    private UUID uuid;
+    private UUID uuid = UUID.randomUUID();
 
-    private static final int buildSpeed = 1;
-
+    private static final int BUILD_SPEED = 1;
     public static final int TIMER_FULL = 1;
 
     private WeakReference<FakePlayer> fakePlayer;
 
     public TEBlockPlacer() {
         super(9);
-        this.setSlotsForBoth();
+        this.inventory.setSlotsForBoth();
     }
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
+        if (stack == null) return false;
         return Block.getBlockFromItem(stack.getItem()) != null;
     }
 
@@ -49,17 +49,14 @@ public class TEBlockPlacer extends TEMachineInventory {
     }
 
     private void verifyFakePlayer(WorldServer w) {
-        if (uuid == null) {
-            uuid = UUID.randomUUID();
-        }
-        if (fakePlayer == null) {
-            fakePlayer = FakePlayerHelpers.initFakePlayer(
+        if (this.fakePlayer == null || this.fakePlayer.get() == null) {
+            this.fakePlayer = FakePlayerHelpers.initFakePlayer(
                 w,
                 this.uuid,
                 this.getBlockType()
                     .getLocalizedName());
-            if (fakePlayer == null) {
-                OKProgressions.okLog(Level.ERROR, "Fake player failed to init ");
+            if (this.fakePlayer == null || this.fakePlayer.get() == null) {
+                OKProgressions.okLog(Level.ERROR, "Fake player failed to init");
             }
         }
     }
@@ -68,7 +65,11 @@ public class TEBlockPlacer extends TEMachineInventory {
     protected void doUpdate() {
         super.doUpdate();
         shiftAllUp();
-        boolean trigger = false;
+
+        if (this.worldObj == null || this.worldObj.isRemote) {
+            return;
+        }
+
         if (!isRunning()) {
             markDirty();
             return;
@@ -78,31 +79,33 @@ public class TEBlockPlacer extends TEMachineInventory {
             verifyFakePlayer(worldServer);
         }
 
+        boolean trigger = false;
         ItemStack stack = getStackInSlot(0);
         if (stack == null) {
-            timer = TIMER_FULL;
+            this.timer = TIMER_FULL;
         } else {
-            timer -= buildSpeed;
-            if (timer <= 0) {
-                timer = TIMER_FULL;
+            this.timer -= BUILD_SPEED;
+            if (this.timer <= 0) {
+                this.timer = TIMER_FULL;
                 trigger = true;
             }
         }
 
-        if (trigger) {
-            if (fakePlayer != null && fakePlayer.get() != null) {
-                EntityHelpers.setEntityFacing(fakePlayer.get(), this.getDirection());
-                BlockPos placePos = getPos().offset(this.getDirection());
-                if (this.worldObj.isAirBlock(placePos.getX(), placePos.getY(), placePos.getZ())) {
-                    ItemStack itemForPlacement = stack.copy();
-                    boolean success = PlaceBlockHelpers
-                        .buildStackAsPlayer(this.worldObj, fakePlayer.get(), placePos, itemForPlacement);
-                    if (success || itemForPlacement.stackSize != stack.stackSize) {
-                        if (itemForPlacement.stackSize <= 0) {
-                            this.setInventorySlotContents(0, null);
-                        } else {
-                            this.setInventorySlotContents(0, itemForPlacement);
-                        }
+        if (trigger && this.fakePlayer != null && this.fakePlayer.get() != null) {
+            FakePlayer player = this.fakePlayer.get();
+            EntityHelpers.setEntityFacing(player, this.getDirection());
+            BlockPos placePos = getPos().offset(this.getDirection());
+
+            if (this.worldObj.isAirBlock(placePos.getX(), placePos.getY(), placePos.getZ())) {
+                ItemStack itemForPlacement = stack.copy();
+                boolean success = PlaceBlockHelpers
+                    .buildStackAsPlayer(this.worldObj, player, placePos, itemForPlacement);
+
+                if (success || itemForPlacement.stackSize != stack.stackSize) {
+                    if (itemForPlacement.stackSize <= 0) {
+                        this.setInventorySlotContents(0, null);
+                    } else {
+                        this.setInventorySlotContents(0, itemForPlacement);
                     }
                 }
             }

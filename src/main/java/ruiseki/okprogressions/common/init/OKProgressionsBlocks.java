@@ -20,6 +20,7 @@ import ruiseki.okprogressions.common.block.compressed.BlockNetherStar;
 import ruiseki.okprogressions.common.block.growth.BlockGrowth;
 import ruiseki.okprogressions.common.block.machine.miner.BlockMiner;
 import ruiseki.okprogressions.common.block.machine.placer.BlockPlacer;
+import ruiseki.okprogressions.common.block.machine.user.BlockUser;
 import ruiseki.okprogressions.common.block.reinforced.BLockReinforcedGlass;
 import ruiseki.okprogressions.common.block.reinforced.BlockReinforcedObsidian;
 import ruiseki.okprogressions.config.ModConfig;
@@ -103,6 +104,8 @@ public final class OKProgressionsBlocks {
     public static final RegistryObject<Block> BLOCK_MINER = register("block_miner", () -> true, BlockMiner::new);
 
     public static final RegistryObject<Block> BLOCK_PLACER = register("block_placer", () -> true, BlockPlacer::new);
+
+    public static final RegistryObject<Block> BLOCK_USER = register("block_user", () -> true, BlockUser::new);
 
     private static RegistryObject<Block> register(String name, Supplier<Boolean> configCondition,
         Supplier<IBlock> blockSupplier) {

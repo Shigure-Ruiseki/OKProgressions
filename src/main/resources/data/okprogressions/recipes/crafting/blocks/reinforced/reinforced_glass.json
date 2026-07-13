@@ -7,10 +7,10 @@
   ],
   "key": {
     "o": {
-      "item": "minecraft:obsidian"
+      "tag": "forge:obsidian"
     },
     "b": {
-      "item": "minecraft:glass"
+      "tag": "forge:glass"
     }
   },
   "result": {
