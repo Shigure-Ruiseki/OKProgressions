@@ -1,8 +1,9 @@
-package ruiseki.okprogressions;
+package ruiseki.okprogressions.proxy;
 
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.network.PacketHandler;
 import ruiseki.okcore.proxy.CommonProxyComponent;
+import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.common.network.PacketPlayerFalldamage;
 
 public class CommonProxy extends CommonProxyComponent {

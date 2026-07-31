@@ -23,9 +23,10 @@ import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ruiseki.okcore.helper.ItemStackHelpers;
 import ruiseki.okcore.helper.MinecraftHelpers;
-import ruiseki.okcore.init.ModBase;
+import ruiseki.okcore.init.ModBaseVersionable;
 import ruiseki.okcore.proxy.ICommonProxy;
 import ruiseki.okcore.recipe.RecipeRegistry;
+import ruiseki.okcore.tracking.Versions;
 import ruiseki.okprogressions.common.addon.nei.Mods;
 import ruiseki.okprogressions.common.addon.nei.NEIConfig;
 import ruiseki.okprogressions.common.data.crop.CropSerializer;
@@ -44,7 +45,7 @@ import ruiseki.okprogressions.config.ModConfig;
     version = Reference.VERSION,
     dependencies = Reference.DEPENDENCIES,
     guiFactory = Reference.GUI_FACTORY)
-public class OKProgressions extends ModBase {
+public class OKProgressions extends ModBaseVersionable {
 
     static {
         try {
@@ -61,10 +62,7 @@ public class OKProgressions extends ModBase {
     public static OKProgressions instance;
 
     public OKProgressions() {
-        super(Reference.MOD_ID, Reference.MOD_NAME);
-        putGenericReference(REFKEY_MOD_VERSION, Reference.VERSION);
-        putGenericReference(REFKEY_VERSION_CHECKER, ModConfig.useVersionChecker);
-        putGenericReference(REFKEY_VERSION_CHECKER_URL, Reference.UPDATE_URL);
+        super(Reference.MOD_ID, Reference.MOD_NAME, Reference.VERSION);
 
         addInitListeners(new WorldGen());
     }
@@ -108,6 +106,10 @@ public class OKProgressions extends ModBase {
             NEIConfig config = new NEIConfig();
             MinecraftForge.EVENT_BUS.register(config);
             config.loadConfig();
+        }
+
+        if (ModConfig.useVersionChecker) {
+            Versions.registerMod(this, this, Reference.UPDATE_URL);
         }
     }
 

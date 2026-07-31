@@ -1,8 +1,9 @@
-package ruiseki.okprogressions;
+package ruiseki.okprogressions.proxy;
 
 import ruiseki.okcore.client.key.IKeyRegistry;
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.proxy.ClientProxyComponent;
+import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.client.renderer.tile.BotanyPotTESR;
 import ruiseki.okprogressions.common.block.botanypot.TEBotanyPot;
 
