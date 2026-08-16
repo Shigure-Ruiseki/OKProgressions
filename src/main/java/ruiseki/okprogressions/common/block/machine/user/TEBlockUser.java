@@ -43,8 +43,8 @@ public class TEBlockUser extends TEMachineInventory {
     }
 
     @Override
-    protected void doUpdate() {
-        super.doUpdate();
+    protected void updateTileEntity() {
+        super.updateTileEntity();
         if (this.worldObj == null || this.worldObj.isRemote) {
             return;
         }

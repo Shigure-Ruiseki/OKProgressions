@@ -15,18 +15,28 @@ import net.minecraft.world.World;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 
-import ruiseki.okcore.block.BlockOK;
-import ruiseki.okcore.block.IBlockTooltipProvider;
-import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okcore.config.configurable.ConfigurableBlock;
+import ruiseki.okcore.config.extendedconfig.BlockConfig;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
 
-public class BlockReinforcedObsidian extends BlockOK implements IBlockTooltipProvider {
+public class BlockReinforcedObsidian extends ConfigurableBlock {
 
-    public BlockReinforcedObsidian() {
-        super(Material.rock);
+    private static BlockReinforcedObsidian _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static BlockReinforcedObsidian getInstance() {
+        return _instance;
+    }
+
+    public BlockReinforcedObsidian(ExtendedConfig<BlockConfig> eConfig) {
+        super(eConfig, Material.rock);
         this.setHardness(20.0F);
         this.setResistance(2000.0F);
         this.setHarvestLevel("pickaxe", 1);
-        this.setCreativeTab(OKPCreativeTab.INSTANCE);
     }
 
     @Override
@@ -49,6 +59,7 @@ public class BlockReinforcedObsidian extends BlockOK implements IBlockTooltipPro
 
     @Override
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean b) {
+        super.addInformation(itemStack, entityPlayer, list, b);
         list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.obsidian_1").getFormattedText());
     }
 }

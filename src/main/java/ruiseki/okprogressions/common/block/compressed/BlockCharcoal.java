@@ -1,33 +1,35 @@
 package ruiseki.okprogressions.common.block.compressed;
 
-import java.util.Map;
-
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.Explosion;
 
-import ruiseki.okcore.block.BlockOK;
-import ruiseki.okcore.recipe.IOreDictEntry;
-import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okcore.config.configurable.ConfigurableBlock;
+import ruiseki.okcore.config.extendedconfig.BlockConfig;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
 
-public class BlockCharcoal extends BlockOK implements IOreDictEntry {
+public class BlockCharcoal extends ConfigurableBlock {
 
-    public BlockCharcoal() {
-        super(Material.rock);
+    private static BlockCharcoal _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static BlockCharcoal getInstance() {
+        return _instance;
+    }
+
+    public BlockCharcoal(ExtendedConfig<BlockConfig> eConfig) {
+        super(eConfig, Material.rock);
         this.setHardness(1.5F);
         this.setResistance(10.0F);
         this.setHarvestLevel("pickaxe", 1);
         this.setStepSound(soundTypeStone);
-        this.setCreativeTab(OKPCreativeTab.INSTANCE);
     }
 
     @Override
     public boolean canDropFromExplosion(Explosion explosionIn) {
         return false;
-    }
-
-    @Override
-    public Map<String, ItemStack> getOreMappings() {
-        return Map.of("blockCharcoal", new ItemStack(this));
     }
 }

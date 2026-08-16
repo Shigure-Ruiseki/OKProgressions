@@ -62,8 +62,8 @@ public class TEBlockPlacer extends TEMachineInventory {
     }
 
     @Override
-    protected void doUpdate() {
-        super.doUpdate();
+    protected void updateTileEntity() {
+        super.updateTileEntity();
         shiftAllUp();
 
         if (this.worldObj == null || this.worldObj.isRemote) {

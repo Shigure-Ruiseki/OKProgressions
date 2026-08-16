@@ -10,7 +10,7 @@ import ruiseki.okcore.init.IInitListener;
 import ruiseki.okcore.world.gen.SimpleMinableWorldGenerator;
 import ruiseki.okcore.world.gen.WorldGenMinableExtended;
 import ruiseki.okprogressions.OKProgressions;
-import ruiseki.okprogressions.common.init.OKProgressionsBlocks;
+import ruiseki.okprogressions.common.block.misc.BlockOreEnder;
 
 public class WorldGen implements IInitListener {
 
@@ -25,7 +25,7 @@ public class WorldGen implements IInitListener {
         List<WorldGenMinableExtended> generators = new ArrayList<>();
         generators.add(
             new WorldGenMinableExtended(
-                OKProgressionsBlocks.ORE_ENDER.get(), // block
+                BlockOreEnder.getInstance(), // block
                 0, // meta
                 6, // blocksPerVein
                 4, // veinsPerChunk
@@ -34,7 +34,7 @@ public class WorldGen implements IInitListener {
                 Blocks.stone // replaceTarget
             ));
 
-        SimpleMinableWorldGenerator oreGen = new SimpleMinableWorldGenerator(OKProgressions.instance, generators);
+        SimpleMinableWorldGenerator oreGen = new SimpleMinableWorldGenerator(OKProgressions._instance, generators);
 
         GameRegistry.registerWorldGenerator(oreGen, 0);
     }

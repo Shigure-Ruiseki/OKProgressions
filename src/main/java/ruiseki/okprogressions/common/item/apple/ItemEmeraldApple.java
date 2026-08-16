@@ -13,13 +13,24 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ruiseki.okprogressions.Reference;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.config.extendedconfig.ItemConfig;
 
-public class ItemEmeraldApple extends ItemIronApple {
+public class ItemEmeraldApple extends ItemAppleBase {
 
-    public ItemEmeraldApple() {
-        super(4, 1.0F, false);
-        this.setTextureName(Reference.PREFIX_MOD + "emerald_apple");
+    private static ItemEmeraldApple _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static ItemEmeraldApple getInstance() {
+        return _instance;
+    }
+
+    public ItemEmeraldApple(ExtendedConfig<ItemConfig> eConfig) {
+        super(eConfig, 4, 1.0F, false);
     }
 
     @Override
@@ -34,6 +45,7 @@ public class ItemEmeraldApple extends ItemIronApple {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.emerald_apple_1").getFormattedText());
         tooltip.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.emerald_apple_2").getFormattedText());
         tooltip.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.emerald_apple_3").getFormattedText());

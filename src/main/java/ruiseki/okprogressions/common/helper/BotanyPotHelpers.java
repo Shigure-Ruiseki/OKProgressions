@@ -9,47 +9,41 @@ import net.minecraft.item.ItemStack;
 
 import org.jetbrains.annotations.Nullable;
 
-import ruiseki.okcore.helper.ItemStackHelpers;
-import ruiseki.okcore.recipe.IRecipeSerializer;
-import ruiseki.okcore.recipe.IRecipeType;
 import ruiseki.okcore.recipe.RecipeManager;
 import ruiseki.okprogressions.common.data.crop.CropInfo;
-import ruiseki.okprogressions.common.data.crop.HarvestInfo;
+import ruiseki.okprogressions.common.data.crop.CropTypeConfig;
+import ruiseki.okprogressions.common.data.crop.HarvestEntry;
 import ruiseki.okprogressions.common.data.soil.SoilInfo;
+import ruiseki.okprogressions.common.data.soil.SoilTypeConfig;
 
 public class BotanyPotHelpers {
 
-    public static IRecipeType<SoilInfo> SOIL_TYPE;
-    public static IRecipeType<CropInfo> CROP_TYPE;
-    public static IRecipeSerializer<SoilInfo> SOIL_SERIALIZER;
-    public static IRecipeSerializer<CropInfo> CROP_SERIALIZER;
-
     public static Collection<SoilInfo> getSoils() {
         return RecipeManager.getManager()
-            .getRecipesByType(SOIL_TYPE);
+            .getAllRecipesFor(SoilTypeConfig._instance.getRecipeType());
     }
 
     @Nullable
     public static SoilInfo getSoilFormStack(ItemStack stack) {
         if (stack == null || stack.getItem() == null) return null;
         for (final SoilInfo soilInfo : getSoils()) {
-            ItemStack soilStack = soilInfo.getStack();
-            if (ItemStackHelpers.areStacksEqual(soilStack, stack)) return soilInfo;
+            if (soilInfo.getIngredient()
+                .test(stack)) return soilInfo;
         }
         return null;
     }
 
     public static Collection<CropInfo> getCrops() {
         return RecipeManager.getManager()
-            .getRecipesByType(CROP_TYPE);
+            .getAllRecipesFor(CropTypeConfig._instance.getRecipeType());
     }
 
     @Nullable
     public static CropInfo getCropFormStack(ItemStack stack) {
         if (stack == null || stack.getItem() == null) return null;
         for (CropInfo cropInfo : getCrops()) {
-            ItemStack soilStack = cropInfo.getStack();
-            if (ItemStackHelpers.areStacksEqual(soilStack, stack)) return cropInfo;
+            if (cropInfo.getSeed()
+                .test(stack)) return cropInfo;
         }
         return null;
     }
@@ -60,7 +54,7 @@ public class BotanyPotHelpers {
 
     public static boolean isSoilValidForCrop(SoilInfo soil, CropInfo crop) {
         for (final String soilCategory : soil.getCategories()) {
-            for (String cropCategory : crop.getCategories()) {
+            for (String cropCategory : crop.getSoilCategories()) {
                 if (soilCategory.equalsIgnoreCase(cropCategory)) {
                     return true;
                 }
@@ -72,7 +66,7 @@ public class BotanyPotHelpers {
     public static List<ItemStack> generateDrop(Random rand, CropInfo crop) {
         final List<ItemStack> drops = new ArrayList<>();
         if (crop == null) return drops;
-        for (HarvestInfo cropEntry : crop.getResults()) {
+        for (HarvestEntry cropEntry : crop.getResults()) {
             if (rand.nextFloat() <= cropEntry.getChance()) {
                 final int rolls = rand.nextInt(cropEntry.getMaxRolls() - cropEntry.getMinRolls() + 1)
                     + cropEntry.getMinRolls();
@@ -80,9 +74,7 @@ public class BotanyPotHelpers {
 
                     for (int roll = 0; roll < rolls; roll++) {
 
-                        drops.add(
-                            cropEntry.getStack()
-                                .copy());
+                        drops.add(cropEntry.getItem());
                     }
                 }
             }

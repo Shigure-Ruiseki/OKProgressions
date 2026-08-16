@@ -1,102 +1,131 @@
 package ruiseki.okprogressions.common.data.soil;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 
-import ruiseki.okcore.datastructure.BlockStack;
-import ruiseki.okcore.inventory.ItemStackKey;
+import com.gtnewhorizon.gtnhlib.blockstate.core.BlockState;
+
 import ruiseki.okcore.recipe.IRecipeSerializer;
 import ruiseki.okcore.recipe.IRecipeType;
 import ruiseki.okcore.recipe.RecipeDataBase;
-import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
+import ruiseki.okcore.recipe.ingredient.Ingredient;
 
 public class SoilInfo extends RecipeDataBase {
 
-    private ItemStack stack;
-    private BlockStack displayBlock;
-    private float growthModifier;
-    private List<String> categories;
+    /**
+     * The item used to get the soil into the pot.
+     */
+    private Ingredient ingredient;
 
-    public SoilInfo(ResourceLocation id, ItemStack stack, BlockStack displayBlock, float growthModifier,
-        List<String> categories) {
+    /**
+     * The blockstate used to render the soil.
+     */
+    private BlockState renderState;
+
+    /**
+     * A modifier applied to the growth time of the crop.
+     */
+    private float growthModifier;
+
+    /**
+     * An array of associated soil categories.
+     */
+    private Set<String> categories;
+
+    /**
+     * The light level of the soil when placed in the crop. If this is not specified the light
+     * level of {@link #renderState} will be used.
+     */
+    private int lightLevel;
+
+    public SoilInfo(ResourceLocation id, Ingredient ingredient, BlockState renderState, float growthModifier,
+        Set<String> categories, int lightLevel) {
         super(id);
-        this.stack = stack;
-        this.displayBlock = displayBlock;
+        this.ingredient = ingredient;
+        this.renderState = renderState;
         this.growthModifier = growthModifier;
         this.categories = categories;
-    }
-
-    public ItemStack getStack() {
-        return stack;
-    }
-
-    public BlockStack getDisplayBlock() {
-        return displayBlock;
+        this.lightLevel = lightLevel;
     }
 
     public float getGrowthModifier() {
-        return growthModifier;
+
+        return this.growthModifier;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    public Ingredient getIngredient() {
+
+        return this.ingredient;
+    }
+
+    public BlockState getRenderState() {
+        return this.renderState;
+    }
+
+    public Set<String> getCategories() {
+
+        return this.categories;
+    }
+
+    @Deprecated
+    public ItemStack getFirstSoil() {
+        final ItemStack[] matchingStacks = this.ingredient.getItems();
+        return matchingStacks.length > 0 ? matchingStacks[0] : null;
+    }
+
+    public void setIngredient(Ingredient ingredient) {
+
+        this.ingredient = ingredient;
+    }
+
+    public void setRenderState(BlockState renderState) {
+        this.renderState = renderState;
+    }
+
+    public void setGrowthModifier(float modifier) {
+
+        this.growthModifier = modifier;
+    }
+
+    public void setCategories(Set<String> categories) {
+
+        this.categories = categories;
+    }
+
+    public void setLightLevel(int lightLevel) {
+        this.lightLevel = lightLevel;
+    }
+
+    public int getLightLevel() {
+        return this.lightLevel;
     }
 
     @Override
     public IRecipeType<?> getType() {
-        return BotanyPotHelpers.SOIL_TYPE;
+        return SoilTypeConfig._instance.getRecipeType();
     }
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return BotanyPotHelpers.SOIL_SERIALIZER;
+        return SoilSerializerConfig._instance.getRecipeSerializer();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof SoilInfo other)) return false;
+    public boolean matchesOK(IInventory inventory, World world) {
+        if (inventory == null || inventory.getSizeInventory() == 0) {
+            return false;
+        }
 
-        if (!Objects.equals(getId(), other.getId())) return false;
-        if (Float.compare(other.growthModifier, growthModifier) != 0) return false;
-        if (!Objects.equals(displayBlock, other.displayBlock)) return false;
-        if (!Objects.equals(categories, other.categories)) return false;
+        ItemStack stackInSlot = inventory.getStackInSlot(0);
+        if (stackInSlot == null || stackInSlot.getItem() == null) {
+            return false;
+        }
 
-        ItemStackKey key1 = ItemStackKey.of(this.stack);
-        ItemStackKey key2 = ItemStackKey.of(other.stack);
-        return Objects.equals(key1, key2);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hashCode(getId());
-        ruiseki.okcore.inventory.ItemStackKey key = ruiseki.okcore.inventory.ItemStackKey.of(this.stack);
-
-        result = 31 * result + (key != null ? key.hashCode() : 0);
-        result = 31 * result + Objects.hashCode(displayBlock);
-        result = 31 * result + Float.floatToIntBits(growthModifier);
-        result = 31 * result + Objects.hashCode(categories);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        ruiseki.okcore.inventory.ItemStackKey key = ruiseki.okcore.inventory.ItemStackKey.of(this.stack);
-        return "SoilInfo{" + "id="
-            + getId()
-            + ", item="
-            + (key != null ? key.getItem() : "null")
-            + ", meta="
-            + (key != null ? key.getMeta() : 0)
-            + ", displayBlock="
-            + displayBlock
-            + ", growthModifier="
-            + growthModifier
-            + ", categories="
-            + categories
-            + '}';
+        return this.getIngredient() != null && this.getIngredient()
+            .test(stackInSlot);
     }
 }

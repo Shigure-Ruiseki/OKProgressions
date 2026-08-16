@@ -5,16 +5,15 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 
 import com.google.common.collect.Sets;
 
-import ruiseki.okcore.item.IItem;
-import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okcore.config.configurable.ConfigurableItemPickaxe;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.config.extendedconfig.ItemConfig;
 
-public class ItemPaxel extends ItemPickaxe implements IItem {
+public class ItemPaxel extends ConfigurableItemPickaxe {
 
     private static final Set<Block> effectiveAgainst = Sets.newHashSet(
         Blocks.planks,
@@ -66,20 +65,14 @@ public class ItemPaxel extends ItemPickaxe implements IItem {
         Blocks.soul_sand,
         Blocks.web);
 
-    public ItemPaxel(ToolMaterial material) {
-        super(material);
+    public ItemPaxel(ExtendedConfig<ItemConfig> eConfig, ToolMaterial material) {
+        super(eConfig, material);
 
         this.setMaxStackSize(1);
-        this.setCreativeTab(OKPCreativeTab.INSTANCE);
 
         this.setHarvestLevel("pickaxe", material.getHarvestLevel());
         this.setHarvestLevel("axe", material.getHarvestLevel());
         this.setHarvestLevel("shovel", material.getHarvestLevel());
-    }
-
-    @Override
-    public Item get() {
-        return this;
     }
 
     @Override

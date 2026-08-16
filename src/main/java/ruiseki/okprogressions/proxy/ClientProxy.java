@@ -15,7 +15,7 @@ public class ClientProxy extends ClientProxyComponent {
 
     @Override
     public ModBase getMod() {
-        return OKProgressions.instance;
+        return OKProgressions._instance;
     }
 
     @Override

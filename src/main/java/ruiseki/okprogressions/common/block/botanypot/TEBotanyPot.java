@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import net.minecraft.block.Block;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,9 +31,12 @@ import ruiseki.okcore.item.ItemTransfer;
 import ruiseki.okcore.item.capability.CapabilityItemHandler;
 import ruiseki.okcore.item.handler.ItemStackHandler;
 import ruiseki.okcore.persist.nbt.NBTPersist;
+import ruiseki.okcore.recipe.RecipeManager;
 import ruiseki.okcore.tileentity.TileEntityOK;
 import ruiseki.okprogressions.common.data.crop.CropInfo;
+import ruiseki.okprogressions.common.data.crop.CropTypeConfig;
 import ruiseki.okprogressions.common.data.soil.SoilInfo;
+import ruiseki.okprogressions.common.data.soil.SoilTypeConfig;
 import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
 
 public class TEBotanyPot extends TileEntityOK
@@ -40,6 +44,12 @@ public class TEBotanyPot extends TileEntityOK
 
     @Delegate
     protected final TileEntityOK.ITickingTile tickingTileComponent = new TileEntityOK.TickingTileComponent(this);
+
+    private final RecipeManager.CachedCheck<IInventory, SoilInfo> soilCheck = RecipeManager
+        .createCheck(SoilTypeConfig._instance.getRecipeType());
+
+    private final RecipeManager.CachedCheck<IInventory, CropInfo> cropCheck = RecipeManager
+        .createCheck(CropTypeConfig._instance.getRecipeType());
 
     @NBTPersist("inventory")
     private final ItemStackHandler inventory = new ItemStackHandler(14) {
@@ -114,6 +124,24 @@ public class TEBotanyPot extends TileEntityOK
             .addCapabilityResolver(BasicCapabilityResolver.create(CapabilityItemHandler.ITEM_HANDLER, () -> inventory));
     }
 
+    private void updateSoilFromCache() {
+        if (this.getSoilStack() == null) {
+            this.soil = null;
+        } else {
+            this.soil = soilCheck.getRecipeFor(this, this.worldObj)
+                .orElse(null);
+        }
+    }
+
+    private void updateCropFromCache() {
+        if (this.getCropStack() == null) {
+            this.crop = null;
+        } else {
+            this.crop = cropCheck.getRecipeFor(this, this.worldObj)
+                .orElse(null);
+        }
+    }
+
     public boolean canSetSoil(@Nullable SoilInfo newSoil) {
         return newSoil == null || this.getSoil() == null;
     }
@@ -162,15 +190,15 @@ public class TEBotanyPot extends TileEntityOK
         this.totalGrowthTicks = BotanyPotHelpers.getRequiredGrowthTicks(this.getCrop(), this.getSoil());
         this.currentGrowthTicks = 0;
 
-        if (this.soil != null) {
-            this.soil = BotanyPotHelpers.getSoilFormStack(this.soil.getStack());
+        if (this.getSoilStack() != null) {
+            updateSoilFromCache();
             if (this.soil == null) {
                 this.crop = null;
             }
         }
 
-        if (this.crop != null) {
-            this.crop = BotanyPotHelpers.getCropFormStack(this.crop.getStack());
+        if (this.getCropStack() != null) {
+            updateCropFromCache();
         }
 
         if (this.worldObj != null) {
@@ -203,7 +231,7 @@ public class TEBotanyPot extends TileEntityOK
     }
 
     @Override
-    protected void doUpdate() {
+    protected void updateTileEntity() {
         if (this.worldObj.isRemote) return;
 
         if (this.hasSoilAndCrop()) {
@@ -230,7 +258,7 @@ public class TEBotanyPot extends TileEntityOK
 
     private void attemptAutoHarvest() {
         Block block = getBlockType();
-        if (block instanceof BlockBotanyPot && ((BlockBotanyPot) block).isHopper()) {
+        if (block instanceof BlockBotanyPotBase && ((BlockBotanyPotBase) block).isHopper()) {
             if (this.isDoneGrowing()) {
                 List<ItemStack> drops = getDrops();
                 if (!drops.isEmpty()) {
@@ -306,22 +334,10 @@ public class TEBotanyPot extends TileEntityOK
     }
 
     @Override
-    public void readCommon(NBTTagCompound tag) {
-        super.readCommon(tag);
-
-        ItemStack soilStack = this.getSoilStack();
-        if (soilStack != null) {
-            this.soil = BotanyPotHelpers.getSoilFormStack(soilStack);
-        } else {
-            this.soil = null;
-        }
-
-        ItemStack cropStack = this.getCropStack();
-        if (cropStack != null) {
-            this.crop = BotanyPotHelpers.getCropFormStack(cropStack);
-        } else {
-            this.crop = null;
-        }
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+        updateSoilFromCache();
+        updateCropFromCache();
     }
 
     @Override

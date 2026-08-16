@@ -7,19 +7,30 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.config.extendedconfig.ItemConfig;
 import ruiseki.okcore.helper.LangHelpers;
 import ruiseki.okprogressions.OKProgressions;
-import ruiseki.okprogressions.Reference;
 import ruiseki.okprogressions.common.network.PacketPlayerFalldamage;
 
 public class ItemClimbingGlove extends ItemCharm {
 
+    private static ItemClimbingGlove _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static ItemClimbingGlove getInstance() {
+        return _instance;
+    }
+
     private static final int TICKS_FALLDIST_SYNC = 22;
     private static final double CLIMB_SPEED = 0.288D;
 
-    public ItemClimbingGlove() {
-        super(6000);
-        this.setTextureName(Reference.PREFIX_MOD + "climbing_glove");
+    public ItemClimbingGlove(ExtendedConfig<ItemConfig> eConfig) {
+        super(eConfig, 6000);
     }
 
     @Override
@@ -49,7 +60,7 @@ public class ItemClimbingGlove extends ItemCharm {
             entity.motionY = climbSpeed;
         }
         if (worldIn.isRemote && entity instanceof EntityPlayer && entity.ticksExisted % TICKS_FALLDIST_SYNC == 0) {
-            OKProgressions.instance.getPacketHandler()
+            OKProgressions._instance.getPacketHandler()
                 .sendToServer(new PacketPlayerFalldamage());
         }
     }

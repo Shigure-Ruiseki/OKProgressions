@@ -1,6 +1,7 @@
 package ruiseki.okprogressions.common.addon.nei;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -10,9 +11,9 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import ruiseki.okcore.addon.nei.PositionedStackAdv;
 import ruiseki.okcore.addon.nei.RecipeHandlerBase;
-import ruiseki.okprogressions.common.block.botanypot.BlockBotanyPot;
+import ruiseki.okprogressions.common.block.botanypot.BlockBotanyPotBase;
 import ruiseki.okprogressions.common.data.crop.CropInfo;
-import ruiseki.okprogressions.common.data.crop.HarvestInfo;
+import ruiseki.okprogressions.common.data.crop.HarvestEntry;
 import ruiseki.okprogressions.common.data.soil.SoilInfo;
 import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
 
@@ -58,8 +59,8 @@ public class BotanyCropsRecipeHandler extends RecipeHandlerBase {
         for (CropInfo crop : BotanyPotHelpers.getCrops()) {
             for (SoilInfo soil : BotanyPotHelpers.getSoils()) {
                 if (isCompatible(crop, soil)) {
-                    for (HarvestInfo hm : crop.getResults()) {
-                        if (NEIServerUtils.areStacksSameTypeCrafting(hm.getStack(), result)) {
+                    for (HarvestEntry entry : crop.getResults()) {
+                        if (NEIServerUtils.areStacksSameTypeCrafting(entry.getItem(), result)) {
                             addAllResults(crop, soil);
                             break;
                         }
@@ -73,7 +74,7 @@ public class BotanyCropsRecipeHandler extends RecipeHandlerBase {
     public void loadUsageRecipes(ItemStack ingredient) {
         if (ingredient != null && ingredient.getItem() != null) {
             Block block = Block.getBlockFromItem(ingredient.getItem());
-            if (block instanceof BlockBotanyPot) {
+            if (block instanceof BlockBotanyPotBase) {
                 loadAllRecipes();
                 return;
             }
@@ -82,8 +83,12 @@ public class BotanyCropsRecipeHandler extends RecipeHandlerBase {
         for (CropInfo crop : BotanyPotHelpers.getCrops()) {
             for (SoilInfo soil : BotanyPotHelpers.getSoils()) {
                 if (isCompatible(crop, soil)) {
-                    if (NEIServerUtils.areStacksSameTypeCrafting(crop.getStack(), ingredient)
-                        || NEIServerUtils.areStacksSameTypeCrafting(soil.getStack(), ingredient)) {
+                    boolean matchesSeed = crop.getSeed() != null && crop.getSeed()
+                        .test(ingredient);
+                    boolean matchesSoil = soil.getIngredient() != null && soil.getIngredient()
+                        .test(ingredient);
+
+                    if (matchesSeed || matchesSoil) {
                         addAllResults(crop, soil);
                     }
                 }
@@ -110,12 +115,12 @@ public class BotanyCropsRecipeHandler extends RecipeHandlerBase {
     }
 
     private void addAllResults(CropInfo crop, SoilInfo soil) {
-        arecipes.add(new CachedBotanyCropsRecipe(crop.getStack(), soil.getStack(), crop.getResults()));
+        arecipes.add(new CachedBotanyCropsRecipe(crop, soil));
     }
 
     private boolean isCompatible(CropInfo crop, SoilInfo soil) {
-        for (final String soilCategory : soil.getCategories()) {
-            for (String cropCategory : crop.getCategories()) {
+        for (String soilCategory : soil.getCategories()) {
+            for (String cropCategory : crop.getSoilCategories()) {
                 if (soilCategory.equalsIgnoreCase(cropCategory)) {
                     return true;
                 }
@@ -129,29 +134,39 @@ public class BotanyCropsRecipeHandler extends RecipeHandlerBase {
         public List<PositionedStack> inputs = new ArrayList<>();
         public List<PositionedStack> outputs = new ArrayList<>();
 
-        public CachedBotanyCropsRecipe(ItemStack crop, ItemStack soil, List<HarvestInfo> results) {
-            if (crop != null) {
-                inputs.add(new PositionedStack(crop, 22, 14));
+        public CachedBotanyCropsRecipe(CropInfo crop, SoilInfo soil) {
+            if (crop != null && crop.getSeed() != null) {
+                ItemStack[] seedItems = crop.getSeed()
+                    .getItems();
+                if (seedItems != null && seedItems.length > 0) {
+                    inputs.add(new PositionedStack(Arrays.asList(seedItems), 22, 14));
+                }
             }
 
-            if (soil != null) {
-                inputs.add(new PositionedStack(soil, 22, 32));
+            if (soil != null && soil.getIngredient() != null) {
+                ItemStack[] soilItems = soil.getIngredient()
+                    .getItems();
+                if (soilItems != null && soilItems.length > 0) {
+                    inputs.add(new PositionedStack(Arrays.asList(soilItems), 22, 32));
+                }
             }
 
-            if (results != null) {
+            if (crop != null && crop.getResults() != null) {
+                List<HarvestEntry> results = crop.getResults();
                 for (int i = 0; i < results.size() && i < 12; i++) {
-                    HarvestInfo hm = results.get(i);
+                    HarvestEntry entry = results.get(i);
                     int col = i % 4;
                     int row = i / 4;
                     int x = 75 + (col * 18);
                     int y = 5 + (row * 18);
 
-                    PositionedStackAdv stackAdv = new PositionedStackAdv(hm.getStack(), x, y);
-                    stackAdv.addToTooltip("§7Chance: §f" + String.format("%.2f%%", hm.getChance() * 100));
-                    if (hm.getMinRolls() != hm.getMaxRolls()) {
-                        stackAdv.addToTooltip("§7Amount: §f" + hm.getMinRolls() + " - " + hm.getMaxRolls());
+                    PositionedStackAdv stackAdv = new PositionedStackAdv(entry.getItem(), x, y);
+                    stackAdv.addToTooltip("§7Chance: §f" + String.format("%.2f%%", entry.getChance() * 100));
+
+                    if (entry.getMinRolls() != entry.getMaxRolls()) {
+                        stackAdv.addToTooltip("§7Amount: §f" + entry.getMinRolls() + " - " + entry.getMaxRolls());
                     } else {
-                        stackAdv.addToTooltip("§7Amount: §f" + hm.getMinRolls());
+                        stackAdv.addToTooltip("§7Amount: §f" + entry.getMinRolls());
                     }
 
                     outputs.add(stackAdv);
@@ -173,6 +188,5 @@ public class BotanyCropsRecipeHandler extends RecipeHandlerBase {
         public PositionedStack getResult() {
             return null;
         }
-
     }
 }
