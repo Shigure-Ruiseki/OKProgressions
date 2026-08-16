@@ -13,11 +13,11 @@ import net.minecraft.util.IIcon;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizon.gtnhlib.blockstate.core.BlockState;
 import com.gtnewhorizon.gtnhlib.client.renderer.TessellatorManager;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ruiseki.okcore.datastructure.BlockStack;
 import ruiseki.okprogressions.common.block.botanypot.TEBotanyPot;
 
 @SideOnly(Side.CLIENT)
@@ -35,18 +35,18 @@ public class BotanyPotTESR extends TileEntitySpecialRenderer {
         GL11.glDisable(GL11.GL_LIGHTING);
 
         if (pot.getSoil() != null && pot.getSoil()
-            .getDisplayBlock() != null) {
+            .getRenderState() != null) {
             GL11.glPushMatrix();
             GL11.glTranslatef(0.5f, 0.4f, 0.5f);
             GL11.glScalef(0.625f, 0.1f, 0.625f);
             this.renderBlock(
                 pot.getSoil()
-                    .getDisplayBlock());
+                    .getRenderState());
             GL11.glPopMatrix();
         }
 
         if (pot.getCrop() != null && pot.getCrop()
-            .getDisplayBlock() != null) {
+            .getDisplayState() != null) {
             GL11.glPushMatrix();
 
             GL11.glTranslated(0.5, 0.45, 0.5);
@@ -63,7 +63,7 @@ public class BotanyPotTESR extends TileEntitySpecialRenderer {
             GL11.glTranslatef(0.0f, 0.45f, 0.0f);
             this.renderBlock(
                 pot.getCrop()
-                    .getDisplayBlock());
+                    .getDisplayState());
 
             GL11.glPopMatrix();
         }
@@ -72,7 +72,7 @@ public class BotanyPotTESR extends TileEntitySpecialRenderer {
         GL11.glPopMatrix();
     }
 
-    private void renderBlock(BlockStack stack) {
+    private void renderBlock(BlockState stack) {
         if (stack == null) return;
 
         Block block = stack.getBlock();
@@ -84,7 +84,7 @@ public class BotanyPotTESR extends TileEntitySpecialRenderer {
         if (block instanceof BlockLiquid) {
             GL11.glPushMatrix();
 
-            IIcon icon = block.getIcon(0, stack.getMeta());
+            IIcon icon = block.getIcon(0, stack.getBlockMeta(0));
             if (icon != null) {
                 Tessellator tessellator = TessellatorManager.get();
 
@@ -107,7 +107,7 @@ public class BotanyPotTESR extends TileEntitySpecialRenderer {
             GL11.glPopMatrix();
         } else {
             GL11.glPushMatrix();
-            this.renderBlocks.renderBlockAsItem(block, stack.getMeta(), 1.0f);
+            this.renderBlocks.renderBlockAsItem(block, stack.getBlockMeta(0), 1.0f);
             GL11.glPopMatrix();
         }
     }

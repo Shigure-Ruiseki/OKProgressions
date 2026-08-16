@@ -9,23 +9,28 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import baubles.api.BaubleType;
+import baubles.api.expanded.BaubleItemHelper;
+import baubles.api.expanded.IBaubleExpanded;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ruiseki.okcore.config.configurable.ConfigurableItem;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.config.extendedconfig.ItemConfig;
+import ruiseki.okcore.entity.EntityDoppleganger;
 import ruiseki.okcore.helper.LangHelpers;
 import ruiseki.okcore.item.IItemToggle;
-import ruiseki.okcore.item.ItemBauble;
-import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okprogressions.common.addon.nei.Mods;
 
 @Optional.InterfaceList({
     @Optional.Interface(modid = "Baubles|Expanded", iface = "baubles.api.expanded.IBaubleExpanded"),
     @Optional.Interface(modid = "Baubles", iface = "baubles.api.IBauble"), })
-public abstract class ItemCharm extends ItemBauble implements IItemToggle {
+public abstract class ItemCharm extends ConfigurableItem implements IBaubleExpanded, IItemToggle {
 
-    public ItemCharm(int durability) {
-        super();
+    public ItemCharm(ExtendedConfig<ItemConfig> eConfig, int durability) {
+        super(eConfig);
         this.setMaxDamage(durability);
-        this.setCreativeTab(OKPCreativeTab.INSTANCE);
     }
 
     @Override
@@ -46,15 +51,60 @@ public abstract class ItemCharm extends ItemBauble implements IItemToggle {
     public void damageCharm(EntityPlayer living, ItemStack stack) {
         if (!living.capabilities.isCreativeMode && !living.worldObj.isRemote) {
             stack.damageItem(1, living);
-            if (living instanceof EntityPlayerMP playerMP) {
+            if (stack.stackSize <= 0 && living instanceof EntityPlayerMP playerMP) {
                 playerMP.sendContainerToPlayer(living.inventoryContainer);
             }
         }
     }
 
     @Override
+    @Optional.Method(modid = "Baubles|Expanded")
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        if (!EntityDoppleganger.isTruePlayer(player)) return itemStack;
+
+        if (Mods.Baubles.isModLoaded()) {
+            if (canEquip(itemStack, player)) {
+                BaubleItemHelper.onBaubleRightClick(itemStack, world, player);
+            }
+        }
+
+        return itemStack;
+    }
+
+    @Override
+    @Optional.Method(modid = "Baubles|Expanded")
     public String[] getBaubleTypes(ItemStack itemstack) {
         return new String[] { "charm" };
+    }
+
+    @Override
+    @Optional.Method(modid = "Baubles")
+    public BaubleType getBaubleType(ItemStack itemstack) {
+        return null;
+    }
+
+    @Override
+    @Optional.Method(modid = "Baubles")
+    public void onEquipped(ItemStack itemstack, EntityLivingBase player) {
+
+    }
+
+    @Override
+    @Optional.Method(modid = "Baubles")
+    public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {
+
+    }
+
+    @Override
+    @Optional.Method(modid = "Baubles")
+    public boolean canEquip(ItemStack stack, EntityLivingBase player) {
+        return true;
+    }
+
+    @Override
+    @Optional.Method(modid = "Baubles")
+    public boolean canUnequip(ItemStack stack, EntityLivingBase player) {
+        return true;
     }
 
     @Override

@@ -32,8 +32,8 @@ public class TEGrowth extends TileEntityOK implements TileEntityOK.ITickingTile 
     }
 
     @Override
-    protected void doUpdate() {
-        super.doUpdate();
+    protected void updateTileEntity() {
+        super.updateTileEntity();
         if (worldObj.isRemote) return;
         if (growthLvl <= 1) return;
 

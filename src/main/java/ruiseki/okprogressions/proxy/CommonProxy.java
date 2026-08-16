@@ -10,7 +10,7 @@ public class CommonProxy extends CommonProxyComponent {
 
     @Override
     public ModBase getMod() {
-        return OKProgressions.instance;
+        return OKProgressions._instance;
     }
 
     @Override

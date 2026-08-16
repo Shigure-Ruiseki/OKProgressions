@@ -39,7 +39,7 @@ public class TEBlockMiner extends TEMachineInventory {
     }
 
     @Override
-    protected void doUpdate() {
+    protected void updateTileEntity() {
         if (this.worldObj == null || this.worldObj.isRemote) {
             return;
         }

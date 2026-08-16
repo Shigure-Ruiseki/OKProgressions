@@ -3,40 +3,42 @@ package ruiseki.okprogressions.common.block.machine;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.cleanroommc.modularui.factory.GuiFactories;
+import com.gtnewhorizon.gtnhlib.blockstate.core.BlockState;
 
-import ruiseki.okcore.block.BlockOK;
 import ruiseki.okcore.block.property.BlockProperty;
 import ruiseki.okcore.block.property.DirectionProperty;
-import ruiseki.okcore.helper.BlockStateHelpers;
+import ruiseki.okcore.config.configurable.ConfigurableBlockContainer;
+import ruiseki.okcore.config.extendedconfig.BlockConfig;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.datastructure.BlockPos;
 import ruiseki.okcore.helper.DirectionHelpers;
-import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okcore.tileentity.TileEntityOK;
 
-public class BlockMachine extends BlockOK {
+public abstract class BlockMachine extends ConfigurableBlockContainer {
 
     @BlockProperty
     public static final DirectionProperty DIRECTION = DirectionProperty.facing();
 
     protected boolean isDirection;
 
-    protected BlockMachine(Material mat) {
-        super(mat);
+    protected BlockMachine(ExtendedConfig<BlockConfig> eConfig, Material material,
+        Class<? extends TileEntityOK> tileEntity) {
+        super(eConfig, material, tileEntity);
         this.setHardness(3.0F);
         this.setResistance(5.0F);
         this.setStepSound(soundTypeMetal);
-        this.setCreativeTab(OKPCreativeTab.INSTANCE);
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
-        super.onBlockPlacedBy(world, x, y, z, player, stack);
-        if (!isDirection) return;
-        ForgeDirection facing = DirectionHelpers.yawToDirection6(player);
-        BlockStateHelpers.set(world, x, y, z, DIRECTION, facing);
+    public BlockState getStateForPlacement(World world, BlockPos pos, ForgeDirection facing, float hitX, float hitY,
+        float hitZ, int meta, EntityLivingBase placer) {
+        BlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+        if (isDirection) state.setPropertyValue(DIRECTION, DirectionHelpers.yawToDirection6(placer));
+        return state;
     }
 
     @Override

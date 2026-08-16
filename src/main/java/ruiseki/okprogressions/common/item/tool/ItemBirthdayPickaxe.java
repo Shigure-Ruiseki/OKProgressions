@@ -8,9 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemTool;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
@@ -20,12 +18,23 @@ import net.minecraftforge.oredict.OreDictionary;
 import com.google.common.collect.Sets;
 import com.mojang.realmsclient.gui.ChatFormatting;
 
-import ruiseki.okcore.item.IItem;
-import ruiseki.okprogressions.OKPCreativeTab;
-import ruiseki.okprogressions.Reference;
+import ruiseki.okcore.config.configurable.ConfigurableItemTool;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.config.extendedconfig.ItemConfig;
 import ruiseki.okprogressions.common.init.OKProgressionsMaterial;
 
-public class ItemBirthdayPickaxe extends ItemTool implements IItem {
+public class ItemBirthdayPickaxe extends ConfigurableItemTool {
+
+    private static ItemBirthdayPickaxe _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static ItemBirthdayPickaxe getInstance() {
+        return _instance;
+    }
 
     private static final Set<Block> effective_against = Sets.newHashSet(
         Blocks.activator_rail,
@@ -55,19 +64,11 @@ public class ItemBirthdayPickaxe extends ItemTool implements IItem {
         Blocks.stone_button,
         Blocks.stone_pressure_plate);
 
-    public ItemBirthdayPickaxe() {
-        super(2.0F, OKProgressionsMaterial.BIRTHDAY, effective_against);
+    public ItemBirthdayPickaxe(ExtendedConfig<ItemConfig> eConfig) {
+        super(eConfig, 2.0F, OKProgressionsMaterial.BIRTHDAY, effective_against);
         this.setMaxDamage(6521);
         this.maxStackSize = 1;
         this.setHarvestLevel("pickaxe", 4);
-
-        this.setTextureName(Reference.PREFIX_MOD + "birthday_pickaxe");
-        this.setCreativeTab(OKPCreativeTab.INSTANCE);
-    }
-
-    @Override
-    public Item get() {
-        return this;
     }
 
     @Override
@@ -94,6 +95,7 @@ public class ItemBirthdayPickaxe extends ItemTool implements IItem {
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.birthday_1").getFormattedText());
         tooltip.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.birthday_2").getFormattedText());
     }

@@ -1,25 +1,32 @@
 package ruiseki.okprogressions.common.block.compressed;
 
-import java.util.Map;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-import ruiseki.okcore.block.BlockOK;
-import ruiseki.okcore.recipe.IOreDictEntry;
-import ruiseki.okprogressions.OKPCreativeTab;
+import ruiseki.okcore.config.configurable.ConfigurableBlock;
+import ruiseki.okcore.config.extendedconfig.BlockConfig;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
 
-public class BlockBone extends BlockOK implements IOreDictEntry {
+public class BlockBone extends ConfigurableBlock {
 
-    public BlockBone() {
-        super(Material.ground);
+    private static BlockBone _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static BlockBone getInstance() {
+        return _instance;
+    }
+
+    public BlockBone(ExtendedConfig<BlockConfig> eConfig) {
+        super(eConfig, Material.ground);
         this.setHardness(0.5F);
         this.setResistance(5.0F);
         this.setStepSound(soundTypeStone);
-        this.setCreativeTab(OKPCreativeTab.INSTANCE);
     }
 
     @Override
@@ -30,10 +37,5 @@ public class BlockBone extends BlockOK implements IOreDictEntry {
     @Override
     public void onFallenUpon(World worldIn, int x, int y, int z, Entity entity, float fallDistance) {
         entity.fallDistance = fallDistance * 3.0F;
-    }
-
-    @Override
-    public Map<String, ItemStack> getOreMappings() {
-        return Map.of("blockBone", new ItemStack(this));
     }
 }

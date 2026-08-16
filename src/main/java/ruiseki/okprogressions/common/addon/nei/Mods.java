@@ -8,7 +8,9 @@ import cpw.mods.fml.common.Loader;
 
 public enum Mods implements IMod {
 
-    NotEnoughItems("NotEnoughItems"),;
+    NotEnoughItems("NotEnoughItems"),
+    Baubles("Baubles"),
+    BaublesExpanded("Baubles|Expanded"),;
 
     public final String modid;
     public final String resourceDomain;

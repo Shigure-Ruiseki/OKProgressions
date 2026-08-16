@@ -6,14 +6,27 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import ruiseki.okcore.config.configurable.ConfigurableItem;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.config.extendedconfig.ItemConfig;
 import ruiseki.okcore.helper.LangHelpers;
-import ruiseki.okcore.item.ItemOK;
 import ruiseki.okprogressions.Reference;
 
-public class ItemEnderSack extends ItemOK {
+public class ItemEnderSack extends ConfigurableItem {
 
-    public ItemEnderSack() {
-        super();
+    private static ItemEnderSack _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static ItemEnderSack getInstance() {
+        return _instance;
+    }
+
+    public ItemEnderSack(ExtendedConfig<ItemConfig> eConfig) {
+        super(eConfig);
         this.setMaxStackSize(1);
         this.setTextureName(Reference.PREFIX_MOD + "ender_sack");
     }

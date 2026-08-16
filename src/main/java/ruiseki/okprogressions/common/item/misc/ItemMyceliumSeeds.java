@@ -11,16 +11,25 @@ import net.minecraft.world.World;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 
-import ruiseki.okcore.item.ItemOK;
-import ruiseki.okprogressions.OKPCreativeTab;
-import ruiseki.okprogressions.Reference;
+import ruiseki.okcore.config.configurable.ConfigurableItem;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.config.extendedconfig.ItemConfig;
 
-public class ItemMyceliumSeeds extends ItemOK {
+public class ItemMyceliumSeeds extends ConfigurableItem {
 
-    public ItemMyceliumSeeds() {
-        super();
-        this.setCreativeTab(OKPCreativeTab.INSTANCE);
-        this.setTextureName(Reference.PREFIX_MOD + "mycelium_seeds");
+    private static ItemMyceliumSeeds _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static ItemMyceliumSeeds getInstance() {
+        return _instance;
+    }
+
+    public ItemMyceliumSeeds(ExtendedConfig<ItemConfig> eConfig) {
+        super(eConfig);
     }
 
     @Override
@@ -40,6 +49,7 @@ public class ItemMyceliumSeeds extends ItemOK {
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        super.addInformation(stack, player, list, flag);
         list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.seeds").getFormattedText());
     }
 }

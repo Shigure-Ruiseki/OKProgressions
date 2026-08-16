@@ -1,31 +1,26 @@
 package ruiseki.okprogressions.common.block.machine.placer;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import ruiseki.okcore.config.extendedconfig.BlockConfig;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
 import ruiseki.okprogressions.common.block.machine.BlockMachine;
 
 public class BlockPlacer extends BlockMachine {
 
-    public BlockPlacer() {
-        super(Material.iron);
+    private static BlockPlacer _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static BlockPlacer getInstance() {
+        return _instance;
+    }
+
+    public BlockPlacer(ExtendedConfig<BlockConfig> eConfig) {
+        super(eConfig, Material.iron, TEBlockPlacer.class);
         this.isDirection = true;
-    }
-
-    @Override
-    public void registerTileEntity(String name) {
-        GameRegistry.registerTileEntity(TEBlockPlacer.class, name + "TileEntity");
-    }
-
-    @Override
-    public boolean hasTileEntity(int metadata) {
-        return true;
-    }
-
-    @Override
-    public TileEntity createTileEntity(World world, int metadata) {
-        return new TEBlockPlacer();
     }
 }

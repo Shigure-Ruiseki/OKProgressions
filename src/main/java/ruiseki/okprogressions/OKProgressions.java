@@ -2,13 +2,11 @@ package ruiseki.okprogressions;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.Level;
 
 import com.gtnewhorizon.gtnhlib.client.model.loading.ModelRegistry;
-import com.gtnewhorizon.gtnhlib.config.ConfigException;
 
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Mod;
@@ -21,48 +19,37 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import ruiseki.okcore.config.ConfigHandler;
+import ruiseki.okcore.config.extendedconfig.BlockItemConfigReference;
 import ruiseki.okcore.helper.ItemStackHelpers;
 import ruiseki.okcore.helper.MinecraftHelpers;
+import ruiseki.okcore.init.ItemCreativeTab;
 import ruiseki.okcore.init.ModBaseVersionable;
 import ruiseki.okcore.proxy.ICommonProxy;
-import ruiseki.okcore.recipe.RecipeRegistry;
-import ruiseki.okcore.tracking.Versions;
 import ruiseki.okprogressions.common.addon.nei.Mods;
 import ruiseki.okprogressions.common.addon.nei.NEIConfig;
-import ruiseki.okprogressions.common.data.crop.CropSerializer;
-import ruiseki.okprogressions.common.data.crop.CropType;
-import ruiseki.okprogressions.common.data.soil.SoilSerializer;
-import ruiseki.okprogressions.common.data.soil.SoilType;
-import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
-import ruiseki.okprogressions.common.init.OKProgressionsBlocks;
-import ruiseki.okprogressions.common.init.OKProgressionsItems;
+import ruiseki.okprogressions.common.block.cobblegen.BlockCobblegenConfig;
+import ruiseki.okprogressions.common.block.compressed.BlockCharcoalConfig;
+import ruiseki.okprogressions.common.item.misc.ItemTinyCharcoalConfig;
+import ruiseki.okprogressions.common.item.misc.ItemTinyCoalConfig;
 import ruiseki.okprogressions.common.world.WorldGen;
-import ruiseki.okprogressions.config.ModConfig;
 
 @Mod(
     modid = Reference.MOD_ID,
     name = Reference.MOD_NAME,
-    version = Reference.VERSION,
-    dependencies = Reference.DEPENDENCIES,
+    version = Reference.MOD_VERSION,
+    dependencies = Reference.MOD_DEPENDENCIES,
     guiFactory = Reference.GUI_FACTORY)
 public class OKProgressions extends ModBaseVersionable {
-
-    static {
-        try {
-            ModConfig.registerConfig();
-        } catch (ConfigException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @SidedProxy(serverSide = Reference.PROXY_COMMON, clientSide = Reference.PROXY_CLIENT)
     public static ICommonProxy proxy;
 
     @Mod.Instance(Reference.MOD_ID)
-    public static OKProgressions instance;
+    public static OKProgressions _instance;
 
     public OKProgressions() {
-        super(Reference.MOD_ID, Reference.MOD_NAME, Reference.VERSION);
+        super(Reference.MOD_ID, Reference.MOD_NAME, Reference.MOD_VERSION);
 
         addInitListeners(new WorldGen());
     }
@@ -71,31 +58,24 @@ public class OKProgressions extends ModBaseVersionable {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        OKProgressionsBlocks.register();
-        OKProgressionsItems.register();
         if (MinecraftHelpers.isClientSide()) {
             ModelRegistry.registerModid(Reference.MOD_ID);
         }
-        BotanyPotHelpers.SOIL_TYPE = RecipeRegistry
-            .registerType(new ResourceLocation(Reference.MOD_ID, "soil"), SoilType.INSTANCE);
-        BotanyPotHelpers.CROP_TYPE = RecipeRegistry
-            .registerType(new ResourceLocation(Reference.MOD_ID, "crop"), CropType.INSTANCE);
-        BotanyPotHelpers.SOIL_SERIALIZER = RecipeRegistry
-            .registerSerializer(new ResourceLocation(Reference.MOD_ID, "soil"), SoilSerializer.INSTANCE);
-        BotanyPotHelpers.CROP_SERIALIZER = RecipeRegistry
-            .registerSerializer(new ResourceLocation(Reference.MOD_ID, "crop"), CropSerializer.INSTANCE);
 
         GameRegistry.registerFuelHandler(new IFuelHandler() {
 
             @Override
             public int getBurnTime(ItemStack fuel) {
-                if (ItemStackHelpers.areStacksEqual(fuel, new ItemStack(OKProgressionsItems.TINY_CHARCOAL.get()))) {
+                if (ItemStackHelpers
+                    .areStacksEqual(fuel, new ItemStack(ItemTinyCoalConfig._instance.getItemInstance()))) {
                     return 200;
                 }
-                if (ItemStackHelpers.areStacksEqual(fuel, new ItemStack(OKProgressionsItems.TINY_COAL.get()))) {
+                if (ItemStackHelpers
+                    .areStacksEqual(fuel, new ItemStack(ItemTinyCharcoalConfig._instance.getItemInstance()))) {
                     return 200;
                 }
-                if (ItemStackHelpers.areStacksEqual(fuel, new ItemStack(OKProgressionsBlocks.CHARCOAL_BLOCK.get()))) {
+                if (ItemStackHelpers
+                    .areStacksEqual(fuel, new ItemStack(BlockCharcoalConfig._instance.getItemInstance()))) {
                     return 16000;
                 }
                 return 0;
@@ -106,10 +86,6 @@ public class OKProgressions extends ModBaseVersionable {
             NEIConfig config = new NEIConfig();
             MinecraftForge.EVENT_BUS.register(config);
             config.loadConfig();
-        }
-
-        if (ModConfig.useVersionChecker) {
-            Versions.registerMod(this, this, Reference.UPDATE_URL);
         }
     }
 
@@ -151,12 +127,22 @@ public class OKProgressions extends ModBaseVersionable {
 
     @Override
     public CreativeTabs constructDefaultCreativeTab() {
-        return OKPCreativeTab.INSTANCE;
+        return new ItemCreativeTab(this, new BlockItemConfigReference(BlockCobblegenConfig.class));
     }
 
     @Override
     public ICommonProxy getProxy() {
         return proxy;
+    }
+
+    @Override
+    public void onGeneralConfigsRegister(ConfigHandler configHandler) {
+        configHandler.add(new GeneralConfig());
+    }
+
+    @Override
+    public void onMainConfigsRegister(ConfigHandler configHandler) {
+        Configs.register(configHandler);
     }
 
     /**
@@ -165,7 +151,7 @@ public class OKProgressions extends ModBaseVersionable {
      * @param message The message to show.
      */
     public static void okLog(String message) {
-        OKProgressions.instance.log(Level.INFO, message);
+        OKProgressions._instance.log(Level.INFO, message);
     }
 
     /**
@@ -175,10 +161,10 @@ public class OKProgressions extends ModBaseVersionable {
      * @param message The message to show.
      */
     public static void okLog(Level level, String message) {
-        OKProgressions.instance.log(level, message);
+        OKProgressions._instance.log(level, message);
     }
 
     public static void okLog(Level level, String message, Object... params) {
-        OKProgressions.instance.log(level, message, params);
+        OKProgressions._instance.log(level, message, params);
     }
 }

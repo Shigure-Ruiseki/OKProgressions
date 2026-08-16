@@ -1,79 +1,199 @@
 package ruiseki.okprogressions.common.data.crop;
 
 import java.util.List;
+import java.util.Set;
 
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
-import ruiseki.okcore.datastructure.BlockStack;
+import com.gtnewhorizon.gtnhlib.blockstate.core.BlockState;
+
+import ruiseki.okcore.datastructure.BlockPos;
 import ruiseki.okcore.recipe.IRecipeSerializer;
 import ruiseki.okcore.recipe.IRecipeType;
 import ruiseki.okcore.recipe.RecipeDataBase;
+import ruiseki.okcore.recipe.ingredient.Ingredient;
 import ruiseki.okprogressions.common.data.soil.SoilInfo;
-import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
 
 public class CropInfo extends RecipeDataBase {
 
-    private ItemStack stack;
-    private BlockStack displayBlock;
+    /**
+     * The ingredient used for the crop's seed.
+     */
+    private Ingredient seed;
+
+    /**
+     * An array of valid soil categories.
+     */
+    private Set<String> soilCategories;
+
+    /**
+     * The amount of ticks for the crop to grow under normal conditions.
+     */
     private int growthTicks;
+
+    /**
+     * An array of things the crop can drop.
+     */
+    private List<HarvestEntry> results;
+
+    /**
+     * The BlockState to render for the crop.
+     */
+    private BlockState displayBlocks;
+
+    /**
+     * The light level of the soil when placed in the crop. If this is not specified the light
+     * level of the first block in {@link #displayBlocks} will be used.
+     */
     private int lightLevel = -1;
-    private List<String> categories;
-    private List<HarvestInfo> results;
 
-    public CropInfo(ResourceLocation id, ItemStack stack, BlockStack displayBlock, int growthTicks, int lightLevel,
-        List<String> categories, List<HarvestInfo> results) {
+    public CropInfo(ResourceLocation id, Ingredient seed, Set<String> soilCategories, int growthTicks,
+        List<HarvestEntry> results, BlockState displayStates, int lightLevel) {
+
         super(id);
-        this.stack = stack;
-        this.displayBlock = displayBlock;
+        this.seed = seed;
+        this.soilCategories = soilCategories;
         this.growthTicks = growthTicks;
-        this.lightLevel = lightLevel;
-        this.categories = categories;
         this.results = results;
+        this.displayBlocks = displayStates;
+        this.lightLevel = lightLevel;
     }
 
-    public ItemStack getStack() {
-        return stack;
+    /**
+     * Gets an ingredient that can be used to match an ItemStack as a seed for this crop.
+     *
+     * @return An ingredient that can used to match an ItemStack as a seed for the crop.
+     */
+    public Ingredient getSeed() {
+
+        return this.seed;
     }
 
-    public BlockStack getDisplayBlock() {
-        return displayBlock;
+    /**
+     * Gets all the soil categories that are valid for this crop.
+     *
+     * @return An array of valid soil categories for this crop.
+     */
+    public Set<String> getSoilCategories() {
+
+        return this.soilCategories;
     }
 
-    public List<String> getCategories() {
-        return categories;
+    /**
+     * Gets all the possible results when harvesting the crop.
+     *
+     * @return An array of harvest results for the crop.
+     */
+    public List<HarvestEntry> getResults() {
+
+        return this.results;
     }
 
+    /**
+     * Gets the state to render when displaying the crop.
+     *
+     * @return The state to display when rendering the crop.
+     */
+    public BlockState getDisplayState() {
+        return this.displayBlocks;
+    }
+
+    /**
+     * Gets the amount of ticks the crop needs to grow under normal circumstances.
+     *
+     * @return The growth time for the crop under normal circumstances.
+     */
     public int getGrowthTicks() {
-        return growthTicks;
+
+        return this.growthTicks;
     }
 
-    public int getLightLevel() {
-        return lightLevel;
-    }
-
-    public List<HarvestInfo> getResults() {
-        return results;
-    }
-
+    /**
+     * Calculates the total world ticks for this crop to reach maturity if planted on a given
+     * soil.
+     *
+     * @param soil The soil to calculate growth time with.
+     * @return The amount of world ticks it would take for this crop to reach maturity when
+     *         planted on the given soil.
+     */
     public int getGrowthTicksForSoil(SoilInfo soil) {
+
         final float requiredGrowthTicks = this.growthTicks;
         final float growthModifier = soil.getGrowthModifier();
+
         if (growthModifier > -1) {
-            return MathHelper.floor_double(requiredGrowthTicks * (1 + growthModifier * -1));
+
+            return MathHelper.floor_float(requiredGrowthTicks * (1 + growthModifier * -1));
         }
 
         return -1;
     }
 
+    public void setSeed(Ingredient seed) {
+
+        this.seed = seed;
+    }
+
+    public void setSoilCategories(Set<String> soilCategories) {
+
+        this.soilCategories = soilCategories;
+    }
+
+    public void setGrowthTicks(int growthTicks) {
+
+        this.growthTicks = growthTicks;
+    }
+
+    public void setResults(List<HarvestEntry> results) {
+
+        this.results = results;
+    }
+
+    public void setDisplayBlock(BlockState displayBlocks) {
+        this.displayBlocks = displayBlocks;
+    }
+
+    public void setLightLevel(int lightLevel) {
+
+        this.lightLevel = lightLevel;
+    }
+
+    public int getLightLevel() {
+
+        return this.lightLevel;
+    }
+
+    public int getLightLevel(IBlockAccess world, BlockPos pos) {
+        return this.getLightLevel();
+    }
+
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return BotanyPotHelpers.CROP_SERIALIZER;
+        return CropSerializerConfig._instance.getRecipeSerializer();
     }
 
     @Override
     public IRecipeType<?> getType() {
-        return BotanyPotHelpers.CROP_TYPE;
+        return CropTypeConfig._instance.getRecipeType();
+    }
+
+    @Override
+    public boolean matchesOK(IInventory inventory, World world) {
+        if (inventory == null || inventory.getSizeInventory() == 0) {
+            return false;
+        }
+
+        ItemStack stackInSlot = inventory.getStackInSlot(1);
+        if (stackInSlot == null || stackInSlot.getItem() == null) {
+            return false;
+        }
+
+        return this.getSeed() != null && this.getSeed()
+            .test(stackInSlot);
     }
 }

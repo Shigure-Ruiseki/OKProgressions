@@ -1,31 +1,26 @@
 package ruiseki.okprogressions.common.block.machine.user;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import ruiseki.okcore.config.extendedconfig.BlockConfig;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
 import ruiseki.okprogressions.common.block.machine.BlockMachine;
 
 public class BlockUser extends BlockMachine {
 
-    public BlockUser() {
-        super(Material.iron);
+    private static BlockUser _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static BlockUser getInstance() {
+        return _instance;
+    }
+
+    public BlockUser(ExtendedConfig<BlockConfig> eConfig) {
+        super(eConfig, Material.iron, TEBlockUser.class);
         this.isDirection = true;
-    }
-
-    @Override
-    public void registerTileEntity(String name) {
-        GameRegistry.registerTileEntity(TEBlockUser.class, name + "TileEntity");
-    }
-
-    @Override
-    public boolean hasTileEntity(int metadata) {
-        return true;
-    }
-
-    @Override
-    public TileEntity createTileEntity(World world, int metadata) {
-        return new TEBlockUser();
     }
 }

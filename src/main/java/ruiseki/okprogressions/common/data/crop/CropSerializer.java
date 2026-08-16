@@ -2,124 +2,158 @@ package ruiseki.okprogressions.common.data.crop;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.gtnewhorizon.gtnhlib.blockstate.core.BlockState;
 
-import ruiseki.okcore.datastructure.BlockStack;
-import ruiseki.okcore.json.AbstractJsonMaterial;
-import ruiseki.okcore.json.block.BlockMaterial;
-import ruiseki.okcore.json.item.ItemMaterial;
+import ruiseki.okcore.config.configurable.ConfigurableRecipe;
+import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.config.extendedconfig.RecipeConfig;
+import ruiseki.okcore.helper.BlockStateHelpers;
+import ruiseki.okcore.helper.GsonHelpers;
 import ruiseki.okcore.network.ExtendedBuffer;
-import ruiseki.okcore.recipe.IRecipeSerializer;
+import ruiseki.okcore.recipe.ingredient.Ingredient;
+import ruiseki.okprogressions.OKProgressions;
 
-public class CropSerializer implements IRecipeSerializer<CropInfo> {
+public class CropSerializer extends ConfigurableRecipe<CropInfo> {
 
-    public static final CropSerializer INSTANCE = new CropSerializer();
+    private static CropSerializer _instance = null;
+
+    /**
+     * Get the unique instance.
+     *
+     * @return The instance.
+     */
+    public static CropSerializer getInstance() {
+        return _instance;
+    }
+
+    public CropSerializer(ExtendedConfig<RecipeConfig<CropInfo>> eConfig) {
+        super(eConfig);
+    }
 
     @Override
     public CropInfo fromJson(ResourceLocation id, JsonObject json) {
-        ItemMaterial resultMaterial = new ItemMaterial();
-        BlockMaterial displayMaterial = new BlockMaterial();
-        List<String> categories = new ArrayList<>();
-        List<HarvestInfo> results = new ArrayList<>();
 
-        if (json.has("seed") && json.get("seed")
-            .isJsonObject()) {
-            resultMaterial.read(json.getAsJsonObject("seed"));
+        final Ingredient seed = Ingredient.fromJson(json.getAsJsonObject("seed"));
+        final Set<String> validSoils = deserializeSoilInfo(id, json);
+        final int growthTicks = GsonHelpers.getAsInt(json, "growthTicks");
+        final List<HarvestEntry> results = deserializeCropEntries(id, json);
+        final int lightLevel = GsonHelpers.getAsInt(json, "lightLevel", -1);
+        final BlockState state = BlockStateHelpers.fromJson(json, "display");
+
+        if (growthTicks <= 0) {
+            throw new IllegalArgumentException(
+                "Crop " + id + " has an invalid growth tick rate. It must use a positive integer.");
         }
 
-        if (json.has("display") && json.get("display")
-            .isJsonObject()) {
-            displayMaterial.read(json.getAsJsonObject("display"));
-        }
+        return new CropInfo(id, seed, validSoils, growthTicks, results, state, lightLevel);
+    }
 
-        int growthTicks = AbstractJsonMaterial.getInt(json, "growthTicks", 1200);
-        int lightLevel = AbstractJsonMaterial.getInt(json, "lightLevel", -1);
+    @Override
+    public @Nullable CropInfo fromNetwork(ResourceLocation id, ExtendedBuffer buf) throws IOException {
+        try {
+            final Ingredient seed = Ingredient.fromNetwork(buf);
+            Set<String> validSoils = new HashSet<>();
+            buf.readStringCollection(validSoils);
+            final int growthTicks = buf.readInt();
+            final List<HarvestEntry> results = new ArrayList<>();
+
+            final int length = buf.readInt();
+
+            for (int i = 0; i < length; i++) {
+                results.add(HarvestEntry.deserialize(buf));
+            }
+
+            BlockState state = buf.readBlockState();
+
+            final int lightLevel = buf.readVarIntFromBuffer();
+
+            return new CropInfo(id, seed, validSoils, growthTicks, results, state, lightLevel);
+        } catch (final Exception e) {
+            throw new IllegalStateException("Failed to read crop info from packet buffer.", e);
+        }
+    }
+
+    @Override
+    public void toNetwork(ExtendedBuffer buffer, CropInfo info) throws IOException {
+
+        try {
+            info.getSeed()
+                .toNetwork(buffer);
+            buffer.writeStringCollection(info.getSoilCategories());
+            buffer.writeInt(info.getGrowthTicks());
+            buffer.writeInt(
+                info.getResults()
+                    .size());
+            for (final HarvestEntry entry : info.getResults()) {
+                HarvestEntry.serialize(buffer, entry);
+            }
+
+            buffer.writeBlockState(info.getDisplayState());
+
+            buffer.writeVarIntToBuffer(info.getLightLevel());
+        } catch (final Exception e) {
+            throw new IllegalStateException("Failed to write crop to the packet buffer.", e);
+        }
+    }
+
+    /**
+     * A helper method to deserialize soil categories from an array.
+     *
+     * @param ownerId The Id of the SoilInfo currently being deserialized.
+     * @param json    The JsonObject to read from.
+     * @return A set of soil categories.
+     */
+    private static Set<String> deserializeSoilInfo(ResourceLocation ownerId, JsonObject json) {
+
+        final Set<String> categories = new HashSet<>();
 
         if (json.has("categories") && json.get("categories")
             .isJsonArray()) {
-            for (JsonElement el : json.getAsJsonArray("categories")) {
-                if (el.isJsonPrimitive() && el.getAsJsonPrimitive()
-                    .isString()) {
-                    categories.add(el.getAsString());
-                }
+            for (final JsonElement element : json.getAsJsonArray("categories")) {
+                categories.add(
+                    element.getAsString()
+                        .toLowerCase());
             }
         }
 
-        if (json.has("results") && json.get("results")
-            .isJsonArray()) {
-            for (JsonElement el : json.getAsJsonArray("results")) {
-                if (el.isJsonObject()) {
-                    HarvestMaterial entry = new HarvestMaterial();
-                    entry.read(el.getAsJsonObject());
-                    if (entry.validate()) {
-                        results.add(entry.toInfo());
-                    }
-                }
+        return categories;
+    }
+
+    /**
+     * A helper method for reading crop harvest entries.
+     *
+     * @param ownerId The id of the CropInfo being deserialized.
+     * @param json    The json data to read from.
+     * @return A list of crop harvest entries.
+     */
+    private static List<HarvestEntry> deserializeCropEntries(ResourceLocation ownerId, JsonObject json) {
+        final List<HarvestEntry> crops = new ArrayList<>();
+        if (!json.has("results")) {
+            OKProgressions
+                .okLog(Level.ERROR, "The crop {} has no results array. This means it won't drop anything!", ownerId);
+            return crops;
+        }
+
+        for (final JsonElement entry : json.getAsJsonArray("results")) {
+            if (!entry.isJsonObject()) {
+                OKProgressions.okLog(Level.ERROR, "Crop entry in {} is not a JsonObject.", ownerId);
+            } else {
+                final HarvestEntry cropEntry = HarvestEntry.deserialize(entry.getAsJsonObject());
+                crops.add(cropEntry);
             }
         }
 
-        return new CropInfo(
-            id,
-            resultMaterial.toStack(),
-            displayMaterial.toStack(),
-            growthTicks,
-            lightLevel,
-            categories,
-            results);
-    }
-
-    @Override
-    public @Nullable CropInfo fromNetwork(ResourceLocation id, ExtendedBuffer buffer) throws IOException {
-        ItemStack stack = buffer.readItemStackFromBuffer();
-        BlockStack displayBlock = buffer.readBlockStack();
-        int growthTicks = buffer.readInt();
-        int lightLevel = buffer.readInt();
-
-        int catSize = buffer.readInt();
-        List<String> categories = new ArrayList<>(catSize);
-        for (int i = 0; i < catSize; i++) {
-            categories.add(buffer.readString());
-        }
-
-        int resSize = buffer.readInt();
-        List<HarvestInfo> results = new ArrayList<>(resSize);
-        for (int i = 0; i < resSize; i++) {
-            HarvestInfo info = new HarvestInfo();
-            info.fromNetwork(buffer);
-            results.add(info);
-        }
-
-        return new CropInfo(id, stack, displayBlock, growthTicks, lightLevel, categories, results);
-    }
-
-    @Override
-    public void toNetwork(ExtendedBuffer buffer, CropInfo recipe) throws IOException {
-        buffer.writeItemStackToBuffer(recipe.getStack());
-
-        buffer.writeBlockStack(recipe.getDisplayBlock());
-
-        buffer.writeInt(recipe.getGrowthTicks());
-
-        buffer.writeInt(recipe.getLightLevel());
-
-        List<String> categories = recipe.getCategories();
-        buffer.writeInt(categories.size());
-        for (String cat : categories) {
-            buffer.writeString(cat);
-        }
-
-        List<HarvestInfo> results = recipe.getResults();
-        buffer.writeInt(results.size());
-        for (HarvestInfo info : results) {
-            info.toNetwork(buffer);
-        }
+        return crops;
     }
 }
