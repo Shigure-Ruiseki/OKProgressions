@@ -2,7 +2,6 @@ package ruiseki.okprogressions;
 
 import net.minecraft.client.gui.GuiScreen;
 
-import ruiseki.okcore.OKCore;
 import ruiseki.okcore.client.gui.config.ExtendedConfigGuiFactoryBase;
 import ruiseki.okcore.client.gui.config.GuiConfigOverviewBase;
 import ruiseki.okcore.init.ModBase;
