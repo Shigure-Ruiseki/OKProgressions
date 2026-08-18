@@ -14,6 +14,6 @@ public class ItemBirthdayPickaxeConfig extends ItemConfig {
      * Make a new instance.
      */
     public ItemBirthdayPickaxeConfig() {
-        super(OKProgressions._instance, true, "birthday_pickaxe", null, ItemBirthdayPickaxe.class);
+        super(OKProgressions._instance, true, "birthday_pickaxe", null, config -> new ItemBirthdayPickaxe());
     }
 }

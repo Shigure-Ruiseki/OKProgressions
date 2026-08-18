@@ -34,6 +34,11 @@ public class BlockGoldCobblegenConfig extends BlockContainerConfig {
      * Make a new instance.
      */
     public BlockGoldCobblegenConfig() {
-        super(OKProgressions._instance, true, "gold_cobblegen", null, BlockGoldCobblegen.class);
+        super(
+            OKProgressions._instance,
+            true,
+            "gold_cobblegen",
+            null,
+            config -> new BlockCobblegenBase(goldCobbleGenCycle, goldCobbleGenStackSize));
     }
 }

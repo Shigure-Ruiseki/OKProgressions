@@ -14,6 +14,6 @@ public class ItemMyceliumSeedsConfig extends ItemConfig {
      * Make a new instance.
      */
     public ItemMyceliumSeedsConfig() {
-        super(OKProgressions._instance, true, "mycelium_seeds", null, ItemMyceliumSeeds.class);
+        super(OKProgressions._instance, true, "mycelium_seeds", null, config -> new ItemMyceliumSeeds());
     }
 }

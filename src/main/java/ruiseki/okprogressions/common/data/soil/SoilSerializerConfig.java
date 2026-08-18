@@ -11,6 +11,6 @@ public class SoilSerializerConfig extends RecipeConfig<SoilInfo> {
     public static SoilSerializerConfig _instance;
 
     public SoilSerializerConfig() {
-        super(OKProgressions._instance, true, "soil", null, SoilSerializer.class);
+        super(OKProgressions._instance, true, "soil", null, config -> new SoilSerializer());
     }
 }

@@ -11,6 +11,6 @@ public class CropSerializerConfig extends RecipeConfig<CropInfo> {
     public static CropSerializerConfig _instance;
 
     public CropSerializerConfig() {
-        super(OKProgressions._instance, true, "crop", null, CropSerializer.class);
+        super(OKProgressions._instance, true, "crop", null, config -> new CropSerializer());
     }
 }

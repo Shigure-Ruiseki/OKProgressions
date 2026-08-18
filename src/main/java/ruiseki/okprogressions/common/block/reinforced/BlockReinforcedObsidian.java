@@ -15,25 +15,12 @@ import net.minecraft.world.World;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 
-import ruiseki.okcore.config.configurable.ConfigurableBlock;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.block.BlockBase;
 
-public class BlockReinforcedObsidian extends ConfigurableBlock {
+public class BlockReinforcedObsidian extends BlockBase {
 
-    private static BlockReinforcedObsidian _instance = null;
-
-    /**
-     * Get the unique instance.
-     *
-     * @return The instance.
-     */
-    public static BlockReinforcedObsidian getInstance() {
-        return _instance;
-    }
-
-    public BlockReinforcedObsidian(ExtendedConfig<BlockConfig> eConfig) {
-        super(eConfig, Material.rock);
+    public BlockReinforcedObsidian() {
+        super(Material.rock);
         this.setHardness(20.0F);
         this.setResistance(2000.0F);
         this.setHarvestLevel("pickaxe", 1);

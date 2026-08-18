@@ -14,6 +14,6 @@ public class BlockMinerConfig extends BlockContainerConfig {
      * Make a new instance.
      */
     public BlockMinerConfig() {
-        super(OKProgressions._instance, true, "block_miner", null, BlockMiner.class);
+        super(OKProgressions._instance, true, "block_miner", null, config -> new BlockMiner());
     }
 }

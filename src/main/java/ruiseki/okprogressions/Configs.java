@@ -1,8 +1,8 @@
 package ruiseki.okprogressions;
 
 import ruiseki.okcore.config.ConfigHandler;
-import ruiseki.okprogressions.common.block.botanypot.BlockBotanyConfig;
-import ruiseki.okprogressions.common.block.botanypot.BlockHopperBotanyConfig;
+import ruiseki.okprogressions.common.block.botanypot.BlockBotanyPotConfig;
+import ruiseki.okprogressions.common.block.botanypot.BlockHopperBotanyPotConfig;
 import ruiseki.okprogressions.common.block.cobblegen.BlockCobblegenConfig;
 import ruiseki.okprogressions.common.block.cobblegen.BlockDiamondCobblegenConfig;
 import ruiseki.okprogressions.common.block.cobblegen.BlockEmeraldCobblegenConfig;
@@ -81,8 +81,8 @@ public class Configs {
         configHandler.add(new BlockEmeraldCobblegenConfig());
 
         // Botany Pot
-        configHandler.add(new BlockBotanyConfig());
-        configHandler.add(new BlockHopperBotanyConfig());
+        configHandler.add(new BlockBotanyPotConfig());
+        configHandler.add(new BlockHopperBotanyPotConfig());
 
         // Growth
         configHandler.add(new BlockGrowthTier1Config());

@@ -14,6 +14,6 @@ public class ItemClimbingGloveConfig extends ItemConfig {
      * Make a new instance.
      */
     public ItemClimbingGloveConfig() {
-        super(OKProgressions._instance, true, "climbing_glove", null, ItemClimbingGlove.class);
+        super(OKProgressions._instance, true, "climbing_glove", null, config -> new ItemClimbingGlove());
     }
 }

@@ -13,25 +13,12 @@ import net.minecraft.world.World;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 
-import ruiseki.okcore.config.configurable.ConfigurableBlock;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.block.BlockBase;
 
-public class BlockNetherStar extends ConfigurableBlock {
+public class BlockNetherStar extends BlockBase {
 
-    private static BlockNetherStar _instance = null;
-
-    /**
-     * Get the unique instance.
-     *
-     * @return The instance.
-     */
-    public static BlockNetherStar getInstance() {
-        return _instance;
-    }
-
-    public BlockNetherStar(ExtendedConfig<BlockConfig> eConfig) {
-        super(eConfig, Material.iron);
+    public BlockNetherStar() {
+        super(Material.iron);
         this.setHardness(3.0F);
         this.setHarvestLevel("pickaxe", 1);
         this.setResistance(2000.0F);

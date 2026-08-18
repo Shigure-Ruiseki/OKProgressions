@@ -13,24 +13,11 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
-import ruiseki.okcore.config.extendedconfig.ItemConfig;
 
 public class ItemDiamondApple extends ItemAppleBase {
 
-    private static ItemDiamondApple _instance = null;
-
-    /**
-     * Get the unique instance.
-     *
-     * @return The instance.
-     */
-    public static ItemDiamondApple getInstance() {
-        return _instance;
-    }
-
-    public ItemDiamondApple(ExtendedConfig<ItemConfig> eConfig) {
-        super(eConfig, 4, 1.0F, false);
+    public ItemDiamondApple() {
+        super(4, 1.0F, false);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class BlockFlintConfig extends BlockConfig {
      * Make a new instance.
      */
     public BlockFlintConfig() {
-        super(OKProgressions._instance, true, "flint_block", null, BlockFlint.class);
+        super(OKProgressions._instance, true, "flint_block", null, config -> new BlockFlint());
     }
 
     @Override

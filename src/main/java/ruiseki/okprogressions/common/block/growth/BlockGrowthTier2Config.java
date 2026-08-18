@@ -43,6 +43,11 @@ public class BlockGrowthTier2Config extends BlockContainerConfig {
      * Make a new instance.
      */
     public BlockGrowthTier2Config() {
-        super(OKProgressions._instance, true, "growth_upgrade", null, BlockGrowthTier2.class);
+        super(
+            OKProgressions._instance,
+            true,
+            "growth_upgrade",
+            null,
+            config -> new BlockGrowthBase(growthIntervalTier2, growthRadiusTier2, growthHeightTier2));
     }
 }

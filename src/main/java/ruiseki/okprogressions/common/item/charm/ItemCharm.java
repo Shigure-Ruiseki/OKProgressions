@@ -15,21 +15,19 @@ import baubles.api.expanded.IBaubleExpanded;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ruiseki.okcore.config.configurable.ConfigurableItem;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
-import ruiseki.okcore.config.extendedconfig.ItemConfig;
 import ruiseki.okcore.entity.EntityDoppleganger;
 import ruiseki.okcore.helper.LangHelpers;
 import ruiseki.okcore.item.IItemToggle;
+import ruiseki.okcore.item.ItemBase;
 import ruiseki.okprogressions.common.addon.nei.Mods;
 
 @Optional.InterfaceList({
     @Optional.Interface(modid = "Baubles|Expanded", iface = "baubles.api.expanded.IBaubleExpanded"),
     @Optional.Interface(modid = "Baubles", iface = "baubles.api.IBauble"), })
-public abstract class ItemCharm extends ConfigurableItem implements IBaubleExpanded, IItemToggle {
+public abstract class ItemCharm extends ItemBase implements IBaubleExpanded, IItemToggle {
 
-    public ItemCharm(ExtendedConfig<ItemConfig> eConfig, int durability) {
-        super(eConfig);
+    public ItemCharm(int durability) {
+        super();
         this.setMaxDamage(durability);
     }
 

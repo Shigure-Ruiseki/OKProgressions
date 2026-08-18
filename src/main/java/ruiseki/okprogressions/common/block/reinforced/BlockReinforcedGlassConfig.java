@@ -14,6 +14,6 @@ public class BlockReinforcedGlassConfig extends BlockConfig {
      * Make a new instance.
      */
     public BlockReinforcedGlassConfig() {
-        super(OKProgressions._instance, true, "reinforced_glass", null, BlockReinforcedGlass.class);
+        super(OKProgressions._instance, true, "reinforced_glass", null, config -> new BlockReinforcedGlass());
     }
 }

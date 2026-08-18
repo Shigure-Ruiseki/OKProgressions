@@ -108,7 +108,7 @@ public class GeneralConfig extends DummyConfig {
      * Create a new instance.
      */
     public GeneralConfig() {
-        super(OKProgressions._instance, true, "general", null, GeneralConfig.class);
+        super(OKProgressions._instance, true, "general", null);
     }
 
     @Override

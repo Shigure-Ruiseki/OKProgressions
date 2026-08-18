@@ -34,6 +34,11 @@ public class BlockEmeraldCobblegenConfig extends BlockContainerConfig {
      * Make a new instance.
      */
     public BlockEmeraldCobblegenConfig() {
-        super(OKProgressions._instance, true, "emerald_cobblegen", null, BlockEmeraldCobblegen.class);
+        super(
+            OKProgressions._instance,
+            true,
+            "emerald_cobblegen",
+            null,
+            config -> new BlockCobblegenBase(emeraldCobbleGenCycle, emeraldCobbleGenStackSize));
     }
 }

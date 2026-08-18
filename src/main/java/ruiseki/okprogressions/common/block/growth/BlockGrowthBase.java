@@ -19,19 +19,17 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ruiseki.okcore.config.configurable.ConfigurableBlockContainer;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.block.BlockTile;
 import ruiseki.okprogressions.GeneralConfig;
 
-public class BlockGrowthBase extends ConfigurableBlockContainer {
+public class BlockGrowthBase extends BlockTile {
 
     private final int range;
     private final int rangeY;
     private final int growthLvl;
 
-    public BlockGrowthBase(ExtendedConfig<BlockConfig> eConfig, int growthLvl, int range, int rangeY) {
-        super(eConfig, Material.iron, TEGrowth.class);
+    public BlockGrowthBase(int growthLvl, int range, int rangeY) {
+        super(Material.iron, TEGrowth.class);
         this.setTickRandomly(true);
         this.setHardness(8.0F);
         this.setResistance(1000.0F);

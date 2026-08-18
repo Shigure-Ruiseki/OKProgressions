@@ -14,6 +14,6 @@ public class ItemRedstoneAppleConfig extends ItemConfig {
      * Make a new instance.
      */
     public ItemRedstoneAppleConfig() {
-        super(OKProgressions._instance, true, "redstone_apple", null, ItemRedstoneApple.class);
+        super(OKProgressions._instance, true, "redstone_apple", null, config -> new ItemRedstoneApple());
     }
 }

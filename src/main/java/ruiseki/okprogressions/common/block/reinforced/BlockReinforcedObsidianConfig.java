@@ -14,6 +14,6 @@ public class BlockReinforcedObsidianConfig extends BlockConfig {
      * Make a new instance.
      */
     public BlockReinforcedObsidianConfig() {
-        super(OKProgressions._instance, true, "reinforced_obsidian", null, BlockReinforcedObsidian.class);
+        super(OKProgressions._instance, true, "reinforced_obsidian", null, config -> new BlockReinforcedObsidian());
     }
 }

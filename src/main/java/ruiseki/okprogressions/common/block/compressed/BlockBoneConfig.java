@@ -14,7 +14,7 @@ public class BlockBoneConfig extends BlockConfig {
      * Make a new instance.
      */
     public BlockBoneConfig() {
-        super(OKProgressions._instance, true, "bone_block", null, BlockBone.class);
+        super(OKProgressions._instance, true, "bone_block", null, config -> new BlockBone());
     }
 
     @Override

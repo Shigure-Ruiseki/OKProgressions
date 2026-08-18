@@ -12,30 +12,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.gtnewhorizon.gtnhlib.blockstate.core.BlockState;
 
-import ruiseki.okcore.config.configurable.ConfigurableRecipe;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
-import ruiseki.okcore.config.extendedconfig.RecipeConfig;
 import ruiseki.okcore.helper.BlockStateHelpers;
 import ruiseki.okcore.helper.GsonHelpers;
 import ruiseki.okcore.network.ExtendedBuffer;
+import ruiseki.okcore.recipe.IRecipeSerializer;
 import ruiseki.okcore.recipe.ingredient.Ingredient;
 
-public class SoilSerializer extends ConfigurableRecipe<SoilInfo> {
-
-    private static SoilSerializer _instance = null;
-
-    /**
-     * Get the unique instance.
-     *
-     * @return The instance.
-     */
-    public static SoilSerializer getInstance() {
-        return _instance;
-    }
-
-    public SoilSerializer(ExtendedConfig<RecipeConfig<SoilInfo>> eConfig) {
-        super(eConfig);
-    }
+public class SoilSerializer implements IRecipeSerializer<SoilInfo> {
 
     @Override
     public SoilInfo fromJson(ResourceLocation id, JsonObject json) {

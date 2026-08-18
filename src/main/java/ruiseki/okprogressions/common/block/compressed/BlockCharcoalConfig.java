@@ -14,7 +14,7 @@ public class BlockCharcoalConfig extends BlockConfig {
      * Make a new instance.
      */
     public BlockCharcoalConfig() {
-        super(OKProgressions._instance, true, "charcoal_block", null, BlockCharcoal.class);
+        super(OKProgressions._instance, true, "charcoal_block", null, config -> new BlockCharcoal());
     }
 
     @Override

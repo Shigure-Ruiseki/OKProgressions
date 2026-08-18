@@ -9,25 +9,22 @@ import net.minecraftforge.common.util.ForgeDirection;
 import com.cleanroommc.modularui.factory.GuiFactories;
 import com.gtnewhorizon.gtnhlib.blockstate.core.BlockState;
 
+import ruiseki.okcore.block.BlockTile;
 import ruiseki.okcore.block.property.BlockProperty;
 import ruiseki.okcore.block.property.DirectionProperty;
-import ruiseki.okcore.config.configurable.ConfigurableBlockContainer;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
 import ruiseki.okcore.datastructure.BlockPos;
 import ruiseki.okcore.helper.DirectionHelpers;
 import ruiseki.okcore.tileentity.TileEntityOK;
 
-public abstract class BlockMachine extends ConfigurableBlockContainer {
+public abstract class BlockMachine extends BlockTile {
 
     @BlockProperty
     public static final DirectionProperty DIRECTION = DirectionProperty.facing();
 
     protected boolean isDirection;
 
-    protected BlockMachine(ExtendedConfig<BlockConfig> eConfig, Material material,
-        Class<? extends TileEntityOK> tileEntity) {
-        super(eConfig, material, tileEntity);
+    protected BlockMachine(Material material, Class<? extends TileEntityOK> tileEntity) {
+        super(material, tileEntity);
         this.setHardness(3.0F);
         this.setResistance(5.0F);
         this.setStepSound(soundTypeMetal);

@@ -46,10 +46,10 @@ public class TEBotanyPot extends TileEntityOK
     protected final TileEntityOK.ITickingTile tickingTileComponent = new TileEntityOK.TickingTileComponent(this);
 
     private final RecipeManager.CachedCheck<IInventory, SoilInfo> soilCheck = RecipeManager
-        .createCheck(SoilTypeConfig._instance.getRecipeType());
+        .createCheck(SoilTypeConfig._instance.getInstance());
 
     private final RecipeManager.CachedCheck<IInventory, CropInfo> cropCheck = RecipeManager
-        .createCheck(CropTypeConfig._instance.getRecipeType());
+        .createCheck(CropTypeConfig._instance.getInstance());
 
     @NBTPersist("inventory")
     private final ItemStackHandler inventory = new ItemStackHandler(14) {

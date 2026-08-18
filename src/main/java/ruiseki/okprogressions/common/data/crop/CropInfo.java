@@ -174,12 +174,12 @@ public class CropInfo extends RecipeDataBase {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return CropSerializerConfig._instance.getRecipeSerializer();
+        return CropSerializerConfig._instance.getInstance();
     }
 
     @Override
     public IRecipeType<?> getType() {
-        return CropTypeConfig._instance.getRecipeType();
+        return CropTypeConfig._instance.getInstance();
     }
 
     @Override

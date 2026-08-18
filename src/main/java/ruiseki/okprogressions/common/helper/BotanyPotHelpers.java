@@ -20,7 +20,7 @@ public class BotanyPotHelpers {
 
     public static Collection<SoilInfo> getSoils() {
         return RecipeManager.getManager()
-            .getAllRecipesFor(SoilTypeConfig._instance.getRecipeType());
+            .getAllRecipesFor(SoilTypeConfig._instance.getInstance());
     }
 
     @Nullable
@@ -35,7 +35,7 @@ public class BotanyPotHelpers {
 
     public static Collection<CropInfo> getCrops() {
         return RecipeManager.getManager()
-            .getAllRecipesFor(CropTypeConfig._instance.getRecipeType());
+            .getAllRecipesFor(CropTypeConfig._instance.getInstance());
     }
 
     @Nullable

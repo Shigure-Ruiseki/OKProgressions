@@ -66,12 +66,11 @@ public class OKProgressions extends ModBaseVersionable {
 
             @Override
             public int getBurnTime(ItemStack fuel) {
-                if (ItemStackHelpers
-                    .areStacksEqual(fuel, new ItemStack(ItemTinyCoalConfig._instance.getItemInstance()))) {
+                if (ItemStackHelpers.areStacksEqual(fuel, new ItemStack(ItemTinyCoalConfig._instance.getInstance()))) {
                     return 200;
                 }
                 if (ItemStackHelpers
-                    .areStacksEqual(fuel, new ItemStack(ItemTinyCharcoalConfig._instance.getItemInstance()))) {
+                    .areStacksEqual(fuel, new ItemStack(ItemTinyCharcoalConfig._instance.getInstance()))) {
                     return 200;
                 }
                 if (ItemStackHelpers

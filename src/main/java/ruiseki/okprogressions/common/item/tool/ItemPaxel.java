@@ -5,15 +5,12 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 
 import com.google.common.collect.Sets;
 
-import ruiseki.okcore.config.configurable.ConfigurableItemPickaxe;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
-import ruiseki.okcore.config.extendedconfig.ItemConfig;
-
-public class ItemPaxel extends ConfigurableItemPickaxe {
+public class ItemPaxel extends ItemPickaxe {
 
     private static final Set<Block> effectiveAgainst = Sets.newHashSet(
         Blocks.planks,
@@ -65,8 +62,8 @@ public class ItemPaxel extends ConfigurableItemPickaxe {
         Blocks.soul_sand,
         Blocks.web);
 
-    public ItemPaxel(ExtendedConfig<ItemConfig> eConfig, ToolMaterial material) {
-        super(eConfig, material);
+    public ItemPaxel(ToolMaterial material) {
+        super(material);
 
         this.setMaxStackSize(1);
 

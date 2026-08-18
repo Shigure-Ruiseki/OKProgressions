@@ -16,19 +16,17 @@ import net.minecraftforge.common.ForgeHooks;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 
-import ruiseki.okcore.config.configurable.ConfigurableBlockContainer;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.block.BlockTile;
 import ruiseki.okcore.datastructure.BlockPos;
 import ruiseki.okcore.helper.TileHelpers;
 
-public class BlockCobblegenBase extends ConfigurableBlockContainer {
+public class BlockCobblegenBase extends BlockTile {
 
     private final int cycleUpdate;
     private final int maxStackSize;
 
-    public BlockCobblegenBase(ExtendedConfig<BlockConfig> eConfig, int cycleUpdate, int maxStackSize) {
-        super(eConfig, Material.iron, TileCobblegen.class);
+    public BlockCobblegenBase(int cycleUpdate, int maxStackSize) {
+        super(Material.iron, TileCobblegen.class);
         this.setHardness(1.0F);
         this.setHarvestLevel("pickaxe", 1);
         this.setResistance(1000.0F);

@@ -34,6 +34,11 @@ public class BlockDiamondCobblegenConfig extends BlockContainerConfig {
      * Make a new instance.
      */
     public BlockDiamondCobblegenConfig() {
-        super(OKProgressions._instance, true, "diamond_cobblegen", null, BlockDiamondCobblegen.class);
+        super(
+            OKProgressions._instance,
+            true,
+            "diamond_cobblegen",
+            null,
+            config -> new BlockCobblegenBase(diamondCobbleGenCycle, diamondCobbleGenStackSize));
     }
 }

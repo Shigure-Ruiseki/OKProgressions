@@ -8,28 +8,15 @@ import net.minecraft.item.Item;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import ruiseki.okcore.config.configurable.ConfigurableBlock;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.block.BlockBase;
 import ruiseki.okprogressions.common.item.misc.ItemEnderDustConfig;
 
-public class BlockOreEnder extends ConfigurableBlock {
-
-    private static BlockOreEnder _instance = null;
-
-    /**
-     * Get the unique instance.
-     *
-     * @return The instance.
-     */
-    public static BlockOreEnder getInstance() {
-        return _instance;
-    }
+public class BlockOreEnder extends BlockBase {
 
     private final Random rand = new Random();
 
-    public BlockOreEnder(ExtendedConfig<BlockConfig> eConfig) {
-        super(eConfig, Material.rock);
+    public BlockOreEnder() {
+        super(Material.rock);
         this.setHardness(8.0F);
         this.setResistance(10.0F);
         this.setHarvestLevel("pickaxe", 1);
@@ -67,7 +54,7 @@ public class BlockOreEnder extends ConfigurableBlock {
 
     @Override
     public Item getItemDropped(int meta, Random random, int fortune) {
-        return ItemEnderDustConfig._instance.getItemInstance();
+        return ItemEnderDustConfig._instance.getInstance();
     }
 
     @Override

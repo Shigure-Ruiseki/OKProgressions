@@ -17,11 +17,9 @@ import net.minecraft.world.World;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 
-import ruiseki.okcore.config.configurable.ConfigurableBlockGlass;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.block.BlockGlassBase;
 
-public class BlockReinforcedGlass extends ConfigurableBlockGlass {
+public class BlockReinforcedGlass extends BlockGlassBase {
 
     private static BlockReinforcedGlass _instance = null;
 
@@ -34,8 +32,8 @@ public class BlockReinforcedGlass extends ConfigurableBlockGlass {
         return _instance;
     }
 
-    public BlockReinforcedGlass(ExtendedConfig<BlockConfig> eConfig) {
-        super(eConfig, Material.glass, false);
+    public BlockReinforcedGlass() {
+        super(Material.glass, false);
         this.setHardness(20.0F);
         this.setResistance(2000.0F);
         this.setHarvestLevel("pickaxe", 1);

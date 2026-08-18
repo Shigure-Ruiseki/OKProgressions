@@ -13,9 +13,7 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import ruiseki.okcore.config.configurable.ConfigurableBlockContainer;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.block.BlockTile;
 import ruiseki.okcore.datastructure.BlockPos;
 import ruiseki.okcore.helper.InventoryHelpers;
 import ruiseki.okcore.helper.TileHelpers;
@@ -23,12 +21,12 @@ import ruiseki.okprogressions.common.data.crop.CropInfo;
 import ruiseki.okprogressions.common.data.soil.SoilInfo;
 import ruiseki.okprogressions.common.helper.BotanyPotHelpers;
 
-public class BlockBotanyPotBase extends ConfigurableBlockContainer implements IGrowable {
+public class BlockBotanyPotBase extends BlockTile implements IGrowable {
 
     private final boolean hopper;
 
-    public BlockBotanyPotBase(ExtendedConfig<BlockConfig> eConfig, boolean hopper) {
-        super(eConfig, Material.circuits, TEBotanyPot.class);
+    public BlockBotanyPotBase(boolean hopper) {
+        super(Material.circuits, TEBotanyPot.class);
         this.hopper = hopper;
         this.setHardness(1.25F);
         this.setResistance(4.2F);

@@ -14,6 +14,6 @@ public class BlockNetherStarConfig extends BlockConfig {
      * Make a new instance.
      */
     public BlockNetherStarConfig() {
-        super(OKProgressions._instance, true, "nether_star_block", null, BlockNetherStar.class);
+        super(OKProgressions._instance, true, "nether_star_block", null, config -> new BlockNetherStar());
     }
 }

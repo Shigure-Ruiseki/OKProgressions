@@ -14,6 +14,6 @@ public class ItemDiamondAppleConfig extends ItemConfig {
      * Make a new instance.
      */
     public ItemDiamondAppleConfig() {
-        super(OKProgressions._instance, true, "diamond_apple", null, ItemDiamondApple.class);
+        super(OKProgressions._instance, true, "diamond_apple", null, config -> new ItemDiamondApple());
     }
 }
