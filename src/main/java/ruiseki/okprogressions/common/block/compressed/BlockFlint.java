@@ -5,11 +5,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-import ruiseki.okcore.config.configurable.ConfigurableBlock;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.block.BlockBase;
 
-public class BlockFlint extends ConfigurableBlock {
+public class BlockFlint extends BlockBase {
 
     private static BlockFlint _instance = null;
 
@@ -22,8 +20,8 @@ public class BlockFlint extends ConfigurableBlock {
         return _instance;
     }
 
-    public BlockFlint(ExtendedConfig<BlockConfig> eConfig) {
-        super(eConfig, Material.ground);
+    public BlockFlint() {
+        super(Material.ground);
         this.setHardness(1.0F);
         this.setResistance(5.0F);
         this.setStepSound(soundTypeStone);

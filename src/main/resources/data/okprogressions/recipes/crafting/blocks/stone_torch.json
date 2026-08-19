@@ -6,7 +6,7 @@
   ],
   "key": {
     "c": {
-      "tag": "#minecraft:coals"
+      "tag": "minecraft:coals"
     },
     "s": {
       "item": "okprogressions:stone_stick"

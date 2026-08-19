@@ -6,27 +6,14 @@ import net.minecraft.world.World;
 
 import org.apache.logging.log4j.Level;
 
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okprogressions.OKProgressions;
 import ruiseki.okprogressions.common.block.machine.BlockMachine;
 
 public class BlockMiner extends BlockMachine {
 
-    private static BlockMiner _instance = null;
-
-    /**
-     * Get the unique instance.
-     *
-     * @return The instance.
-     */
-    public static BlockMiner getInstance() {
-        return _instance;
-    }
-
-    public BlockMiner(ExtendedConfig<BlockConfig> eConfig) {
-        super(eConfig, Material.iron, TEBlockMiner.class);
+    public BlockMiner() {
+        super(Material.iron, TEBlockMiner.class);
         this.isDirection = true;
     }
 

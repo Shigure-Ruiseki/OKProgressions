@@ -14,6 +14,6 @@ public class ItemEnderSackConfig extends ItemConfig {
      * Make a new instance.
      */
     public ItemEnderSackConfig() {
-        super(OKProgressions._instance, true, "ender_sack", null, ItemEnderSack.class);
+        super(OKProgressions._instance, true, "ender_sack", null, config -> new ItemEnderSack());
     }
 }

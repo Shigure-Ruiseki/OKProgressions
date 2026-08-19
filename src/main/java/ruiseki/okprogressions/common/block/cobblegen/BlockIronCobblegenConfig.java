@@ -34,6 +34,11 @@ public class BlockIronCobblegenConfig extends BlockContainerConfig {
      * Make a new instance.
      */
     public BlockIronCobblegenConfig() {
-        super(OKProgressions._instance, true, "iron_cobblegen", null, BlockIronCobblegen.class);
+        super(
+            OKProgressions._instance,
+            true,
+            "iron_cobblegen",
+            null,
+            config -> new BlockCobblegenBase(ironCobbleGenCycle, ironCobbleGenStackSize));
     }
 }

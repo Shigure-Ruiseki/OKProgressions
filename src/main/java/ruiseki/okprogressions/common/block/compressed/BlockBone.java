@@ -5,25 +5,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-import ruiseki.okcore.config.configurable.ConfigurableBlock;
-import ruiseki.okcore.config.extendedconfig.BlockConfig;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
+import ruiseki.okcore.block.BlockBase;
 
-public class BlockBone extends ConfigurableBlock {
+public class BlockBone extends BlockBase {
 
-    private static BlockBone _instance = null;
-
-    /**
-     * Get the unique instance.
-     *
-     * @return The instance.
-     */
-    public static BlockBone getInstance() {
-        return _instance;
-    }
-
-    public BlockBone(ExtendedConfig<BlockConfig> eConfig) {
-        super(eConfig, Material.ground);
+    public BlockBone() {
+        super(Material.ground);
         this.setHardness(0.5F);
         this.setResistance(5.0F);
         this.setStepSound(soundTypeStone);

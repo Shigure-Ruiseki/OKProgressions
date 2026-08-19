@@ -11,11 +11,9 @@ import net.minecraft.world.World;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 
-import ruiseki.okcore.config.configurable.ConfigurableItem;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
-import ruiseki.okcore.config.extendedconfig.ItemConfig;
+import ruiseki.okcore.item.ItemBase;
 
-public class ItemMyceliumSeeds extends ConfigurableItem {
+public class ItemMyceliumSeeds extends ItemBase {
 
     private static ItemMyceliumSeeds _instance = null;
 
@@ -28,8 +26,8 @@ public class ItemMyceliumSeeds extends ConfigurableItem {
         return _instance;
     }
 
-    public ItemMyceliumSeeds(ExtendedConfig<ItemConfig> eConfig) {
-        super(eConfig);
+    public ItemMyceliumSeeds() {
+        super();
     }
 
     @Override

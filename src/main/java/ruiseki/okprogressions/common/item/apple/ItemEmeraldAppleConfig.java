@@ -14,6 +14,6 @@ public class ItemEmeraldAppleConfig extends ItemConfig {
      * Make a new instance.
      */
     public ItemEmeraldAppleConfig() {
-        super(OKProgressions._instance, true, "emerald_apple", null, ItemEmeraldApple.class);
+        super(OKProgressions._instance, true, "emerald_apple", null, config -> new ItemEmeraldApple());
     }
 }

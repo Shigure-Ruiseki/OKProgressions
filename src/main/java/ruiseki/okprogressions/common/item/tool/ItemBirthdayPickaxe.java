@@ -9,6 +9,7 @@ import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
@@ -18,12 +19,9 @@ import net.minecraftforge.oredict.OreDictionary;
 import com.google.common.collect.Sets;
 import com.mojang.realmsclient.gui.ChatFormatting;
 
-import ruiseki.okcore.config.configurable.ConfigurableItemTool;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
-import ruiseki.okcore.config.extendedconfig.ItemConfig;
 import ruiseki.okprogressions.common.init.OKProgressionsMaterial;
 
-public class ItemBirthdayPickaxe extends ConfigurableItemTool {
+public class ItemBirthdayPickaxe extends ItemTool {
 
     private static ItemBirthdayPickaxe _instance = null;
 
@@ -64,8 +62,8 @@ public class ItemBirthdayPickaxe extends ConfigurableItemTool {
         Blocks.stone_button,
         Blocks.stone_pressure_plate);
 
-    public ItemBirthdayPickaxe(ExtendedConfig<ItemConfig> eConfig) {
-        super(eConfig, 2.0F, OKProgressionsMaterial.BIRTHDAY, effective_against);
+    public ItemBirthdayPickaxe() {
+        super(2.0F, OKProgressionsMaterial.BIRTHDAY, effective_against);
         this.setMaxDamage(6521);
         this.maxStackSize = 1;
         this.setHarvestLevel("pickaxe", 4);

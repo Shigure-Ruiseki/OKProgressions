@@ -106,12 +106,12 @@ public class SoilInfo extends RecipeDataBase {
 
     @Override
     public IRecipeType<?> getType() {
-        return SoilTypeConfig._instance.getRecipeType();
+        return SoilTypeConfig._instance.getInstance();
     }
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return SoilSerializerConfig._instance.getRecipeSerializer();
+        return SoilSerializerConfig._instance.getInstance();
     }
 
     @Override

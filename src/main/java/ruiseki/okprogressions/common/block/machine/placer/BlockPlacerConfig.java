@@ -14,6 +14,6 @@ public class BlockPlacerConfig extends BlockContainerConfig {
      * Make a new instance.
      */
     public BlockPlacerConfig() {
-        super(OKProgressions._instance, true, "block_placer", null, BlockPlacer.class);
+        super(OKProgressions._instance, true, "block_placer", null, config -> new BlockPlacer());
     }
 }

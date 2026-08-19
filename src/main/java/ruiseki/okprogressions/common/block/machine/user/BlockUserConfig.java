@@ -14,6 +14,6 @@ public class BlockUserConfig extends BlockContainerConfig {
      * Make a new instance.
      */
     public BlockUserConfig() {
-        super(OKProgressions._instance, true, "block_user", null, BlockUser.class);
+        super(OKProgressions._instance, true, "block_user", null, config -> new BlockUser());
     }
 }

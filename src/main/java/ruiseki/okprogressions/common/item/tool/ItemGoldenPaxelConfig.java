@@ -2,6 +2,7 @@ package ruiseki.okprogressions.common.item.tool;
 
 import ruiseki.okcore.config.extendedconfig.ItemConfig;
 import ruiseki.okprogressions.OKProgressions;
+import ruiseki.okprogressions.common.init.OKProgressionsMaterial;
 
 public class ItemGoldenPaxelConfig extends ItemConfig {
 
@@ -14,6 +15,11 @@ public class ItemGoldenPaxelConfig extends ItemConfig {
      * Make a new instance.
      */
     public ItemGoldenPaxelConfig() {
-        super(OKProgressions._instance, true, "golden_paxel", null, ItemGoldPaxel.class);
+        super(
+            OKProgressions._instance,
+            true,
+            "golden_paxel",
+            null,
+            config -> new ItemPaxel(OKProgressionsMaterial.PGOLD));
     }
 }

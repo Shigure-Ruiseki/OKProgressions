@@ -13,24 +13,11 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ruiseki.okcore.config.extendedconfig.ExtendedConfig;
-import ruiseki.okcore.config.extendedconfig.ItemConfig;
 
 public class ItemRedstoneApple extends ItemAppleBase {
 
-    private static ItemRedstoneApple _instance = null;
-
-    /**
-     * Get the unique instance.
-     *
-     * @return The instance.
-     */
-    public static ItemRedstoneApple getInstance() {
-        return _instance;
-    }
-
-    public ItemRedstoneApple(ExtendedConfig<ItemConfig> eConfig) {
-        super(eConfig, 4, 1.0F, false);
+    public ItemRedstoneApple() {
+        super(4, 1.0F, false);
     }
 
     @Override

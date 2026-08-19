@@ -14,7 +14,7 @@ public class BlockOreEnderConfig extends BlockConfig {
      * Make a new instance.
      */
     public BlockOreEnderConfig() {
-        super(OKProgressions._instance, true, "ender_ore", null, BlockOreEnder.class);
+        super(OKProgressions._instance, true, "ender_ore", null, config -> new BlockOreEnder());
     }
 
     @Override
