@@ -4,6 +4,7 @@ import java.util.stream.IntStream;
 
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import lombok.experimental.Delegate;
 import ruiseki.okcore.capabilities.resolver.BasicCapabilityResolver;
@@ -26,7 +27,6 @@ public class TEMachineInventory extends TEMachine implements ISidedInventory {
     @NBTPersist
     protected RestrictedItemStackHandler inventory;
 
-    @NBTPersist
     protected EnergyStorage energyStorage = null;
     private int energyCost = 0;
 
@@ -185,5 +185,17 @@ public class TEMachineInventory extends TEMachine implements ISidedInventory {
                 }
             }
         }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+        energyStorage.writeToNBT(tag);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+        energyStorage.readFromNBT(tag);
     }
 }
