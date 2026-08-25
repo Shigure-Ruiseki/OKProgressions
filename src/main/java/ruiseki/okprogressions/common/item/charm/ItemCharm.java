@@ -32,7 +32,7 @@ public abstract class ItemCharm extends ItemBase implements IBaubleExpanded, IIt
     }
 
     @Override
-    public void toggle(EntityPlayer player, ItemStack held) {
+    public void toggle(EntityPlayerMP player, ItemStack held, int button) {
         setOn(held, !isOn(held));
     }
 
