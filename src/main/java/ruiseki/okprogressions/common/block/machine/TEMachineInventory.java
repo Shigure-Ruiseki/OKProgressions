@@ -10,7 +10,7 @@ import lombok.experimental.Delegate;
 import ruiseki.okcore.capabilities.resolver.BasicCapabilityResolver;
 import ruiseki.okcore.energy.capability.CapabilityEnergy;
 import ruiseki.okcore.energy.handler.EnergyStorage;
-import ruiseki.okcore.helper.ItemStackHelpers;
+import ruiseki.okcore.helper.ItemHelpers;
 import ruiseki.okcore.inventory.component.IInventoryExclusion;
 import ruiseki.okcore.inventory.component.SidedInventoryComponent;
 import ruiseki.okcore.item.capability.CapabilityItemHandler;
@@ -166,7 +166,7 @@ public class TEMachineInventory extends TEMachine implements ISidedInventory {
             this.setInventorySlotContents(low, second);
             this.setInventorySlotContents(high, null);
         } else if (main != null && second != null) {
-            if (ItemStackHelpers.areStacksEqual(main, second)) {
+            if (ItemHelpers.areItemsEqual(main, second)) {
                 int maxStack = main.getMaxStackSize();
 
                 int roomLeft = maxStack - main.stackSize;

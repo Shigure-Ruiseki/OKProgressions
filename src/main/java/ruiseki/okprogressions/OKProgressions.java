@@ -21,7 +21,7 @@ import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ruiseki.okcore.config.ConfigHandler;
 import ruiseki.okcore.config.extendedconfig.BlockItemConfigReference;
-import ruiseki.okcore.helper.ItemStackHelpers;
+import ruiseki.okcore.helper.ItemHelpers;
 import ruiseki.okcore.helper.MinecraftHelpers;
 import ruiseki.okcore.init.ItemCreativeTab;
 import ruiseki.okcore.init.ModBaseVersionable;
@@ -66,15 +66,13 @@ public class OKProgressions extends ModBaseVersionable {
 
             @Override
             public int getBurnTime(ItemStack fuel) {
-                if (ItemStackHelpers.areStacksEqual(fuel, new ItemStack(ItemTinyCoalConfig._instance.getInstance()))) {
+                if (ItemHelpers.areItemsEqual(fuel, new ItemStack(ItemTinyCoalConfig._instance.getInstance()))) {
                     return 200;
                 }
-                if (ItemStackHelpers
-                    .areStacksEqual(fuel, new ItemStack(ItemTinyCharcoalConfig._instance.getInstance()))) {
+                if (ItemHelpers.areItemsEqual(fuel, new ItemStack(ItemTinyCharcoalConfig._instance.getInstance()))) {
                     return 200;
                 }
-                if (ItemStackHelpers
-                    .areStacksEqual(fuel, new ItemStack(BlockCharcoalConfig._instance.getItemInstance()))) {
+                if (ItemHelpers.areItemsEqual(fuel, new ItemStack(BlockCharcoalConfig._instance.getItemInstance()))) {
                     return 16000;
                 }
                 return 0;
