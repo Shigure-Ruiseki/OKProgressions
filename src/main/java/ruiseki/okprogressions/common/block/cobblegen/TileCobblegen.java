@@ -9,10 +9,10 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import lombok.experimental.Delegate;
 import ruiseki.okcore.capabilities.resolver.BasicCapabilityResolver;
+import ruiseki.okcore.helper.ItemHelpers;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okcore.inventory.component.IInventoryExclusion;
 import ruiseki.okcore.inventory.component.SidedInventoryComponent;
-import ruiseki.okcore.item.ItemHelpers;
 import ruiseki.okcore.item.ItemTransfer;
 import ruiseki.okcore.item.capability.CapabilityItemHandler;
 import ruiseki.okcore.item.handler.ItemStackHandler;

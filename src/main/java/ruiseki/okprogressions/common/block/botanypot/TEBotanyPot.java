@@ -20,13 +20,13 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import ruiseki.okcore.addon.waila.IWailaTileInfoProvider;
 import ruiseki.okcore.capabilities.resolver.BasicCapabilityResolver;
-import ruiseki.okcore.helper.InventoryHelpers;
+import ruiseki.okcore.helper.ItemHandlerHelpers;
+import ruiseki.okcore.helper.ItemHelpers;
 import ruiseki.okcore.helper.LangHelpers;
 import ruiseki.okcore.helper.TileHelpers;
 import ruiseki.okcore.helper.WailaHelpers;
 import ruiseki.okcore.inventory.component.IInventoryExclusion;
 import ruiseki.okcore.inventory.component.SidedInventoryComponent;
-import ruiseki.okcore.item.ItemHelpers;
 import ruiseki.okcore.item.ItemTransfer;
 import ruiseki.okcore.item.capability.CapabilityItemHandler;
 import ruiseki.okcore.item.handler.ItemStackHandler;
@@ -265,7 +265,7 @@ public class TEBotanyPot extends TileEntityOK
                     boolean movedToSelf = false;
                     for (ItemStack stack : drops) {
                         if (stack == null) continue;
-                        ItemStack stackToInsert = InventoryHelpers.insertStack(this.inventory, stack, false);
+                        ItemStack stackToInsert = ItemHandlerHelpers.insertItem(this.inventory, stack, false);
                         if (stackToInsert == null || stackToInsert.stackSize < stack.stackSize) {
                             movedToSelf = true;
                         }
