@@ -1,7 +1,6 @@
 package ruiseki.okprogressions.common.block.growth;
 
 import ruiseki.okcore.config.ConfigurableProperty;
-import ruiseki.okcore.config.ConfigurableTypeCategory;
 import ruiseki.okcore.config.extendedconfig.BlockContainerConfig;
 import ruiseki.okprogressions.OKProgressions;
 
@@ -16,7 +15,7 @@ public class BlockGrowthTier1Config extends BlockContainerConfig {
      * The growth tick interval (in seconds).
      */
     @ConfigurableProperty(
-        category = ConfigurableTypeCategory.MACHINE,
+        category = "machine.growth",
         comment = "Tick interval in seconds to attempt growth tick",
         minimalValue = 1)
     public static int growthIntervalTier1 = 1;
@@ -24,17 +23,14 @@ public class BlockGrowthTier1Config extends BlockContainerConfig {
     /**
      * The radius in blocks affected by the growth accelerator.
      */
-    @ConfigurableProperty(
-        category = ConfigurableTypeCategory.MACHINE,
-        comment = "Radius of affected crops/blocks",
-        minimalValue = 1)
+    @ConfigurableProperty(category = "machine.growth", comment = "Radius of affected crops/blocks", minimalValue = 1)
     public static int growthRadiusTier1 = 4;
 
     /**
      * The vertical range (up/down) in blocks affected.
      */
     @ConfigurableProperty(
-        category = ConfigurableTypeCategory.MACHINE,
+        category = "machine.growth",
         comment = "Vertical height range (above and below) affected",
         minimalValue = 1)
     public static int growthHeightTier1 = 2;

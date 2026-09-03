@@ -4,9 +4,9 @@
 
 ## Required Dependencies:
 
-*   [ModularUI2 (>= 2.3.79)](https://github.com/GTNewHorizons/ModularUI2)
-*   [GTNHLib (>= 0.11.21)](https://github.com/GTNewHorizons/GTNHLib)
-*   [OKCore (>= 26.08.16.0)](https://github.com/Shigure-Ruiseki/OKCore)
+*   [ModularUI2 (>= 2.3.87)](https://github.com/GTNewHorizons/ModularUI2)
+*   [GTNHLib (>= 0.11.43)](https://github.com/GTNewHorizons/GTNHLib)
+*   [OKCore (>= 26.09.03.2)](https://github.com/Shigure-Ruiseki/OKCore)
 
 ## Features:
 *   Cobblestone Generators.

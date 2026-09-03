@@ -4,7 +4,6 @@ import org.apache.logging.log4j.Level;
 
 import ruiseki.okcore.config.ConfigurableProperty;
 import ruiseki.okcore.config.ConfigurableType;
-import ruiseki.okcore.config.ConfigurableTypeCategory;
 import ruiseki.okcore.config.extendedconfig.DummyConfig;
 import ruiseki.okcore.init.ModBase;
 import ruiseki.okcore.tracking.Versions;
@@ -16,7 +15,7 @@ public class GeneralConfig extends DummyConfig {
      * warn the player accordingly.
      */
     @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
+        category = "core",
         comment = "Config version for " + Reference.MOD_NAME + ".\nDO NOT EDIT MANUALLY!")
     public static String version = Reference.MOD_VERSION;
 
@@ -24,7 +23,7 @@ public class GeneralConfig extends DummyConfig {
      * If the debug mode should be enabled. @see Debug
      */
     @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
+        category = "core",
         comment = "Set 'true' to enable development debug mode. This will result in a lower performance!",
         requiresMcRestart = true)
     public static boolean debug = false;
@@ -33,7 +32,7 @@ public class GeneralConfig extends DummyConfig {
      * If the recipe loader should crash when finding invalid recipes.
      */
     @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
+        category = "core",
         comment = "If the recipe loader should crash when finding invalid recipes.",
         requiresMcRestart = true)
     public static boolean crashOnInvalidRecipe = false;
@@ -42,7 +41,7 @@ public class GeneralConfig extends DummyConfig {
      * If mod compatibility loader should crash hard if errors occur in that process.
      */
     @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
+        category = "core",
         comment = "If mod compatibility loader should crash hard if errors occur in that process.",
         requiresMcRestart = true)
     public static boolean crashOnModCompatCrash = false;
@@ -50,51 +49,38 @@ public class GeneralConfig extends DummyConfig {
     /**
      * If the version checker should be enabled.
      */
-    @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
-        comment = "If the version checker should be enabled.")
+    @ConfigurableProperty(category = "core", comment = "If the version checker should be enabled.")
     public static boolean versionChecker = true;
 
     /**
      * Base growth ticks interval.
      */
-    @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
-        comment = "Base growth tick interval.",
-        minimalValue = 1)
+    @ConfigurableProperty(category = "core", comment = "Base growth tick interval.", minimalValue = 1)
     public static int growthTicks = 30;
 
     /**
      * Growth ticks interval for Tier 1 Upgrade.
      */
-    @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
-        comment = "Growth tick interval for Tier 1 Upgrade.",
-        minimalValue = 1)
+    @ConfigurableProperty(category = "core", comment = "Growth tick interval for Tier 1 Upgrade.", minimalValue = 1)
     public static int upgradeGrowthTicks = 40;
 
     /**
      * Growth ticks interval for Tier 2 Upgrade.
      */
-    @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
-        comment = "Growth tick interval for Tier 2 Upgrade.",
-        minimalValue = 1)
+    @ConfigurableProperty(category = "core", comment = "Growth tick interval for Tier 2 Upgrade.", minimalValue = 1)
     public static int upgradeTwoGrowthTicks = 30;
 
     /**
      * Enable particle effects.
      */
-    @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
-        comment = "Set to 'true' to enable particle effects.")
+    @ConfigurableProperty(category = "core", comment = "Set to 'true' to enable particle effects.")
     public static boolean particle = true;
 
     /**
      * Interval in ticks between spawning particles.
      */
     @ConfigurableProperty(
-        category = ConfigurableTypeCategory.CORE,
+        category = "core",
         comment = "Interval in ticks between spawning particles.",
         minimalValue = 1)
     public static int particleTicks = 750;
