@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "okprogressions:block/reinforced_obsidian"
+    "all": "okprogressions:blocks/reinforced_obsidian"
   }
 }

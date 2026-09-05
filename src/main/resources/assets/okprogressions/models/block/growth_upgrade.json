@@ -2,14 +2,14 @@
   "parent": "block/block",
   "ambientocclusion": false,
   "textures": {
-    "particle": "okprogressions:block/growth",
-    "t1": "okprogressions:block/growth_down",
-    "t2": "okprogressions:block/growth_up",
-    "t3": "okprogressions:block/growth_north",
-    "t4": "okprogressions:block/growth_south",
-    "t5": "okprogressions:block/growth_west",
-    "t6": "okprogressions:block/growth_east",
-    "t7": "block/water_still"
+    "particle": "okprogressions:blocks/growth",
+    "t1": "okprogressions:blocks/growth_down",
+    "t2": "okprogressions:blocks/growth_up",
+    "t3": "okprogressions:blocks/growth_north",
+    "t4": "okprogressions:blocks/growth_south",
+    "t5": "okprogressions:blocks/growth_west",
+    "t6": "okprogressions:blocks/growth_east",
+    "t7": "minecraft:blocks/water_still"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

@@ -111,9 +111,9 @@ public class Configs {
         configHandler.add(new BlockUserConfig());
 
         // Recipe
-        configHandler.add(new SoilSerializerConfig());
-        configHandler.add(new SoilTypeConfig());
         configHandler.add(new CropSerializerConfig());
         configHandler.add(new CropTypeConfig());
+        configHandler.add(new SoilSerializerConfig());
+        configHandler.add(new SoilTypeConfig());
     }
 }

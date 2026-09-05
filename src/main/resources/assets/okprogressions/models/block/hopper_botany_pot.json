@@ -3,9 +3,9 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"hopper_overlay": "okprogressions:block/hopper_overlay",
-		"particle": "block/hardened_clay",
-		"terracotta": "block/hardened_clay"
+		"hopper_overlay": "okprogressions:blocks/hopper_overlay",
+    "particle": "minecraft:blocks/hardened_clay",
+    "terracotta": "minecraft:blocks/hardened_clay"
 	},
 	"elements": [
 		{

@@ -2,10 +2,10 @@
   "parent": "block/block",
   "textures": {
     "particle": "#material",
-    "cobblestone": "block/cobblestone",
-    "glass": "block/glass",
-    "water": "block/water_still",
-    "lava": "block/lava_still"
+    "cobblestone": "minecraft:blocks/cobblestone",
+    "glass": "minecraft:blocks/glass",
+    "water": "minecraft:blocks/water_still",
+    "lava": "minecraft:blocks/lava_still"
   },
   "elements": [
     {
