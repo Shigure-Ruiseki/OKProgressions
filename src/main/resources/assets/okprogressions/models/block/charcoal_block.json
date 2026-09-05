@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "okprogressions:block/charcoal_block"
+        "all": "okprogressions:blocks/charcoal_block"
     }
 }

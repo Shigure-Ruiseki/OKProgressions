@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "okprogressions:block/ore_ender"
+    "all": "okprogressions:blocks/ore_ender"
   }
 }
