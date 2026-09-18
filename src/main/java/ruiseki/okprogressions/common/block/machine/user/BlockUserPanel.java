@@ -11,9 +11,9 @@ import com.cleanroommc.modularui.widgets.SliderWidget;
 import com.cleanroommc.modularui.widgets.ToggleButton;
 import com.cleanroommc.modularui.widgets.layout.Flow;
 import com.cleanroommc.modularui.widgets.slot.ItemSlot;
-import com.cleanroommc.modularui.widgets.slot.ModularSlot;
 
 import ruiseki.okcore.client.OKCGuiTextures;
+import ruiseki.okcore.client.mui.gui.component.slot.ModularItemSlot;
 import ruiseki.okcore.helper.LangHelpers;
 import ruiseki.okprogressions.common.block.machine.MachinePanel;
 
@@ -62,7 +62,8 @@ public class BlockUserPanel extends MachinePanel<TEBlockUser> {
             this.machine::setInteractWithEntity).allowC2S();
         this.syncManager.syncValue("interactWithEntitySyncer", interactWithEntitySyncer);
 
-        return super.createSettingColumn().child(new ItemSlot().slot(new ModularSlot(this.machine.getInventory(), 0)))
+        return super.createSettingColumn()
+            .child(new ItemSlot().slot(new ModularItemSlot(this.machine.getInventory(), 0)))
             .child(
                 new ToggleButton().value(useLeftHandSyncer)
                     .tooltip(richTooltip -> richTooltip.add(LangHelpers.localize("gui.user.hand")))
