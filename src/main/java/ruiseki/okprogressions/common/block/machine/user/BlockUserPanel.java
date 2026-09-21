@@ -12,7 +12,7 @@ import com.cleanroommc.modularui.widgets.ToggleButton;
 import com.cleanroommc.modularui.widgets.layout.Flow;
 import com.cleanroommc.modularui.widgets.slot.ItemSlot;
 
-import ruiseki.okcore.client.OKCGuiTextures;
+import ruiseki.okcore.client.mui.OKCGuiTextures;
 import ruiseki.okcore.client.mui.gui.component.slot.ModularItemSlot;
 import ruiseki.okcore.helper.LangHelpers;
 import ruiseki.okprogressions.common.block.machine.MachinePanel;
