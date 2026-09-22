@@ -6,7 +6,7 @@
 
 *   [ModularUI2 (>= 2.3.90)](https://github.com/GTNewHorizons/ModularUI2)
 *   [GTNHLib (>= 0.11.48)](https://github.com/GTNewHorizons/GTNHLib)
-*   [OKCore (>= 26.09.21.0)](https://github.com/Shigure-Ruiseki/OKCore)
+*   [OKCore (>= 26.09.22.2)](https://github.com/Shigure-Ruiseki/OKCore)
 
 ## Features:
 *   Cobblestone Generators.
