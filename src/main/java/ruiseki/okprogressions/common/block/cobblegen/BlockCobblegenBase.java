@@ -67,7 +67,7 @@ public class BlockCobblegenBase extends BlockTile {
         if (world.isRemote) {
             return true;
         }
-        TileHelpers.getTileEntity(world, new BlockPos(x, y, z), TileCobblegen.class)
+        TileHelpers.get(world, new BlockPos(x, y, z), TileCobblegen.class)
             .ifPresent(tile -> {
                 if (!player.isSneaking()) {
                     ItemStack stack = tile.outputInventory.getAndRemoveSlot(0);

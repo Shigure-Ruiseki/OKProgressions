@@ -157,7 +157,7 @@ public class BlockBotanyPotBase extends BlockTile implements IGrowable {
     // grow
     @Override
     public void func_149853_b(World worldIn, Random random, int x, int y, int z) {
-        TileHelpers.getTileEntity(worldIn, new BlockPos(x, y, z), TEBotanyPot.class)
+        TileHelpers.get(worldIn, new BlockPos(x, y, z), TEBotanyPot.class)
             .ifPresent(pot -> pot.addGrowth((random.nextInt(15 - 3 + 1) + 3) * 20));
     }
 
