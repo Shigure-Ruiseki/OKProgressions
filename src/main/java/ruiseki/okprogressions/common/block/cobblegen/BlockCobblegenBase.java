@@ -38,7 +38,8 @@ public class BlockCobblegenBase extends BlockTile {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void provideInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        super.provideInformation(stack, player, list, flag);
         Block blockRaw = Block.getBlockFromItem(stack.getItem());
         if (blockRaw instanceof BlockCobblegenBase block) {
             list.add(

@@ -131,8 +131,8 @@ public class BlockBotanyPotBase extends BlockTile implements IGrowable {
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean b) {
-        super.addInformation(itemStack, entityPlayer, list, b);
+    public void provideInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean b) {
+        super.provideInformation(itemStack, entityPlayer, list, b);
         list.add(
             this.isHopper() ? new ChatComponentTranslation("tooltip.pot.hopper").getFormattedText()
                 : new ChatComponentTranslation("tooltip.pot.normal").getFormattedText());

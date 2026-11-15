@@ -45,8 +45,8 @@ public class BlockReinforcedObsidian extends BlockBase {
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean b) {
-        super.addInformation(itemStack, entityPlayer, list, b);
+    public void provideInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean b) {
+        super.provideInformation(itemStack, entityPlayer, list, b);
         list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.obsidian_1").getFormattedText());
     }
 }
