@@ -43,8 +43,8 @@ public class BlockGrowthBase extends BlockTile {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        super.addInformation(stack, player, list, flag);
+    public void provideInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        super.provideInformation(stack, player, list, flag);
         if (this.growthLvl == 1) {
             list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growth_1").getFormattedText());
             list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.growth_2").getFormattedText());

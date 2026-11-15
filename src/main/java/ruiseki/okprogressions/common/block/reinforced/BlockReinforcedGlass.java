@@ -64,7 +64,8 @@ public class BlockReinforcedGlass extends BlockGlassBase {
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean b) {
+    public void provideInformation(ItemStack itemStack, EntityPlayer entityPlayer, List<String> list, boolean b) {
+        super.provideInformation(itemStack, entityPlayer, list, b);
         list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.glass_1").getFormattedText());
     }
 }

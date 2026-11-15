@@ -52,7 +52,8 @@ public class BlockNetherStar extends BlockBase {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+    public void provideInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        super.provideInformation(stack, player, list, flag);
         list.add(ChatFormatting.YELLOW + new ChatComponentTranslation("tooltip.netherstar_1").getFormattedText());
     }
 }
